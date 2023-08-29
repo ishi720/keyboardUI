@@ -83,15 +83,14 @@
 			top: 0px;
 		}
 
-
-
-
-		#key_8 {
+		.key_Backspace {
 			left: 574px;
 			top: 0px;
 		}
 
-		#key_9 {
+
+
+		.key_Tab {
 			width: 54px !important;
 			left: 0px;
 			top: 41px;
@@ -172,7 +171,11 @@
 		}
 
 
-
+		.key_CapsLock {
+			width: 76px !important;
+			left: 0px;
+			top: 82px;
+		}
 		.key_KeyA {
 			left: 81px;
 			top: 82px;
@@ -222,24 +225,6 @@
 			top: 82px;
 		}
 
-
-		#key_20 {
-			width: 76px !important;
-			left: 0px;
-			top: 82px;
-		}
-
-
-
-		#key_17_left {
-			width: 54px !important;
-			left: 0px;
-			top: 164px;			
-		}
-		#key_91_left {
-			top: 164px;
-    		left: 61px;
-		}
 		#key_18_left {
 			top: 164px;
     		left: 102px;
@@ -276,21 +261,32 @@
 			left: 347px;
 			top: 123px;
 		}
-		.key_comma {
+		.key_Comma {
 			left: 388px;
 			top: 123px;
 		}
-		.key_dot {
+		.key_Period {
 			left: 429px;
 			top: 123px;
 		}
-		.key_191 {
+		.key_Slash {
 			left: 470px;
 			top: 123px;
 		}
-		#key_226 {
+		.key_IntlRo {
 			left: 511px;
 			top: 123px;
+		}
+
+
+		.key_ControlLeft {
+			width: 54px !important;
+			left: 0px;
+			top: 164px;			
+		}
+		.key_MetaLeft {
+			top: 164px;
+    		left: 61px;
 		}
 		.key_Space {
 			width: 179px !important;
@@ -355,7 +351,9 @@
 		<div class="key_Minus little right">ほ</div>
 		<div class="key_Equal">へ</div>
 		<div class="key_IntlYen"></div>
+		<div class="key_Backspace"></div>
 
+		<div class="key_Tab"></div>
 		<div class="key_KeyQ little left">た</div>
 		<div class="key_KeyW ring left">て</div>
 		<div class="key_KeyE middle left">い</div>
@@ -372,6 +370,7 @@
 		<div id="key_13_2" class="key_Enter"></div>
 		<div id="key_13_3" class="key_Enter"></div>
 
+		<div class="key_CapsLock"></div>
 		<div class="key_KeyA little left">ち</div>
 		<div class="key_KeyS ring left">と</div>
 		<div class="key_KeyD middle left">し</div>
@@ -385,6 +384,7 @@
 		<div class="key_Quote little right">け</div>
 		<div class="key_Backslash">む</div>
 
+		<div class="key_ShiftLeft"></div>
 		<div class="key_KeyZ little left">つ</div>
 		<div class="key_KeyX ring left">さ</div>
 		<div class="key_KeyC middle left">そ</div>
@@ -392,47 +392,29 @@
 		<div class="key_KeyB index left">こ</div>
 		<div class="key_KeyN index right">み</div>
 		<div class="key_KeyM index right">も</div>
-		<div class="key_comma middle right">ね</div>
-		<div class="key_dot ring right">る</div>
-		<div class="key_191 little right">め</div>
-
-
-
-
-
-
+		<div class="key_Comma middle right">ね</div>
+		<div class="key_Period ring right">る</div>
+		<div class="key_Slash little right">め</div>
+		<div class="key_IntlRo">ろ</div>
+	
+		<div class="key_ControlLeft"></div>
+		<div class="key_MetaLeft"></div>
 		<div class="key_Space">Space</div>
 		<div class="key_ShiftRight"></div>
-		<div class="key_ShiftLeft"></div>
 
-
-
-
-
-
-
-
-
-
-
-
-	
-		
-		<div id="key_226" class="deco_key">ろ</div>
 
 		
-		<div id="key_9" class="deco_key"></div>
-		<div id="key_20" class="deco_key"></div>
-		<div id="key_8" class="deco_key"></div>
-		<div id="key_17_left" class="deco_key"></div>
-		<div id="key_91_left" class="deco_key"></div>
-		<div id="key_18_left" class="deco_key"></div>
-		<div id="key_29" class="deco_key"></div>
-		<div id="key_28" class="deco_key"></div>
-		<div id="key_242" class="deco_key"></div>
-		<div id="key_18_right" class="deco_key"></div>
-		<div id="key_91_right" class="deco_key"></div>
-		<div id="key_17_right" class="deco_key"></div>
+		
+		
+		
+		
+		<div id="key_18_left"></div>
+		<div id="key_29"></div>
+		<div id="key_28"></div>
+		<div id="key_242"></div>
+		<div id="key_18_right"></div>
+		<div id="key_91_right"></div>
+		<div id="key_17_right"></div>
 	</div>
 
 
@@ -442,7 +424,7 @@
 </html>
 
 <script type="text/javascript">
-document.addEventListener('keypress', keypress_ivent);
+document.addEventListener('keydown', keypress_ivent);
 document.addEventListener('keyup', keyup_ivent);
 
 function keypress_ivent(e) {
