@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		#full_keyboard {
+			position: relative;
+			background-color: red;
+		}
+
+		#full_keyboard div {
+		    width: 34px;
+		    height: 34px;
+		    border: 1px solid #d8d8d8;
+		    border-radius: 3px;
+		    font-weight: bold;
+		    font-size: 16px;
+		    line-height: 34px;
+		    text-align: center;
+		    overflow: hidden;
+		    position: absolute;
+		}
+		.key_49 {
+			left: 41px;
+			top: 0px;
+		}
+		.key_50 {
+			left: 82px;
+			top: 0px;
+		}
+		.key_51 {
+			left: 123px;
+			top: 0px;
+		}
+		.key_52 {
+			left: 164px;
+			top: 0px;
+		}
+		.key_53 {
+			left: 205px;
+			top: 0px;
+		}
+		.key_54 {
+			left: 246px;
+			top: 0px;
+		}
+		.key_55 {
+			left: 287px;
+			top: 0px;
+		}
+		.key_56 {
+			left: 328px;
+			top: 0px;
+		}
+		.key_57 {
+			left: 369px;
+			top: 0px;
+		}
+		.key_48 {
+			left: 410px;
+			top: 0px;
+		}
+		.key_45 {
+			left: 451px;
+			top: 0px;
+		}
+		.key_94 {
+			left: 492px;
+			top: 0px;
+		}
+		#key_yen {
+			left: 533px;
+			top: 0px;
+		}
+		#key_8 {
+			left: 574px;
+			top: 0px;
+		}
+
+		#key_9 {
+			width: 54px !important;
+			left: 0px;
+			top: 41px;
+		}
+		.key_q {
+			left: 61px;
+			top: 41px;
+		}
+		.key_w {
+			left: 102px;
+			top: 41px;
+		}
+		.key_e {
+			left: 143px;
+			top: 41px;
+		}
+		.key_r {
+			left: 184px;
+			top: 41px;
+		}
+		.key_t {
+			left: 225px;
+			top: 41px;
+		}
+		.key_y {
+			left: 266px;
+			top: 41px;
+		}
+		.key_u {
+			left: 308px;
+			top: 41px;
+		}
+		.key_i {
+			left: 349px;
+			top: 41px;
+		}
+		.key_o {
+			left: 390px;
+			top: 41px;
+		}
+		.key_p {
+			left: 431px;
+			top: 41px;
+		}
+		.key_192 {
+			left: 472px;
+			top: 41px;
+		}
+		#key_219 {
+			left: 513px;
+			top: 41px;
+		}
+
+
+		#key_20 {
+			width: 76px !important;
+			left: 0px;
+			top: 82px;
+		}
+		.key_a {
+			left: 81px;
+			top: 82px;
+		}
+		.key_s {
+			left: 122px;
+			top: 82px;
+		}
+		.key_d {
+			left: 163px;
+			top: 82px;
+		}
+		.key_f {
+			left: 204px;
+			top: 82px;
+		}
+		.key_g {
+			left: 245px;
+			top: 82px;
+		}
+		.key_h {
+			left: 286px;
+			top: 82px;
+		}
+		.key_j {
+			left: 327px;
+			top: 82px;
+		}
+		.key_k {
+			left: 368px;
+			top: 82px;
+		}
+		.key_l {
+			left: 409px;
+			top: 82px;
+		}
+		.key_187 {
+			left: 450px;
+			top: 82px;
+		}
+		.key_186 {
+			left: 491px;
+			top: 82px;
+		}
+		#key_221 {
+			left: 532px;
+			top: 82px;
+		}
+		#key_13_1 {
+			width: 19px !important;
+			left: 553px;
+			top: 41px;
+			border-right: none !important;
+			border-top-right-radius: 0px !important;
+    		border-bottom-right-radius: 0px !important;
+		}
+		#key_13_2 {
+			width: 37px !important;
+			left: 573px;
+			top: 41px;
+			border-bottom: none !important;
+			border-left: none !important;
+			border-top-left-radius: 0px !important;
+    		border-bottom-right-radius: 0px !important;
+		}
+		#key_13_3 {
+			width: 36px !important;
+			height: 43px !important;
+			left: 573px;
+			top: 75px;
+			border-top: none !important;
+			border-top-left-radius: 0px !important;
+			border-top-right-radius: 0px !important;
+		}
+
+
+
+
+
+		#key_17_left {
+			width: 54px !important;
+			left: 0px;
+			top: 164px;			
+		}
+		#key_91_left {
+			top: 164px;
+    		left: 61px;
+		}
+		#key_18_left {
+			top: 164px;
+    		left: 102px;
+		}
+		#key_29 {
+			top: 164px;
+    		left: 143px;
+		}
+		.key_z {
+			left: 101px;
+			top: 123px;
+		}
+		.key_x {
+			left: 142px;
+			top: 123px;
+		}
+		.key_c {
+			left: 183px;
+			top: 123px;
+		}
+		.key_v {
+			left: 224px;
+			top: 123px;
+		}
+		.key_b {
+			left: 265px;
+			top: 123px;
+		}
+		.key_n {
+			left: 306px;
+			top: 123px;
+		}
+		.key_m {
+			left: 347px;
+			top: 123px;
+		}
+		.key_comma {
+			left: 388px;
+			top: 123px;
+		}
+		.key_dot {
+			left: 429px;
+			top: 123px;
+		}
+		.key_191 {
+			left: 470px;
+			top: 123px;
+		}
+		#key_226 {
+			left: 511px;
+			top: 123px;
+		}
+		.key_space {
+			width: 179px !important;
+		    left: 184px;
+    		top: 164px;
+		}
+
+		#key_28 {
+			top: 164px;
+    		left: 370px;
+		}
+		#key_242 {
+			top: 164px;
+    		left: 411px;
+		}
+		#key_18_right {
+			width: 54px !important;
+    		top: 164px;
+    		left: 452px;
+		}
+		#key_91_right {
+			top: 164px;
+    		left: 513px;
+		}
+		#key_17_right {
+			width: 56px !important;
+    		top: 164px;
+    		left: 554px;
+		}
+
+		.key_shift_left {
+		    width: 96px !important;
+    		left: 0px;
+    		top: 123px;
+    	}
+
+		.key_shift_right {
+		    width: 58px !important;
+    		left: 552px;
+    		top: 123px;
+    	}
+		.active {
+			background-color: lightcoral;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="full_keyboard">
+		<div class="key_49 little left">ぬ</div>
+		<div class="key_50 ring left">ふ</div>
+		<div class="key_51 middle left">あ</div>
+		<div class="key_52 index left">う</div>
+		<div class="key_53 index left">え</div>
+		<div class="key_54 index right">お</div>
+		<div class="key_55 index right">や</div>
+		<div class="key_56 middle right">ゆ</div>
+		<div class="key_57 ring right">よ</div>
+		<div class="key_48 little right">わ</div>
+		<div class="key_45 little right">ほ</div>
+		<div class="key_94">へ</div>
+
+
+		<div class="key_space">Space</div>
+		<div class="key_shift_right"></div>
+		<div class="key_shift_left"></div>
+
+
+
+
+
+
+		<div class="key_q little left">た</div>
+		<div class="key_w ring left">て</div>
+		<div class="key_e middle left">い</div>
+		<div class="key_r index left">す</div>
+		<div class="key_t index left">か</div>
+		<div class="key_y index right">ん</div>
+		<div class="key_u index right">な</div>
+		<div class="key_i middle right">に</div>
+		<div class="key_o ring right">ら</div>
+		<div class="key_p little right">せ</div>
+		<div class="key_192 little right"></div>
+
+		<div class="key_a little left">ち</div>
+		<div class="key_s ring left">と</div>
+		<div class="key_d middle left">し</div>
+		<div class="key_f index left">は</div>
+		<div class="key_g index left">き</div>
+		<div class="key_h index right">く</div>
+		<div class="key_j index right">ま</div>
+		<div class="key_k middle right">の</div>
+		<div class="key_l ring right">り</div>
+		<div class="key_187 little right">れ</div>
+		<div class="key_186 little right">け</div>
+		<div class="key_z little left">つ</div>
+		<div class="key_x ring left">さ</div>
+		<div class="key_c middle left">そ</div>
+		<div class="key_v index left">ひ</div>
+		<div class="key_b index left">こ</div>
+		<div class="key_n index right">み</div>
+		<div class="key_m index right">も</div>
+		<div class="key_comma middle right">ね</div>
+		<div class="key_dot ring right">る</div>
+		<div class="key_191 little right">め</div>
+
+		<div id="key_13_1" class="deco_key"></div>
+		<div id="key_13_2" class="deco_key"></div>
+		<div id="key_13_3" class="deco_key"></div>
+
+
+		<div id="key_244" class="deco_key"></div>
+		<div id="key_yen" class="deco_key"></div>
+		<div id="key_226" class="deco_key">ろ</div>
+		<div id="key_221" class="deco_key">む</div>
+		<div id="key_219" class="deco_key"></div>
+		<div id="key_9" class="deco_key"></div>
+		<div id="key_20" class="deco_key"></div>
+		<div id="key_8" class="deco_key"></div>
+		<div id="key_17_left" class="deco_key"></div>
+		<div id="key_91_left" class="deco_key"></div>
+		<div id="key_18_left" class="deco_key"></div>
+		<div id="key_29" class="deco_key"></div>
+		<div id="key_28" class="deco_key"></div>
+		<div id="key_242" class="deco_key"></div>
+		<div id="key_18_right" class="deco_key"></div>
+		<div id="key_91_right" class="deco_key"></div>
+		<div id="key_17_right" class="deco_key"></div>
+	</div>
+
+
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+document.addEventListener('keypress', keypress_ivent);
+document.addEventListener('keyup', keyup_ivent);
+
+function keypress_ivent(e) {
+	console.log(e.keyCode);
+	var hoge = document.getElementsByClassName('key_' + e.keyCode);
+	hoge[0].classList.add("active");
+}
+
+function keyup_ivent(e) {
+	console.log("_", e.keyCode);
+	var hoge = document.getElementsByClassName('key_' + e.keyCode);
+	hoge[0].classList.remove("active");
+}
+</script>
