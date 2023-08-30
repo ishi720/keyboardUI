@@ -338,6 +338,9 @@
     		left: 552px;
     		top: 123px;
     	}
+		.next {
+			background-color: yellow;
+		}
 		.active {
 			background-color: lightcoral;
 		}
@@ -427,29 +430,54 @@
 </html>
 
 <script type="text/javascript">
+
+
+
+// 入力用テキスト
+var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん";
+
+// // 次に入力するキーを強調表示する
+// var nextKey = document.getElementsByClassName('key_Digit3');//あ
+// nextKey[0].classList.add("next");
+
 document.addEventListener('keydown', keypress_ivent);
 document.addEventListener('keyup', keyup_ivent);
 
 function keypress_ivent(e) {
-	console.log(e.code);
-	var hoge = document.getElementsByClassName('key_' + e.code);
 
-	hoge[0].classList.add("active");
+	// 対象のキーがおされたら次のキーへ進む
+	// if ( "Digit3" === e.code ) {
+	// 	nextKey[0].classList.remove("next");
+	// 	nextKey = document.getElementsByClassName('key_KeyE');//い
+	// 	nextKey[0].classList.add("next");
+	// }
 
+
+	var nowKey = document.getElementsByClassName('key_' + e.code);
+	nowKey[0].classList.add("active");
 	if(e.code == "Enter") {
-		hoge[1].classList.add("active");
-		hoge[2].classList.add("active");		
+		nowKey[1].classList.add("active");
+		nowKey[2].classList.add("active");		
 	}
 
 }
 
 function keyup_ivent(e) {
-	console.log("_", e.code);
-	var hoge = document.getElementsByClassName('key_' + e.code);
-	hoge[0].classList.remove("active");
+	var nowKey = document.getElementsByClassName('key_' + e.code);
+	nowKey[0].classList.remove("active");
 	if(e.code == "Enter") {
-		hoge[1].classList.remove("active");
-		hoge[2].classList.remove("active");		
+		nowKey[1].classList.remove("active");
+		nowKey[2].classList.remove("active");		
 	}
 }
+
+function getKeyCode(s) {
+	var codeList = [
+	    { code : "Digit3", romaji : "1", kana : "あ" },
+	    { code : "KeyE", romaji : "e", kana : "い" }
+	];
+	return codeList.find((d) => d.kana === s);
+}
+
+
 </script>
