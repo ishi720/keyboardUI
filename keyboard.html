@@ -377,8 +377,8 @@
 		<div class="key_KeyI middle rightHand">に</div>
 		<div class="key_KeyO ring rightHand">ら</div>
 		<div class="key_KeyP little rightHand">せ</div>
-		<div class="key_BracketLeft little rightHand"></div>
-		<div class="key_BracketRight rightHand"></div>
+		<div class="key_BracketLeft little rightHand">゛</div>
+		<div class="key_BracketRight rightHand">゜</div>
 		<div id="key_13_1" class="key_Enter rightHand"></div>
 		<div id="key_13_2" class="key_Enter rightHand"></div>
 		<div id="key_13_3" class="key_Enter rightHand"></div>
@@ -436,21 +436,28 @@
 // 入力用テキスト
 var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん";
 
-// // 次に入力するキーを強調表示する
-// var nextKey = document.getElementsByClassName('key_Digit3');//あ
-// nextKey[0].classList.add("next");
+// 次に入力するキーを強調表示する
+var nextKey = document.getElementsByClassName('key_'+ getKeyCode(s.charAt(0)));//あ
+nextKey[0].classList.add("next");
 
 document.addEventListener('keydown', keypress_ivent);
 document.addEventListener('keyup', keyup_ivent);
 
+
+var i = 0;
+
 function keypress_ivent(e) {
 
+
+	
+
 	// 対象のキーがおされたら次のキーへ進む
-	// if ( "Digit3" === e.code ) {
-	// 	nextKey[0].classList.remove("next");
-	// 	nextKey = document.getElementsByClassName('key_KeyE');//い
-	// 	nextKey[0].classList.add("next");
-	// }
+	if ( getKeyCode(s.charAt(i)) === e.code ) {
+		i++;
+		nextKey[0].classList.remove("next");
+		nextKey = document.getElementsByClassName('key_'+ getKeyCode(s.charAt(i)));//い
+		nextKey[0].classList.add("next");
+	}
 
 
 	var nowKey = document.getElementsByClassName('key_' + e.code);
@@ -473,10 +480,57 @@ function keyup_ivent(e) {
 
 function getKeyCode(s) {
 	var codeList = [
-	    { code : "Digit3", romaji : "1", kana : "あ" },
-	    { code : "KeyE", romaji : "e", kana : "い" }
+		{ code : "Digit1", romaji : "1", kana : "ぬ" },
+		{ code : "Digit2", romaji : "2", kana : "ふ" },
+		{ code : "Digit3", romaji : "3", kana : "あ" },
+		{ code : "Digit4", romaji : "4", kana : "う" },
+		{ code : "Digit5", romaji : "5", kana : "え" },
+		{ code : "Digit6", romaji : "6", kana : "お" },
+		{ code : "Digit7", romaji : "7", kana : "や" },
+		{ code : "Digit8", romaji : "8", kana : "ゆ" },
+		{ code : "Digit9", romaji : "9", kana : "よ" },
+		{ code : "Digit0", romaji : "0", kana : "わ" },
+		{ code : "key_Minus", romaji : "", kana : "ほ" },
+
+		{ code : "KeyQ", romaji : "q", kana : "た" },
+		{ code : "KeyW", romaji : "w", kana : "て" },
+		{ code : "KeyE", romaji : "e", kana : "い" },
+		{ code : "KeyR", romaji : "r", kana : "す" },
+		{ code : "KeyT", romaji : "t", kana : "か" },
+		{ code : "KeyY", romaji : "y", kana : "ん" },
+		{ code : "KeyU", romaji : "u", kana : "な" },
+		{ code : "KeyI", romaji : "i", kana : "に" },
+		{ code : "KeyO", romaji : "o", kana : "ら" },
+		{ code : "KeyP", romaji : "p", kana : "せ" },
+
+		{ code : "KeyA", romaji : "a", kana : "ち" },
+		{ code : "KeyS", romaji : "s", kana : "と" },
+		{ code : "KeyD", romaji : "d", kana : "し" },
+		{ code : "KeyF", romaji : "f", kana : "は" },
+		{ code : "KeyG", romaji : "g", kana : "き" },
+		{ code : "KeyH", romaji : "h", kana : "く" },
+		{ code : "KeyJ", romaji : "j", kana : "ま" },
+		{ code : "KeyK", romaji : "k", kana : "の" },
+		{ code : "KeyL", romaji : "l", kana : "り" },
+		{ code : "Semicolon", romaji : ";", kana : "れ" },
+		{ code : "Quote", romaji : ":", kana : "け" },
+		{ code : "Backslash", romaji : ":", kana : "む" },
+
+		{ code : "KeyZ", romaji : "z", kana : "つ" },
+		{ code : "KeyX", romaji : "x", kana : "さ" },
+		{ code : "KeyC", romaji : "c", kana : "そ" },
+		{ code : "KeyV", romaji : "v", kana : "ひ" },
+		{ code : "KeyB", romaji : "b", kana : "こ" },
+		{ code : "KeyN", romaji : "n", kana : "み" },
+		{ code : "KeyM", romaji : "m", kana : "も" },
+		{ code : "Comma", romaji : ",", kana : "ね" },
+		{ code : "Period", romaji : ".", kana : "る" },
+		{ code : "Slash", romaji : "/", kana : "め" },
+		{ code : "IntlRo", romaji : "\\", kana : "ろ" }
 	];
-	return codeList.find((d) => d.kana === s);
+
+
+	return codeList.find((d) => d.kana === s).code;
 }
 
 
