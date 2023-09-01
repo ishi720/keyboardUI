@@ -434,7 +434,7 @@
 
 
 // 入力用テキスト
-var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん";
+var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわん";
 
 // 次に入力するキーを強調表示する
 var nextKey = document.getElementsByClassName('key_'+ getKeyCode(s.charAt(0)));//あ
@@ -447,10 +447,6 @@ document.addEventListener('keyup', keyup_ivent);
 var i = 0;
 
 function keypress_ivent(e) {
-
-
-	
-
 	// 対象のキーがおされたら次のキーへ進む
 	if ( getKeyCode(s.charAt(i)) === e.code ) {
 		i++;
@@ -490,7 +486,8 @@ function getKeyCode(s) {
 		{ code : "Digit8", romaji : "8", kana : "ゆ" },
 		{ code : "Digit9", romaji : "9", kana : "よ" },
 		{ code : "Digit0", romaji : "0", kana : "わ" },
-		{ code : "key_Minus", romaji : "", kana : "ほ" },
+		{ code : "Minus", romaji : "-", kana : "ほ" },
+		{ code : "Equal", romaji : "~", kana : "へ" },
 
 		{ code : "KeyQ", romaji : "q", kana : "た" },
 		{ code : "KeyW", romaji : "w", kana : "て" },
