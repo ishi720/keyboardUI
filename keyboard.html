@@ -1,438 +1,414 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
-	<style type="text/css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>キーボードUI</title>
+  <style type="text/css">
+  .rightHand {
+    border-color: red !important;
+  }
+  .leftHand {
+    border-color: darkseagreen !important;
+  }
+  .bothHands {
+    border-color: blue !important;
+  }
+  #keyboard {
+    position: relative;
+    background-color: red;
+  }
+  #keyboard div {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 34px;
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+    user-select: none;
+  }
+  .key_Backquote {
+    left: 0px;
+    top: 0px;
+  }
+  .key_Digit1 {
+    left: 41px;
+    top: 0px;
+  }
+  .key_Digit2 {
+    left: 82px;
+    top: 0px;
+  }
+  .key_Digit3 {
+    left: 123px;
+    top: 0px;
+  }
+  .key_Digit4 {
+    left: 164px;
+    top: 0px;
+  }
+  .key_Digit5 {
+    left: 205px;
+    top: 0px;
+  }
+  .key_Digit6 {
+    left: 246px;
+    top: 0px;
+  }
+  .key_Digit7 {
+    left: 287px;
+    top: 0px;
+  }
+  .key_Digit8 {
+    left: 328px;
+    top: 0px;
+  }
+  .key_Digit9 {
+    left: 369px;
+    top: 0px;
+  }
+  .key_Digit0 {
+    left: 410px;
+    top: 0px;
+  }
+  .key_Minus {
+    left: 451px;
+    top: 0px;
+  }
+  .key_Equal {
+    left: 492px;
+    top: 0px;
+  }
+  .key_IntlYen {
+    left: 533px;
+    top: 0px;
+  }
+  .key_Backspace {
+    left: 574px;
+    top: 0px;
+  }
+  .key_Tab {
+    width: 54px !important;
+    left: 0px;
+    top: 41px;
+  }
+  .key_KeyQ {
+    left: 61px;
+    top: 41px;
+  }
+  .key_KeyW {
+    left: 102px;
+    top: 41px;
+  }
+  .key_KeyE {
+    left: 143px;
+    top: 41px;
+  }
+  .key_KeyR {
+    left: 184px;
+    top: 41px;
+  }
+  .key_KeyT {
+    left: 225px;
+    top: 41px;
+  }
+  .key_KeyY {
+    left: 266px;
+    top: 41px;
+  }
+  .key_KeyU {
+    left: 308px;
+    top: 41px;
+  }
+  .key_KeyI {
+    left: 349px;
+    top: 41px;
+  }
+  .key_KeyO {
+    left: 390px;
+    top: 41px;
+  }
+  .key_KeyP {
+    left: 431px;
+    top: 41px;
+  }
+  .key_BracketLeft {
+    left: 472px;
+    top: 41px;
+  }
+  .key_BracketRight {
+    left: 513px;
+    top: 41px;
+  }
+  #key_13_1 {
+    width: 19px !important;
+    left: 553px;
+    top: 41px;
+    border-right: none !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+  }
+  #key_13_2 {
+    width: 37px !important;
+    left: 573px;
+    top: 41px;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+  }
+  #key_13_3 {
+    width: 36px !important;
+    height: 43px !important;
+    left: 573px;
+    top: 75px;
+    border-top: none !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+  }
+  .key_CapsLock {
+    width: 76px !important;
+    left: 0px;
+    top: 82px;
+  }
+  .key_KeyA {
+    left: 81px;
+    top: 82px;
+  }
+  .key_KeyS {
+    left: 122px;
+    top: 82px;
+  }
+  .key_KeyD {
+    left: 163px;
+    top: 82px;
+  }
+  .key_KeyF {
+    left: 204px;
+    top: 82px;
+  }
+  .key_KeyG {
+    left: 245px;
+    top: 82px;
+  }
+  .key_KeyH {
+    left: 286px;
+    top: 82px;
+  }
+  .key_KeyJ {
+    left: 327px;
+    top: 82px;
+  }
+  .key_KeyK {
+    left: 368px;
+    top: 82px;
+  }
+  .key_KeyL {
+    left: 409px;
+    top: 82px;
+  }
+  .key_Semicolon {
+    left: 450px;
+    top: 82px;
+  }
+  .key_Quote {
+    left: 491px;
+    top: 82px;
+  }
+  .key_Backslash {
+    left: 532px;
+    top: 82px;
+  }
+  .key_AltLeft {
+    top: 164px;
+    left: 102px;
+  }
+  .key_NonConvert {
+    top: 164px;
+    left: 143px;
+  }
+  .key_KeyZ {
+    left: 101px;
+    top: 123px;
+  }
+  .key_KeyX {
+    left: 142px;
+    top: 123px;
+  }
+  .key_KeyC {
+    left: 183px;
+    top: 123px;
+  }
+  .key_KeyV {
+    left: 224px;
+    top: 123px;
+  }
+  .key_KeyB {
+    left: 265px;
+    top: 123px;
+  }
+  .key_KeyN {
+    left: 306px;
+    top: 123px;
+  }
+  .key_KeyM {
+    left: 347px;
+    top: 123px;
+  }
+  .key_Comma {
+    left: 388px;
+    top: 123px;
+  }
+  .key_Period {
+    left: 429px;
+    top: 123px;
+  }
+  .key_Slash {
+    left: 470px;
+    top: 123px;
+  }
+  .key_IntlRo {
+    left: 511px;
+    top: 123px;
+  }
 
 
-		.rightHand {
-			border-color: red !important;
-		}
-		.leftHand {
-			border-color: darkseagreen !important;
-		}
-		.bothHands {
-			border-color: blue !important;
-		}
-
-
-		#full_keyboard {
-			position: relative;
-			background-color: red;
-		}
-
-		#full_keyboard div {
-		    width: 34px;
-		    height: 34px;
-		    border: 1px solid #d8d8d8;
-		    border-radius: 3px;
-		    font-weight: bold;
-		    font-size: 16px;
-		    line-height: 34px;
-		    text-align: center;
-		    overflow: hidden;
-		    position: absolute;
-		    user-select: none;
-		}
-		.key_Backquote {
-			left: 0px;
-			top: 0px;
-		}
-
-		.key_Digit1 {
-			left: 41px;
-			top: 0px;
-		}
-		.key_Digit2 {
-			left: 82px;
-			top: 0px;
-		}
-		.key_Digit3 {
-			left: 123px;
-			top: 0px;
-		}
-		.key_Digit4 {
-			left: 164px;
-			top: 0px;
-		}
-		.key_Digit5 {
-			left: 205px;
-			top: 0px;
-		}
-		.key_Digit6 {
-			left: 246px;
-			top: 0px;
-		}
-		.key_Digit7 {
-			left: 287px;
-			top: 0px;
-		}
-		.key_Digit8 {
-			left: 328px;
-			top: 0px;
-		}
-		.key_Digit9 {
-			left: 369px;
-			top: 0px;
-		}
-		.key_Digit0 {
-			left: 410px;
-			top: 0px;
-		}
-		.key_Minus {
-			left: 451px;
-			top: 0px;
-		}
-		.key_Equal {
-			left: 492px;
-			top: 0px;
-		}
-		.key_IntlYen {
-			left: 533px;
-			top: 0px;
-		}
-
-		.key_Backspace {
-			left: 574px;
-			top: 0px;
-		}
-
-
-
-		.key_Tab {
-			width: 54px !important;
-			left: 0px;
-			top: 41px;
-		}
-		.key_KeyQ {
-			left: 61px;
-			top: 41px;
-		}
-		.key_KeyW {
-			left: 102px;
-			top: 41px;
-		}
-		.key_KeyE {
-			left: 143px;
-			top: 41px;
-		}
-		.key_KeyR {
-			left: 184px;
-			top: 41px;
-		}
-		.key_KeyT {
-			left: 225px;
-			top: 41px;
-		}
-		.key_KeyY {
-			left: 266px;
-			top: 41px;
-		}
-		.key_KeyU {
-			left: 308px;
-			top: 41px;
-		}
-		.key_KeyI {
-			left: 349px;
-			top: 41px;
-		}
-		.key_KeyO {
-			left: 390px;
-			top: 41px;
-		}
-		.key_KeyP {
-			left: 431px;
-			top: 41px;
-		}
-		.key_BracketLeft {
-			left: 472px;
-			top: 41px;
-		}
-		.key_BracketRight {
-			left: 513px;
-			top: 41px;
-		}
-		#key_13_1 {
-			width: 19px !important;
-			left: 553px;
-			top: 41px;
-			border-right: none !important;
-			border-top-right-radius: 0px !important;
-    		border-bottom-right-radius: 0px !important;
-		}
-		#key_13_2 {
-			width: 37px !important;
-			left: 573px;
-			top: 41px;
-			border-bottom: none !important;
-			border-left: none !important;
-			border-top-left-radius: 0px !important;
-    		border-bottom-right-radius: 0px !important;
-		}
-		#key_13_3 {
-			width: 36px !important;
-			height: 43px !important;
-			left: 573px;
-			top: 75px;
-			border-top: none !important;
-			border-top-left-radius: 0px !important;
-			border-top-right-radius: 0px !important;
-		}
-
-
-		.key_CapsLock {
-			width: 76px !important;
-			left: 0px;
-			top: 82px;
-		}
-		.key_KeyA {
-			left: 81px;
-			top: 82px;
-		}
-		.key_KeyS {
-			left: 122px;
-			top: 82px;
-		}
-		.key_KeyD {
-			left: 163px;
-			top: 82px;
-		}
-		.key_KeyF {
-			left: 204px;
-			top: 82px;
-		}
-		.key_KeyG {
-			left: 245px;
-			top: 82px;
-		}
-		.key_KeyH {
-			left: 286px;
-			top: 82px;
-		}
-		.key_KeyJ {
-			left: 327px;
-			top: 82px;
-		}
-		.key_KeyK {
-			left: 368px;
-			top: 82px;
-		}
-		.key_KeyL {
-			left: 409px;
-			top: 82px;
-		}
-		.key_Semicolon {
-			left: 450px;
-			top: 82px;
-		}
-		.key_Quote {
-			left: 491px;
-			top: 82px;
-		}
-		.key_Backslash {
-			left: 532px;
-			top: 82px;
-		}
-		.key_AltLeft {
-			top: 164px;
-    		left: 102px;
-		}
-		.key_NonConvert {
-			top: 164px;
-    		left: 143px;
-		}
-		.key_KeyZ {
-			left: 101px;
-			top: 123px;
-		}
-		.key_KeyX {
-			left: 142px;
-			top: 123px;
-		}
-		.key_KeyC {
-			left: 183px;
-			top: 123px;
-		}
-		.key_KeyV {
-			left: 224px;
-			top: 123px;
-		}
-		.key_KeyB {
-			left: 265px;
-			top: 123px;
-		}
-		.key_KeyN {
-			left: 306px;
-			top: 123px;
-		}
-		.key_KeyM {
-			left: 347px;
-			top: 123px;
-		}
-		.key_Comma {
-			left: 388px;
-			top: 123px;
-		}
-		.key_Period {
-			left: 429px;
-			top: 123px;
-		}
-		.key_Slash {
-			left: 470px;
-			top: 123px;
-		}
-		.key_IntlRo {
-			left: 511px;
-			top: 123px;
-		}
-
-
-		.key_ControlLeft {
-			width: 54px !important;
-			left: 0px;
-			top: 164px;			
-		}
-		.key_MetaLeft {
-			top: 164px;
-    		left: 61px;
-		}
-		.key_Space {
-			width: 179px !important;
-		    left: 184px;
-    		top: 164px;
-		}
-
-		.key_Convert {
-			top: 164px;
-    		left: 370px;
-		}
-		.key_KanaMode {
-			top: 164px;
-    		left: 411px;
-		}
-		.key_AltRight {
-			width: 54px !important;
-    		top: 164px;
-    		left: 452px;
-		}
-		.key_ContextMenu {
-			top: 164px;
-    		left: 513px;
-		}
-		.key_ControlRight {
-			width: 56px !important;
-    		top: 164px;
-    		left: 554px;
-		}
-
-		.key_ShiftLeft {
-		    width: 96px !important;
-    		left: 0px;
-    		top: 123px;
-    	}
-
-		.key_ShiftRight {
-		    width: 58px !important;
-    		left: 552px;
-    		top: 123px;
-    	}
-		.next {
-			background-color: yellow;
-		}
-		.active {
-			background-color: lightcoral;
-		}
-	</style>
+  .key_ControlLeft {
+    width: 54px !important;
+    left: 0px;
+    top: 164px;
+  }
+  .key_MetaLeft {
+    top: 164px;
+    left: 61px;
+  }
+  .key_Space {
+    width: 179px !important;
+    left: 184px;
+    top: 164px;
+  }
+  .key_Convert {
+    top: 164px;
+    left: 370px;
+  }
+  .key_KanaMode {
+    top: 164px;
+    left: 411px;
+  }
+  .key_AltRight {
+    width: 54px !important;
+    top: 164px;
+    left: 452px;
+  }
+  .key_ContextMenu {
+    top: 164px;
+    left: 513px;
+  }
+  .key_ControlRight {
+    width: 56px !important;
+    top: 164px;
+    left: 554px;
+  }
+  .key_ShiftLeft {
+    width: 96px !important;
+    left: 0px;
+    top: 123px;
+  }
+  .key_ShiftRight {
+    width: 58px !important;
+    left: 552px;
+    top: 123px;
+  }
+  .next {
+    background-color: yellow;
+  }
+  .active {
+    background-color: lightcoral;
+  }
+  </style>
 </head>
 <body>
+  <div id="keyboard">
+    <div class="key_Backquote leftHand"></div>
+    <div class="key_Digit1 little leftHand">ぬ</div>
+    <div class="key_Digit2 ring leftHand">ふ</div>
+    <div class="key_Digit3 middle leftHand">あ</div>
+    <div class="key_Digit4 index leftHand">う</div>
+    <div class="key_Digit5 index leftHand">え</div>
+    <div class="key_Digit6 index rightHand">お</div>
+    <div class="key_Digit7 index rightHand">や</div>
+    <div class="key_Digit8 middle rightHand">ゆ</div>
+    <div class="key_Digit9 ring rightHand">よ</div>
+    <div class="key_Digit0 little rightHand">わ</div>
+    <div class="key_Minus little rightHand">ほ</div>
+    <div class="key_Equal rightHand">へ</div>
+    <div class="key_IntlYen rightHand"></div>
+    <div class="key_Backspace rightHand"></div>
 
-	<div id="full_keyboard">
+    <div class="key_Tab leftHand"></div>
+    <div class="key_KeyQ little leftHand">た</div>
+    <div class="key_KeyW ring leftHand">て</div>
+    <div class="key_KeyE middle leftHand">い</div>
+    <div class="key_KeyR index leftHand">す</div>
+    <div class="key_KeyT index leftHand">か</div>
+    <div class="key_KeyY index rightHand">ん</div>
+    <div class="key_KeyU index rightHand">な</div>
+    <div class="key_KeyI middle rightHand">に</div>
+    <div class="key_KeyO ring rightHand">ら</div>
+    <div class="key_KeyP little rightHand">せ</div>
+    <div class="key_BracketLeft little rightHand">゛</div>
+    <div class="key_BracketRight rightHand">゜</div>
+    <div id="key_13_1" class="key_Enter rightHand"></div>
+    <div id="key_13_2" class="key_Enter rightHand"></div>
+    <div id="key_13_3" class="key_Enter rightHand"></div>
 
-		<div class="key_Backquote leftHand"></div>
-		<div class="key_Digit1 little leftHand">ぬ</div>
-		<div class="key_Digit2 ring leftHand">ふ</div>
-		<div class="key_Digit3 middle leftHand">あ</div>
-		<div class="key_Digit4 index leftHand">う</div>
-		<div class="key_Digit5 index leftHand">え</div>
-		<div class="key_Digit6 index rightHand">お</div>
-		<div class="key_Digit7 index rightHand">や</div>
-		<div class="key_Digit8 middle rightHand">ゆ</div>
-		<div class="key_Digit9 ring rightHand">よ</div>
-		<div class="key_Digit0 little rightHand">わ</div>
-		<div class="key_Minus little rightHand">ほ</div>
-		<div class="key_Equal rightHand">へ</div>
-		<div class="key_IntlYen rightHand"></div>
-		<div class="key_Backspace rightHand"></div>
+    <div class="key_CapsLock leftHand"></div>
+    <div class="key_KeyA little leftHand">ち</div>
+    <div class="key_KeyS ring leftHand">と</div>
+    <div class="key_KeyD middle leftHand">し</div>
+    <div class="key_KeyF index leftHand">は</div>
+    <div class="key_KeyG index leftHand">き</div>
+    <div class="key_KeyH index rightHand">く</div>
+    <div class="key_KeyJ index rightHand">ま</div>
+    <div class="key_KeyK middle rightHand">の</div>
+    <div class="key_KeyL ring rightHand">り</div>
+    <div class="key_Semicolon little rightHand">れ</div>
+    <div class="key_Quote little rightHand">け</div>
+    <div class="key_Backslash rightHand">む</div>
 
-		<div class="key_Tab leftHand"></div>
-		<div class="key_KeyQ little leftHand">た</div>
-		<div class="key_KeyW ring leftHand">て</div>
-		<div class="key_KeyE middle leftHand">い</div>
-		<div class="key_KeyR index leftHand">す</div>
-		<div class="key_KeyT index leftHand">か</div>
-		<div class="key_KeyY index rightHand">ん</div>
-		<div class="key_KeyU index rightHand">な</div>
-		<div class="key_KeyI middle rightHand">に</div>
-		<div class="key_KeyO ring rightHand">ら</div>
-		<div class="key_KeyP little rightHand">せ</div>
-		<div class="key_BracketLeft little rightHand">゛</div>
-		<div class="key_BracketRight rightHand">゜</div>
-		<div id="key_13_1" class="key_Enter rightHand"></div>
-		<div id="key_13_2" class="key_Enter rightHand"></div>
-		<div id="key_13_3" class="key_Enter rightHand"></div>
+    <div class="key_ShiftLeft leftHand"></div>
+    <div class="key_KeyZ little leftHand">つ</div>
+    <div class="key_KeyX ring leftHand">さ</div>
+    <div class="key_KeyC middle leftHand">そ</div>
+    <div class="key_KeyV index leftHand">ひ</div>
+    <div class="key_KeyB index leftHand">こ</div>
+    <div class="key_KeyN index rightHand">み</div>
+    <div class="key_KeyM index rightHand">も</div>
+    <div class="key_Comma middle rightHand">ね</div>
+    <div class="key_Period ring rightHand">る</div>
+    <div class="key_Slash little rightHand">め</div>
+    <div class="key_IntlRo rightHand">ろ</div>
+    <div class="key_ShiftRight rightHand"></div>
 
-		<div class="key_CapsLock leftHand"></div>
-		<div class="key_KeyA little leftHand">ち</div>
-		<div class="key_KeyS ring leftHand">と</div>
-		<div class="key_KeyD middle leftHand">し</div>
-		<div class="key_KeyF index leftHand">は</div>
-		<div class="key_KeyG index leftHand">き</div>
-		<div class="key_KeyH index rightHand">く</div>
-		<div class="key_KeyJ index rightHand">ま</div>
-		<div class="key_KeyK middle rightHand">の</div>
-		<div class="key_KeyL ring rightHand">り</div>
-		<div class="key_Semicolon little rightHand">れ</div>
-		<div class="key_Quote little rightHand">け</div>
-		<div class="key_Backslash rightHand">む</div>
-
-		<div class="key_ShiftLeft leftHand"></div>
-		<div class="key_KeyZ little leftHand">つ</div>
-		<div class="key_KeyX ring leftHand">さ</div>
-		<div class="key_KeyC middle leftHand">そ</div>
-		<div class="key_KeyV index leftHand">ひ</div>
-		<div class="key_KeyB index leftHand">こ</div>
-		<div class="key_KeyN index rightHand">み</div>
-		<div class="key_KeyM index rightHand">も</div>
-		<div class="key_Comma middle rightHand">ね</div>
-		<div class="key_Period ring rightHand">る</div>
-		<div class="key_Slash little rightHand">め</div>
-		<div class="key_IntlRo rightHand">ろ</div>
-		<div class="key_ShiftRight rightHand"></div>
-	
-		<div class="key_ControlLeft leftHand"></div>
-		<div class="key_MetaLeft leftHand"></div>
-		<div class="key_AltLeft leftHand"></div>
-		<div class="key_NonConvert leftHand"></div>
-		<div class="key_Space bothHands">Space</div>
-		<div class="key_Convert rightHand"></div>
-		<div class="key_KanaMode rightHand"></div>
-		<div class="key_AltRight rightHand"></div>
-		<div class="key_ContextMenu rightHand"></div>
-		<div class="key_ControlRight rightHand"></div>
-	</div>
-
-
-
-
+    <div class="key_ControlLeft leftHand"></div>
+    <div class="key_MetaLeft leftHand"></div>
+    <div class="key_AltLeft leftHand"></div>
+    <div class="key_NonConvert leftHand"></div>
+    <div class="key_Space bothHands">Space</div>
+    <div class="key_Convert rightHand"></div>
+    <div class="key_KanaMode rightHand"></div>
+    <div class="key_AltRight rightHand"></div>
+    <div class="key_ContextMenu rightHand"></div>
+    <div class="key_ControlRight rightHand"></div>
+  </div>
 </body>
 </html>
 
 <script type="text/javascript">
-
-
-
 // 入力用テキスト
 var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわん";
 
@@ -443,91 +419,87 @@ nextKey[0].classList.add("next");
 document.addEventListener('keydown', keypress_ivent);
 document.addEventListener('keyup', keyup_ivent);
 
-
 var i = 0;
 
 function keypress_ivent(e) {
-	// 対象のキーがおされたら次のキーへ進む
-	if ( getKeyCode(s.charAt(i)) === e.code ) {
-		i++;
-		nextKey[0].classList.remove("next");
-		nextKey = document.getElementsByClassName('key_'+ getKeyCode(s.charAt(i)));//い
-		nextKey[0].classList.add("next");
-	}
+  // 対象のキーがおされたら次のキーへ進む
+  if ( getKeyCode(s.charAt(i)) === e.code ) {
+    i++;
+    nextKey[0].classList.remove("next");
+    nextKey = document.getElementsByClassName('key_'+ getKeyCode(s.charAt(i)));//い
+    nextKey[0].classList.add("next");
+  }
 
 
-	var nowKey = document.getElementsByClassName('key_' + e.code);
-	nowKey[0].classList.add("active");
-	if(e.code == "Enter") {
-		nowKey[1].classList.add("active");
-		nowKey[2].classList.add("active");		
-	}
-
+  var nowKey = document.getElementsByClassName('key_' + e.code);
+  nowKey[0].classList.add("active");
+  if(e.code == "Enter") {
+    nowKey[1].classList.add("active");
+    nowKey[2].classList.add("active");
+  }
 }
 
 function keyup_ivent(e) {
-	var nowKey = document.getElementsByClassName('key_' + e.code);
-	nowKey[0].classList.remove("active");
-	if(e.code == "Enter") {
-		nowKey[1].classList.remove("active");
-		nowKey[2].classList.remove("active");		
-	}
+  var nowKey = document.getElementsByClassName('key_' + e.code);
+  nowKey[0].classList.remove("active");
+  if(e.code == "Enter") {
+    nowKey[1].classList.remove("active");
+    nowKey[2].classList.remove("active");
+  }
 }
 
 function getKeyCode(s) {
-	var codeList = [
-		{ code : "Digit1", romaji : "1", kana : "ぬ" },
-		{ code : "Digit2", romaji : "2", kana : "ふ" },
-		{ code : "Digit3", romaji : "3", kana : "あ" },
-		{ code : "Digit4", romaji : "4", kana : "う" },
-		{ code : "Digit5", romaji : "5", kana : "え" },
-		{ code : "Digit6", romaji : "6", kana : "お" },
-		{ code : "Digit7", romaji : "7", kana : "や" },
-		{ code : "Digit8", romaji : "8", kana : "ゆ" },
-		{ code : "Digit9", romaji : "9", kana : "よ" },
-		{ code : "Digit0", romaji : "0", kana : "わ" },
-		{ code : "Minus", romaji : "-", kana : "ほ" },
-		{ code : "Equal", romaji : "~", kana : "へ" },
+  var codeList = [
+    { code : "Digit1", romaji : "1", kana : "ぬ" },
+    { code : "Digit2", romaji : "2", kana : "ふ" },
+    { code : "Digit3", romaji : "3", kana : "あ" },
+    { code : "Digit4", romaji : "4", kana : "う" },
+    { code : "Digit5", romaji : "5", kana : "え" },
+    { code : "Digit6", romaji : "6", kana : "お" },
+    { code : "Digit7", romaji : "7", kana : "や" },
+    { code : "Digit8", romaji : "8", kana : "ゆ" },
+    { code : "Digit9", romaji : "9", kana : "よ" },
+    { code : "Digit0", romaji : "0", kana : "わ" },
+    { code : "Minus", romaji : "-", kana : "ほ" },
+    { code : "Equal", romaji : "~", kana : "へ" },
 
-		{ code : "KeyQ", romaji : "q", kana : "た" },
-		{ code : "KeyW", romaji : "w", kana : "て" },
-		{ code : "KeyE", romaji : "e", kana : "い" },
-		{ code : "KeyR", romaji : "r", kana : "す" },
-		{ code : "KeyT", romaji : "t", kana : "か" },
-		{ code : "KeyY", romaji : "y", kana : "ん" },
-		{ code : "KeyU", romaji : "u", kana : "な" },
-		{ code : "KeyI", romaji : "i", kana : "に" },
-		{ code : "KeyO", romaji : "o", kana : "ら" },
-		{ code : "KeyP", romaji : "p", kana : "せ" },
+    { code : "KeyQ", romaji : "q", kana : "た" },
+    { code : "KeyW", romaji : "w", kana : "て" },
+    { code : "KeyE", romaji : "e", kana : "い" },
+    { code : "KeyR", romaji : "r", kana : "す" },
+    { code : "KeyT", romaji : "t", kana : "か" },
+    { code : "KeyY", romaji : "y", kana : "ん" },
+    { code : "KeyU", romaji : "u", kana : "な" },
+    { code : "KeyI", romaji : "i", kana : "に" },
+    { code : "KeyO", romaji : "o", kana : "ら" },
+    { code : "KeyP", romaji : "p", kana : "せ" },
 
-		{ code : "KeyA", romaji : "a", kana : "ち" },
-		{ code : "KeyS", romaji : "s", kana : "と" },
-		{ code : "KeyD", romaji : "d", kana : "し" },
-		{ code : "KeyF", romaji : "f", kana : "は" },
-		{ code : "KeyG", romaji : "g", kana : "き" },
-		{ code : "KeyH", romaji : "h", kana : "く" },
-		{ code : "KeyJ", romaji : "j", kana : "ま" },
-		{ code : "KeyK", romaji : "k", kana : "の" },
-		{ code : "KeyL", romaji : "l", kana : "り" },
-		{ code : "Semicolon", romaji : ";", kana : "れ" },
-		{ code : "Quote", romaji : ":", kana : "け" },
-		{ code : "Backslash", romaji : ":", kana : "む" },
+    { code : "KeyA", romaji : "a", kana : "ち" },
+    { code : "KeyS", romaji : "s", kana : "と" },
+    { code : "KeyD", romaji : "d", kana : "し" },
+    { code : "KeyF", romaji : "f", kana : "は" },
+    { code : "KeyG", romaji : "g", kana : "き" },
+    { code : "KeyH", romaji : "h", kana : "く" },
+    { code : "KeyJ", romaji : "j", kana : "ま" },
+    { code : "KeyK", romaji : "k", kana : "の" },
+    { code : "KeyL", romaji : "l", kana : "り" },
+    { code : "Semicolon", romaji : ";", kana : "れ" },
+    { code : "Quote", romaji : ":", kana : "け" },
+    { code : "Backslash", romaji : ":", kana : "む" },
 
-		{ code : "KeyZ", romaji : "z", kana : "つ" },
-		{ code : "KeyX", romaji : "x", kana : "さ" },
-		{ code : "KeyC", romaji : "c", kana : "そ" },
-		{ code : "KeyV", romaji : "v", kana : "ひ" },
-		{ code : "KeyB", romaji : "b", kana : "こ" },
-		{ code : "KeyN", romaji : "n", kana : "み" },
-		{ code : "KeyM", romaji : "m", kana : "も" },
-		{ code : "Comma", romaji : ",", kana : "ね" },
-		{ code : "Period", romaji : ".", kana : "る" },
-		{ code : "Slash", romaji : "/", kana : "め" },
-		{ code : "IntlRo", romaji : "\\", kana : "ろ" }
-	];
-
-
-	return codeList.find((d) => d.kana === s).code;
+    { code : "KeyZ", romaji : "z", kana : "つ" },
+    { code : "KeyX", romaji : "x", kana : "さ" },
+    { code : "KeyC", romaji : "c", kana : "そ" },
+    { code : "KeyV", romaji : "v", kana : "ひ" },
+    { code : "KeyB", romaji : "b", kana : "こ" },
+    { code : "KeyN", romaji : "n", kana : "み" },
+    { code : "KeyM", romaji : "m", kana : "も" },
+    { code : "Comma", romaji : ",", kana : "ね" },
+    { code : "Period", romaji : ".", kana : "る" },
+    { code : "Slash", romaji : "/", kana : "め" },
+    { code : "IntlRo", romaji : "\\", kana : "ろ" }
+  ];
+  return codeList.find((d) => d.kana === s).code;
 }
 
 
