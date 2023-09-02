@@ -53,7 +53,7 @@
     <div class="key_KeyK rightHand middleFinger">の</div>
     <div class="key_KeyL rightHand ringFinger">り</div>
     <div class="key_Semicolon rightHand littleFinger">れ</div>
-    <div class="key_Quote little rightHand littleFinger">け</div>
+    <div class="key_Quote rightHand littleFinger">け</div>
     <div class="key_Backslash rightHand littleFinger">む</div>
 
     <div class="key_ShiftLeft leftHand littleFinger"></div>
@@ -88,22 +88,21 @@
 // 入力用テキスト
 var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわん";
 
+var i = 0;
 // 次に入力するキーを強調表示する
-var nextKey = document.getElementsByClassName('key_'+ getKeyCode(s.charAt(0)));
-nextKey[0].classList.add("next");
+coordinateNextKey(getKeyCode(s.charAt(i)))
 
+// イベント処理
 document.addEventListener('keydown', keypress_ivent);
 document.addEventListener('keyup', keyup_ivent);
 
-var i = 0;
+
 
 function keypress_ivent(e) {
   // 対象のキーがおされたら次のキーへ進む
   if ( getKeyCode(s.charAt(i)) === e.code ) {
     i++;
-    nextKey[0].classList.remove("next");
-    nextKey = document.getElementsByClassName('key_'+ getKeyCode(s.charAt(i)));
-    nextKey[0].classList.add("next");
+    coordinateNextKey(getKeyCode(s.charAt(i)))
   }
 
 
@@ -122,6 +121,19 @@ function keyup_ivent(e) {
     nowKey[1].classList.remove("active");
     nowKey[2].classList.remove("active");
   }
+}
+
+
+function coordinateNextKey(keyCode) {
+	// 協調をリセットする
+	var allKey = document.querySelectorAll("#keyboard div");
+	allKey.forEach(function(key) {
+  		key.classList.remove("next");
+	});
+
+	// 次のキーを協調する
+    nextKey = document.getElementsByClassName('key_'+ keyCode);
+    nextKey[0].classList.add("next");
 }
 
 function getKeyCode(s) {
