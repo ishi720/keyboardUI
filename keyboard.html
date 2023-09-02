@@ -86,8 +86,9 @@
 
 <script type="text/javascript">
 // 入力用テキスト
-var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわん";
-
+//var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわん";
+var s = "こんにちは";
+ 
 var i = 0;
 // 次に入力するキーを強調表示する
 coordinateNextKey(getKeyCode(s.charAt(i)))
@@ -100,11 +101,14 @@ document.addEventListener('keyup', keyup_ivent);
 
 function keypress_ivent(e) {
   // 対象のキーがおされたら次のキーへ進む
-  if ( getKeyCode(s.charAt(i)) === e.code ) {
-    i++;
-    coordinateNextKey(getKeyCode(s.charAt(i)))
+  if ( i < s.length - 1) {
+	if ( getKeyCode(s.charAt(i)) === e.code ) {
+	  i++;
+	  coordinateNextKey(getKeyCode(s.charAt(i)))
+	}
+  } else {
+  	nextKeyClear();
   }
-
 
   var nowKey = document.getElementsByClassName('key_' + e.code);
   nowKey[0].classList.add("active");
@@ -123,20 +127,23 @@ function keyup_ivent(e) {
   }
 }
 
-
 function coordinateNextKey(keyCode) {
 	// 協調をリセットする
-	var allKey = document.querySelectorAll("#keyboard div");
-	allKey.forEach(function(key) {
-  		key.classList.remove("next");
-	});
+	nextKeyClear();
 
 	// 次のキーを協調する
     nextKey = document.getElementsByClassName('key_'+ keyCode);
     nextKey[0].classList.add("next");
 }
 
-function getKeyCode(s) {
+function nextKeyClear() {
+	var allKey = document.querySelectorAll("#keyboard div");
+	allKey.forEach(function(key) {
+  		key.classList.remove("next");
+	});
+}
+
+function getKeyCode(kana) {
   var codeList = [
     { code : "Digit1", romaji : "1", kana : "ぬ" },
     { code : "Digit2", romaji : "2", kana : "ふ" },
@@ -187,7 +194,7 @@ function getKeyCode(s) {
     { code : "Slash", romaji : "/", kana : "め" },
     { code : "IntlRo", romaji : "\\", kana : "ろ" }
   ];
-  return codeList.find((d) => d.kana === s).code;
+  return codeList.find((d) => d.kana === kana).code;
 }
 
 
