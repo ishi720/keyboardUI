@@ -6,13 +6,30 @@
   <title>キーボードUI</title>
   <style type="text/css">
   .rightHand {
-    border-color: red !important;
+    //border-color: red !important;
   }
   .leftHand {
-    border-color: darkseagreen !important;
+    //border-color: darkseagreen !important;
   }
+
+  .thumb {
+  	border-color: black !important;
+  }
+  .indexFinger {
+  	border-color: red !important;
+  }
+  .middleFinger {
+  	border-color: blue !important;
+  }
+  .ringFinger {
+  	border-color: green !important;
+  }
+  .littleFinger {
+  	border-color: orange !important;
+  }
+
   .bothHands {
-    border-color: blue !important;
+    //border-color: blue !important;
   }
   #keyboard {
     position: relative;
@@ -190,6 +207,7 @@
   .key_KeyF {
     left: 204px;
     top: 82px;
+    text-decoration: underline;
   }
   .key_KeyG {
     left: 245px;
@@ -202,6 +220,7 @@
   .key_KeyJ {
     left: 327px;
     top: 82px;
+    text-decoration: underline;
   }
   .key_KeyK {
     left: 368px;
@@ -333,77 +352,77 @@
 </head>
 <body>
   <div id="keyboard">
-    <div class="key_Backquote leftHand"></div>
-    <div class="key_Digit1 little leftHand">ぬ</div>
-    <div class="key_Digit2 ring leftHand">ふ</div>
-    <div class="key_Digit3 middle leftHand">あ</div>
-    <div class="key_Digit4 index leftHand">う</div>
-    <div class="key_Digit5 index leftHand">え</div>
-    <div class="key_Digit6 index rightHand">お</div>
-    <div class="key_Digit7 index rightHand">や</div>
-    <div class="key_Digit8 middle rightHand">ゆ</div>
-    <div class="key_Digit9 ring rightHand">よ</div>
-    <div class="key_Digit0 little rightHand">わ</div>
-    <div class="key_Minus little rightHand">ほ</div>
-    <div class="key_Equal rightHand">へ</div>
-    <div class="key_IntlYen rightHand"></div>
-    <div class="key_Backspace rightHand"></div>
+    <div class="key_Backquote leftHand littleFinger"></div>
+    <div class="key_Digit1 leftHand littleFinger">ぬ</div>
+    <div class="key_Digit2 leftHand ringFinger">ふ</div>
+    <div class="key_Digit3 leftHand middleFinger">あ</div>
+    <div class="key_Digit4 leftHand indexFinger">う</div>
+    <div class="key_Digit5 leftHand indexFinger">え</div>
+    <div class="key_Digit6 rightHand indexFinger">お</div>
+    <div class="key_Digit7 rightHand indexFinger">や</div>
+    <div class="key_Digit8 rightHand middleFinger">ゆ</div>
+    <div class="key_Digit9 rightHand ringFinger">よ</div>
+    <div class="key_Digit0 rightHand littleFinger">わ</div>
+    <div class="key_Minus rightHand littleFinger">ほ</div>
+    <div class="key_Equal rightHand littleFinger">へ</div>
+    <div class="key_IntlYen rightHand littleFinger"></div>
+    <div class="key_Backspace rightHand littleFinger"></div>
 
-    <div class="key_Tab leftHand"></div>
-    <div class="key_KeyQ little leftHand">た</div>
-    <div class="key_KeyW ring leftHand">て</div>
-    <div class="key_KeyE middle leftHand">い</div>
-    <div class="key_KeyR index leftHand">す</div>
-    <div class="key_KeyT index leftHand">か</div>
-    <div class="key_KeyY index rightHand">ん</div>
-    <div class="key_KeyU index rightHand">な</div>
-    <div class="key_KeyI middle rightHand">に</div>
-    <div class="key_KeyO ring rightHand">ら</div>
-    <div class="key_KeyP little rightHand">せ</div>
-    <div class="key_BracketLeft little rightHand">゛</div>
-    <div class="key_BracketRight rightHand">゜</div>
-    <div id="key_13_1" class="key_Enter rightHand"></div>
-    <div id="key_13_2" class="key_Enter rightHand"></div>
-    <div id="key_13_3" class="key_Enter rightHand"></div>
+    <div class="key_Tab leftHand littleFinger"></div>
+    <div class="key_KeyQ leftHand littleFinger">た</div>
+    <div class="key_KeyW leftHand ringFinger">て</div>
+    <div class="key_KeyE leftHand middleFinger">い</div>
+    <div class="key_KeyR leftHand indexFinger">す</div>
+    <div class="key_KeyT leftHand indexFinger">か</div>
+    <div class="key_KeyY rightHand indexFinger">ん</div>
+    <div class="key_KeyU rightHand indexFinger">な</div>
+    <div class="key_KeyI rightHand middleFinger">に</div>
+    <div class="key_KeyO rightHand ringFinger">ら</div>
+    <div class="key_KeyP rightHand littleFinger">せ</div>
+    <div class="key_BracketLeft rightHand littleFinger">゛</div>
+    <div class="key_BracketRight rightHand littleFinger">゜</div>
+    <div id="key_13_1" class="key_Enter rightHand littleFinger"></div>
+    <div id="key_13_2" class="key_Enter rightHand littleFinger"></div>
+    <div id="key_13_3" class="key_Enter rightHand littleFinger"></div>
 
-    <div class="key_CapsLock leftHand"></div>
-    <div class="key_KeyA little leftHand">ち</div>
-    <div class="key_KeyS ring leftHand">と</div>
-    <div class="key_KeyD middle leftHand">し</div>
-    <div class="key_KeyF index leftHand">は</div>
-    <div class="key_KeyG index leftHand">き</div>
-    <div class="key_KeyH index rightHand">く</div>
-    <div class="key_KeyJ index rightHand">ま</div>
-    <div class="key_KeyK middle rightHand">の</div>
-    <div class="key_KeyL ring rightHand">り</div>
-    <div class="key_Semicolon little rightHand">れ</div>
-    <div class="key_Quote little rightHand">け</div>
-    <div class="key_Backslash rightHand">む</div>
+    <div class="key_CapsLock leftHand littleFinger"></div>
+    <div class="key_KeyA leftHand littleFinger">ち</div>
+    <div class="key_KeyS leftHand ringFinger">と</div>
+    <div class="key_KeyD leftHand middleFinger">し</div>
+    <div class="key_KeyF leftHand indexFinger">は</div>
+    <div class="key_KeyG leftHand indexFinger">き</div>
+    <div class="key_KeyH rightHand indexFinger">く</div>
+    <div class="key_KeyJ rightHand indexFinger">ま</div>
+    <div class="key_KeyK rightHand middleFinger">の</div>
+    <div class="key_KeyL rightHand ringFinger">り</div>
+    <div class="key_Semicolon rightHand littleFinger">れ</div>
+    <div class="key_Quote little rightHand littleFinger">け</div>
+    <div class="key_Backslash rightHand littleFinger">む</div>
 
-    <div class="key_ShiftLeft leftHand"></div>
-    <div class="key_KeyZ little leftHand">つ</div>
-    <div class="key_KeyX ring leftHand">さ</div>
-    <div class="key_KeyC middle leftHand">そ</div>
-    <div class="key_KeyV index leftHand">ひ</div>
-    <div class="key_KeyB index leftHand">こ</div>
-    <div class="key_KeyN index rightHand">み</div>
-    <div class="key_KeyM index rightHand">も</div>
-    <div class="key_Comma middle rightHand">ね</div>
-    <div class="key_Period ring rightHand">る</div>
-    <div class="key_Slash little rightHand">め</div>
-    <div class="key_IntlRo rightHand">ろ</div>
-    <div class="key_ShiftRight rightHand"></div>
+    <div class="key_ShiftLeft leftHand littleFinger"></div>
+    <div class="key_KeyZ little leftHand littleFinger">つ</div>
+    <div class="key_KeyX leftHand ringFinger">さ</div>
+    <div class="key_KeyC leftHand middleFinger">そ</div>
+    <div class="key_KeyV leftHand indexFinger">ひ</div>
+    <div class="key_KeyB leftHand indexFinger">こ</div>
+    <div class="key_KeyN rightHand indexFinger">み</div>
+    <div class="key_KeyM rightHand indexFinger">も</div>
+    <div class="key_Comma rightHand middleFinger">ね</div>
+    <div class="key_Period rightHand ringFinger">る</div>
+    <div class="key_Slash rightHand littleFinger">め</div>
+    <div class="key_IntlRo rightHand littleFinger">ろ</div>
+    <div class="key_ShiftRight rightHand littleFinger"></div>
 
-    <div class="key_ControlLeft leftHand"></div>
-    <div class="key_MetaLeft leftHand"></div>
-    <div class="key_AltLeft leftHand"></div>
-    <div class="key_NonConvert leftHand"></div>
-    <div class="key_Space bothHands">Space</div>
-    <div class="key_Convert rightHand"></div>
-    <div class="key_KanaMode rightHand"></div>
-    <div class="key_AltRight rightHand"></div>
-    <div class="key_ContextMenu rightHand"></div>
-    <div class="key_ControlRight rightHand"></div>
+    <div class="key_ControlLeft leftHand littleFinger"></div>
+    <div class="key_MetaLeft leftHand littleFinger"></div>
+    <div class="key_AltLeft leftHand littleFinger"></div>
+    <div class="key_NonConvert leftHand thumb"></div>
+    <div class="key_Space bothHands thumb">Space</div>
+    <div class="key_Convert rightHand thumb"></div>
+    <div class="key_KanaMode rightHand ringFinger"></div>
+    <div class="key_AltRight rightHand littleFinger"></div>
+    <div class="key_ContextMenu rightHand littleFinger"></div>
+    <div class="key_ControlRight rightHand littleFinger"></div>
   </div>
 </body>
 </html>
