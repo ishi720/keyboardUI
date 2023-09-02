@@ -94,12 +94,16 @@ var i = 0;
 coordinateNextKey(getKeyCode(s.charAt(i)))
 
 // イベント処理
-document.addEventListener('keydown', keypress_ivent);
+document.addEventListener('keydown', keydown_ivent);
 document.addEventListener('keyup', keyup_ivent);
 
+function keydown_ivent(e) {
+
+  if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
+  	setInnerText('shift_kana');
+  }
 
 
-function keypress_ivent(e) {
   // 対象のキーがおされたら次のキーへ進む
   if ( i < s.length - 1) {
 	if ( getKeyCode(s.charAt(i)) === e.code ) {
@@ -112,13 +116,23 @@ function keypress_ivent(e) {
 
   var nowKey = document.getElementsByClassName('key_' + e.code);
   nowKey[0].classList.add("active");
-  if(e.code == "Enter") {
+  if(e.code === "Enter") {
     nowKey[1].classList.add("active");
     nowKey[2].classList.add("active");
   }
 }
 
 function keyup_ivent(e) {
+
+　if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
+
+	setInnerText('kana');
+  	//document.getElementsByClassName('key_Digit7')[0].innerText = 'や';
+  	// document.getElementsByClassName('key_Digit8')[0].innerText = 'ゆ';
+  	// document.getElementsByClassName('key_Digit9')[0].innerText = 'よ';
+  	// document.getElementsByClassName('key_Digit0')[0].innerText = 'お';
+  }
+
   var nowKey = document.getElementsByClassName('key_' + e.code);
   nowKey[0].classList.remove("active");
   if(e.code == "Enter") {
@@ -145,57 +159,127 @@ function nextKeyClear() {
 
 function getKeyCode(kana) {
   var codeList = [
-    { code : "Digit1", romaji : "1", kana : "ぬ" },
-    { code : "Digit2", romaji : "2", kana : "ふ" },
-    { code : "Digit3", romaji : "3", kana : "あ" },
-    { code : "Digit4", romaji : "4", kana : "う" },
-    { code : "Digit5", romaji : "5", kana : "え" },
-    { code : "Digit6", romaji : "6", kana : "お" },
-    { code : "Digit7", romaji : "7", kana : "や" },
-    { code : "Digit8", romaji : "8", kana : "ゆ" },
-    { code : "Digit9", romaji : "9", kana : "よ" },
-    { code : "Digit0", romaji : "0", kana : "わ" },
-    { code : "Minus", romaji : "-", kana : "ほ" },
-    { code : "Equal", romaji : "~", kana : "へ" },
+    { code : "Digit1", romaji : "1", shift_romaji : "!" , kana : "ぬ", shift_kana: "ぬ" },
+    { code : "Digit2", romaji : "2", shift_romaji : "\"" , kana : "ふ", shift_kana: "ふ" },
+    { code : "Digit3", romaji : "3", shift_romaji : "#" , kana : "あ", shift_kana: "ぁ" },
+    { code : "Digit4", romaji : "4", shift_romaji : "$" , kana : "う", shift_kana: "ぅ" },
+    { code : "Digit5", romaji : "5", shift_romaji : "%" , kana : "え", shift_kana: "ぇ" },
+    { code : "Digit6", romaji : "6", shift_romaji : "&" , kana : "お", shift_kana: "ぉ" },
+    { code : "Digit7", romaji : "7", shift_romaji : "'" , kana : "や", shift_kana: "ゃ" },
+    { code : "Digit8", romaji : "8", shift_romaji : "(" , kana : "ゆ", shift_kana: "ゅ" },
+    { code : "Digit9", romaji : "9", shift_romaji : ")" , kana : "よ", shift_kana: "ょ" },
+    { code : "Digit0", romaji : "0", shift_romaji : "" , kana : "わ", shift_kana: "を" },
+    { code : "Minus", romaji : "-", shift_romaji : "=" , kana : "ほ", shift_kana: "ほ" },
+    { code : "Equal", romaji : "~", shift_romaji : "~" , kana : "へ", shift_kana: "へ" },
+    { code : "IntlYen", romaji : "\\", shift_romaji : "|" , kana : "", shift_kana: "" },
 
-    { code : "KeyQ", romaji : "q", kana : "た" },
-    { code : "KeyW", romaji : "w", kana : "て" },
-    { code : "KeyE", romaji : "e", kana : "い" },
-    { code : "KeyR", romaji : "r", kana : "す" },
-    { code : "KeyT", romaji : "t", kana : "か" },
-    { code : "KeyY", romaji : "y", kana : "ん" },
-    { code : "KeyU", romaji : "u", kana : "な" },
-    { code : "KeyI", romaji : "i", kana : "に" },
-    { code : "KeyO", romaji : "o", kana : "ら" },
-    { code : "KeyP", romaji : "p", kana : "せ" },
+    { code : "KeyQ", romaji : "q", shift_romaji : "Q" , kana : "た", shift_kana: "た" },
+    { code : "KeyW", romaji : "w", shift_romaji : "W" , kana : "て", shift_kana: "て" },
+    { code : "KeyE", romaji : "e", shift_romaji : "E" , kana : "い", shift_kana: "ぃ" },
+    { code : "KeyR", romaji : "r", shift_romaji : "R" , kana : "す", shift_kana: "す" },
+    { code : "KeyT", romaji : "t", shift_romaji : "T" , kana : "か", shift_kana: "か" },
+    { code : "KeyY", romaji : "y", shift_romaji : "Y" , kana : "ん", shift_kana: "ん" },
+    { code : "KeyU", romaji : "u", shift_romaji : "U" , kana : "な", shift_kana: "な" },
+    { code : "KeyI", romaji : "i", shift_romaji : "I" , kana : "に", shift_kana: "に" },
+    { code : "KeyO", romaji : "o", shift_romaji : "O" , kana : "ら", shift_kana: "ら" },
+    { code : "KeyP", romaji : "p", shift_romaji : "P" , kana : "せ", shift_kana: "せ" },
+    { code : "BracketLeft", romaji : "@", shift_romaji : "`" , kana : "゛", shift_kana: "゛" },
+    { code : "BracketRight", romaji : "[", shift_romaji : "{" , kana : "゜", shift_kana: "「" },
 
-    { code : "KeyA", romaji : "a", kana : "ち" },
-    { code : "KeyS", romaji : "s", kana : "と" },
-    { code : "KeyD", romaji : "d", kana : "し" },
-    { code : "KeyF", romaji : "f", kana : "は" },
-    { code : "KeyG", romaji : "g", kana : "き" },
-    { code : "KeyH", romaji : "h", kana : "く" },
-    { code : "KeyJ", romaji : "j", kana : "ま" },
-    { code : "KeyK", romaji : "k", kana : "の" },
-    { code : "KeyL", romaji : "l", kana : "り" },
-    { code : "Semicolon", romaji : ";", kana : "れ" },
-    { code : "Quote", romaji : ":", kana : "け" },
-    { code : "Backslash", romaji : ":", kana : "む" },
+    { code : "KeyA", romaji : "a", shift_romaji : "A" , kana : "ち", shift_kana: "ち" },
+    { code : "KeyS", romaji : "s", shift_romaji : "S" , kana : "と", shift_kana: "と" },
+    { code : "KeyD", romaji : "d", shift_romaji : "D" , kana : "し", shift_kana: "し" },
+    { code : "KeyF", romaji : "f", shift_romaji : "F" , kana : "は", shift_kana: "は" },
+    { code : "KeyG", romaji : "g", shift_romaji : "G" , kana : "き", shift_kana: "き" },
+    { code : "KeyH", romaji : "h", shift_romaji : "H" , kana : "く", shift_kana: "く" },
+    { code : "KeyJ", romaji : "j", shift_romaji : "J" , kana : "ま", shift_kana: "ま" },
+    { code : "KeyK", romaji : "k", shift_romaji : "K" , kana : "の", shift_kana: "の" },
+    { code : "KeyL", romaji : "l", shift_romaji : "L" , kana : "り", shift_kana: "り" },
+    { code : "Semicolon", romaji : ";", shift_romaji : "+" , kana : "れ", shift_kana: "れ" },
+    { code : "Quote", romaji : ":", shift_romaji : "*" , kana : "け", shift_kana: "け" },
+    { code : "Backslash", romaji : "]", shift_romaji : "}" , kana : "む", shift_kana: "」" },
 
-    { code : "KeyZ", romaji : "z", kana : "つ" },
-    { code : "KeyX", romaji : "x", kana : "さ" },
-    { code : "KeyC", romaji : "c", kana : "そ" },
-    { code : "KeyV", romaji : "v", kana : "ひ" },
-    { code : "KeyB", romaji : "b", kana : "こ" },
-    { code : "KeyN", romaji : "n", kana : "み" },
-    { code : "KeyM", romaji : "m", kana : "も" },
-    { code : "Comma", romaji : ",", kana : "ね" },
-    { code : "Period", romaji : ".", kana : "る" },
-    { code : "Slash", romaji : "/", kana : "め" },
-    { code : "IntlRo", romaji : "\\", kana : "ろ" }
+    { code : "KeyZ", romaji : "z", shift_romaji : "Z" , kana : "つ", shift_kana: "っ" },
+    { code : "KeyX", romaji : "x", shift_romaji : "X" , kana : "さ", shift_kana: "さ" },
+    { code : "KeyC", romaji : "c", shift_romaji : "C" , kana : "そ", shift_kana: "そ" },
+    { code : "KeyV", romaji : "v", shift_romaji : "V" , kana : "ひ", shift_kana: "ひ" },
+    { code : "KeyB", romaji : "b", shift_romaji : "B" , kana : "こ", shift_kana: "こ" },
+    { code : "KeyN", romaji : "n", shift_romaji : "N" , kana : "み", shift_kana: "み" },
+    { code : "KeyM", romaji : "m", shift_romaji : "M" , kana : "も", shift_kana: "も" },
+    { code : "Comma", romaji : ",", shift_romaji : "<" , kana : "ね", shift_kana: "、" },
+    { code : "Period", romaji : ".", shift_romaji : ">" , kana : "る", shift_kana: "。" },
+    { code : "Slash", romaji : "/", shift_romaji : "?" , kana : "め", shift_kana: "・" },
+    { code : "IntlRo", romaji : "\\", shift_romaji : "_" , kana : "ろ", shift_kana: "ろ" }
   ];
   return codeList.find((d) => d.kana === kana).code;
 }
+function setInnerText(v) {
+  var codeList = [
+    { code : "Digit1", romaji : "1", shift_romaji : "!" , kana : "ぬ", shift_kana: "ぬ" },
+    { code : "Digit2", romaji : "2", shift_romaji : "\"" , kana : "ふ", shift_kana: "ふ" },
+    { code : "Digit3", romaji : "3", shift_romaji : "#" , kana : "あ", shift_kana: "ぁ" },
+    { code : "Digit4", romaji : "4", shift_romaji : "$" , kana : "う", shift_kana: "ぅ" },
+    { code : "Digit5", romaji : "5", shift_romaji : "%" , kana : "え", shift_kana: "ぇ" },
+    { code : "Digit6", romaji : "6", shift_romaji : "&" , kana : "お", shift_kana: "ぉ" },
+    { code : "Digit7", romaji : "7", shift_romaji : "'" , kana : "や", shift_kana: "ゃ" },
+    { code : "Digit8", romaji : "8", shift_romaji : "(" , kana : "ゆ", shift_kana: "ゅ" },
+    { code : "Digit9", romaji : "9", shift_romaji : ")" , kana : "よ", shift_kana: "ょ" },
+    { code : "Digit0", romaji : "0", shift_romaji : "" , kana : "わ", shift_kana: "を" },
+    { code : "Minus", romaji : "-", shift_romaji : "=" , kana : "ほ", shift_kana: "ほ" },
+    { code : "Equal", romaji : "~", shift_romaji : "~" , kana : "へ", shift_kana: "へ" },
+    { code : "IntlYen", romaji : "\\", shift_romaji : "|" , kana : "", shift_kana: "" },
+
+    { code : "KeyQ", romaji : "q", shift_romaji : "Q" , kana : "た", shift_kana: "た" },
+    { code : "KeyW", romaji : "w", shift_romaji : "W" , kana : "て", shift_kana: "て" },
+    { code : "KeyE", romaji : "e", shift_romaji : "E" , kana : "い", shift_kana: "ぃ" },
+    { code : "KeyR", romaji : "r", shift_romaji : "R" , kana : "す", shift_kana: "す" },
+    { code : "KeyT", romaji : "t", shift_romaji : "T" , kana : "か", shift_kana: "か" },
+    { code : "KeyY", romaji : "y", shift_romaji : "Y" , kana : "ん", shift_kana: "ん" },
+    { code : "KeyU", romaji : "u", shift_romaji : "U" , kana : "な", shift_kana: "な" },
+    { code : "KeyI", romaji : "i", shift_romaji : "I" , kana : "に", shift_kana: "に" },
+    { code : "KeyO", romaji : "o", shift_romaji : "O" , kana : "ら", shift_kana: "ら" },
+    { code : "KeyP", romaji : "p", shift_romaji : "P" , kana : "せ", shift_kana: "せ" },
+    { code : "BracketLeft", romaji : "@", shift_romaji : "`" , kana : "゛", shift_kana: "゛" },
+    { code : "BracketRight", romaji : "[", shift_romaji : "{" , kana : "゜", shift_kana: "「" },
+
+    { code : "KeyA", romaji : "a", shift_romaji : "A" , kana : "ち", shift_kana: "ち" },
+    { code : "KeyS", romaji : "s", shift_romaji : "S" , kana : "と", shift_kana: "と" },
+    { code : "KeyD", romaji : "d", shift_romaji : "D" , kana : "し", shift_kana: "し" },
+    { code : "KeyF", romaji : "f", shift_romaji : "F" , kana : "は", shift_kana: "は" },
+    { code : "KeyG", romaji : "g", shift_romaji : "G" , kana : "き", shift_kana: "き" },
+    { code : "KeyH", romaji : "h", shift_romaji : "H" , kana : "く", shift_kana: "く" },
+    { code : "KeyJ", romaji : "j", shift_romaji : "J" , kana : "ま", shift_kana: "ま" },
+    { code : "KeyK", romaji : "k", shift_romaji : "K" , kana : "の", shift_kana: "の" },
+    { code : "KeyL", romaji : "l", shift_romaji : "L" , kana : "り", shift_kana: "り" },
+    { code : "Semicolon", romaji : ";", shift_romaji : "+" , kana : "れ", shift_kana: "れ" },
+    { code : "Quote", romaji : ":", shift_romaji : "*" , kana : "け", shift_kana: "け" },
+    { code : "Backslash", romaji : "]", shift_romaji : "}" , kana : "む", shift_kana: "」" },
+
+    { code : "KeyZ", romaji : "z", shift_romaji : "Z" , kana : "つ", shift_kana: "っ" },
+    { code : "KeyX", romaji : "x", shift_romaji : "X" , kana : "さ", shift_kana: "さ" },
+    { code : "KeyC", romaji : "c", shift_romaji : "C" , kana : "そ", shift_kana: "そ" },
+    { code : "KeyV", romaji : "v", shift_romaji : "V" , kana : "ひ", shift_kana: "ひ" },
+    { code : "KeyB", romaji : "b", shift_romaji : "B" , kana : "こ", shift_kana: "こ" },
+    { code : "KeyN", romaji : "n", shift_romaji : "N" , kana : "み", shift_kana: "み" },
+    { code : "KeyM", romaji : "m", shift_romaji : "M" , kana : "も", shift_kana: "も" },
+    { code : "Comma", romaji : ",", shift_romaji : "<" , kana : "ね", shift_kana: "、" },
+    { code : "Period", romaji : ".", shift_romaji : ">" , kana : "る", shift_kana: "。" },
+    { code : "Slash", romaji : "/", shift_romaji : "?" , kana : "め", shift_kana: "・" },
+    { code : "IntlRo", romaji : "\\", shift_romaji : "_" , kana : "ろ", shift_kana: "ろ" }
+  ];
+  codeList.forEach(function(key) {
+  	if (v === "romaji") {
+  		document.getElementsByClassName("key_"+ key.code)[0].innerText = key.romaji;
+  	} else if (v === "shift_romaji") {
+  		document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_romaji;
+  	} else if (v === "shift_kana") {
+  		document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_kana;
+    } else {
+    	document.getElementsByClassName("key_"+ key.code)[0].innerText = key.kana;
+    } 
+  });
+}
+
 
 
 </script>
