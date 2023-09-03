@@ -8,6 +8,8 @@
   <link rel="stylesheet" type="text/css" href="./css/keyboardUI.css">
 </head>
 <body>
+　<button id="keyboardType" class="kana" onclick="changeKeyboardType()">かな</button>
+
   <div id="inputKeywordDisplay"></div>
 
   <div id="keyboard">
@@ -87,11 +89,10 @@
 </html>
 
 <script type="text/javascript">
+var keyboardType = 'kana';
+
 // 入力用テキスト
-var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわん";
-//var s = "こんにちは";
-
-
+var s = "さようなら";
 
 //入力キーワードを画面上に表示
 var inputKeywordDisplay = document.getElementById("inputKeywordDisplay");
@@ -115,7 +116,13 @@ document.addEventListener('keyup', keyup_ivent);
 function keydown_ivent(e) {
 
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
-  	setInnerText('shift_kana');
+  	if ( keyboardType === 'kana') {
+  		console.log("aaa");
+  		setInnerText('shift_kana');
+  	} else {
+  		console.log("nnnn");
+  		setInnerText('shift_romaji');
+  	}
   }
   	//正しくキーを押されたときの処理
   if ( getKeyCode(s.charAt(charPos)) === e.code ) {
@@ -145,7 +152,11 @@ function keydown_ivent(e) {
 function keyup_ivent(e) {
 
 　if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
-	setInnerText('kana');
+	if ( keyboardType === 'kana') {
+  		setInnerText('kana');
+  	} else {
+  		setInnerText('romaji');
+  	}
   }
 
   var nowKey = document.getElementsByClassName('key_' + e.code);
@@ -293,6 +304,21 @@ function setInnerText(v) {
     	document.getElementsByClassName("key_"+ key.code)[0].innerText = key.kana;
     } 
   });
+}
+
+function changeKeyboardType() {
+	var e = document.getElementById("keyboardType");
+	if (keyboardType === 'kana') {
+		keyboardType = 'romaji';
+		e.setAttribute("class", 'romaji');
+		e.innerText = "ローマ字";
+		setInnerText('romaji');
+	} else {
+		keyboardType = 'kana';
+		e.setAttribute("class", 'kana');
+		e.innerText = "かな";
+		setInnerText('kana');
+	}
 }
 
 </script>
