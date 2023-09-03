@@ -8,6 +8,8 @@
   <link rel="stylesheet" type="text/css" href="./css/keyboardUI.css">
 </head>
 <body>
+  <div id="inputKeywordDisplay"></div>
+
   <div id="keyboard">
     <div class="key_Backquote leftHand littleFinger"></div>
     <div class="key_Digit1 leftHand littleFinger">ぬ</div>
@@ -86,12 +88,25 @@
 
 <script type="text/javascript">
 // 入力用テキスト
-//var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわん";
-var s = "こんにちは";
- 
-var i = 0;
+var s = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわん";
+//var s = "こんにちは";
+
+
+
+//入力キーワードを画面上に表示
+var inputKeywordDisplay = document.getElementById("inputKeywordDisplay");
+for (var i = 0; i < s.length; i++) {
+	var span = document.createElement("span");
+	span.innerText = s.charAt(i);
+	span.setAttribute("id", "char_" + i);
+	span.setAttribute("class", "coordinate");
+	inputKeywordDisplay.appendChild(span);
+}
+
+
+var charPos = 0;
 // 次に入力するキーを強調表示する
-coordinateNextKey(getKeyCode(s.charAt(i)))
+coordinateNextKey(getKeyCode(s.charAt(charPos)))
 
 // イベント処理
 document.addEventListener('keydown', keydown_ivent);
@@ -102,16 +117,21 @@ function keydown_ivent(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
   	setInnerText('shift_kana');
   }
-
-
-  // 対象のキーがおされたら次のキーへ進む
-  if ( i < s.length - 1) {
-	if ( getKeyCode(s.charAt(i)) === e.code ) {
-	  i++;
-	  coordinateNextKey(getKeyCode(s.charAt(i)))
-	}
-  } else {
-  	nextKeyClear();
+  	//正しくキーを押されたときの処理
+  if ( getKeyCode(s.charAt(charPos)) === e.code ) {
+	  if ( charPos < s.length ) {
+	    var char = document.getElementById("char_" + charPos);
+	    char.classList.remove("coordinate");
+	    char.setAttribute("class", "done");
+	    charPos++;
+	    if (charPos != s.length) {
+	    	coordinateNextKey(getKeyCode(s.charAt(charPos)))
+	    } else {
+	    	nextKeyClear();
+	    }
+	  } else {
+	  	nextKeyClear();
+	  }
   }
 
   var nowKey = document.getElementsByClassName('key_' + e.code);
@@ -125,12 +145,7 @@ function keydown_ivent(e) {
 function keyup_ivent(e) {
 
 　if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
-
 	setInnerText('kana');
-  	//document.getElementsByClassName('key_Digit7')[0].innerText = 'や';
-  	// document.getElementsByClassName('key_Digit8')[0].innerText = 'ゆ';
-  	// document.getElementsByClassName('key_Digit9')[0].innerText = 'よ';
-  	// document.getElementsByClassName('key_Digit0')[0].innerText = 'お';
   }
 
   var nowKey = document.getElementsByClassName('key_' + e.code);
@@ -279,7 +294,5 @@ function setInnerText(v) {
     } 
   });
 }
-
-
 
 </script>

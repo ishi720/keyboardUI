@@ -1,3 +1,13 @@
+/* 入力画面 */
+
+
+#inputKeywordDisplay span.coordinate {
+ font-weight: bold;
+}
+
+
+
+/* キーボードUI */
 .rightHand {
   //border-color: red !important;
 }
