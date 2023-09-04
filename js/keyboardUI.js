@@ -113,7 +113,7 @@ function getKeyCode(kana) {
     { code : "Digit0", romaji : "0", shift_romaji : "" , kana : "わ", shift_kana: "を" },
     { code : "Minus", romaji : "-", shift_romaji : "=" , kana : "ほ", shift_kana: "ほ" },
     { code : "Equal", romaji : "~", shift_romaji : "~" , kana : "へ", shift_kana: "へ" },
-    { code : "IntlYen", romaji : "\\", shift_romaji : "|" , kana : "", shift_kana: "" },
+    { code : "IntlYen", romaji : "\\", shift_romaji : "|" , kana : "ー", shift_kana: "ー" },
 
     { code : "KeyQ", romaji : "q", shift_romaji : "Q" , kana : "た", shift_kana: "た" },
     { code : "KeyW", romaji : "w", shift_romaji : "W" , kana : "て", shift_kana: "て" },
@@ -169,7 +169,7 @@ function setInnerText(v) {
     { code : "Digit0", romaji : "0", shift_romaji : "" , kana : "わ", shift_kana: "を" },
     { code : "Minus", romaji : "-", shift_romaji : "=" , kana : "ほ", shift_kana: "ほ" },
     { code : "Equal", romaji : "~", shift_romaji : "~" , kana : "へ", shift_kana: "へ" },
-    { code : "IntlYen", romaji : "\\", shift_romaji : "|" , kana : "", shift_kana: "" },
+    { code : "IntlYen", romaji : "\\", shift_romaji : "|" , kana : "ー", shift_kana: "ー" },
 
     { code : "KeyQ", romaji : "q", shift_romaji : "Q" , kana : "た", shift_kana: "た" },
     { code : "KeyW", romaji : "w", shift_romaji : "W" , kana : "て", shift_kana: "て" },
