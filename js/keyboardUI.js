@@ -61,6 +61,7 @@ var codeList = [
 
 
 window.onload = function () {
+  s = dakutenSeparation(s);
   //入力キーワードを画面上に表示
   var inputKeywordDisplay = document.getElementById("inputKeywordDisplay");
   for (var i = 0; i < s.length; i++) {
@@ -179,4 +180,11 @@ function changeKeyboardType() {
 		e.innerText = "かな";
 		setInnerText('kana');
 	}
+}
+
+
+function dakutenSeparation(s) {
+  return decodeURI(encodeURI(s.normalize('NFD'))
+    .replace(/%E3%82%99/g, '%E3%82%9B')
+    .replace(/%E3%82%9A/g, '%E3%82%9C'));
 }
