@@ -1,7 +1,7 @@
 var keyboardType = 'kana';
 
 // 入力用テキスト
-var s = "こんにちはせかい";
+var s = "きょうは、りんごをたべる";
 var charPos = 0;
 
 //キーリスト
@@ -72,8 +72,6 @@ window.onload = function () {
     inputKeywordDisplay.appendChild(span);
   }
 
-
-
   // 次に入力するキーを強調表示する
   coordinateNextKey(getKeyCode(s.charAt(charPos)))
 
@@ -116,9 +114,8 @@ function keydown_ivent(e) {
 }
 
 function keyup_ivent(e) {
-
 　if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
-	if ( keyboardType === 'kana') {
+	  if ( keyboardType === 'kana') {
   		setInnerText('kana');
   	} else {
   		setInnerText('romaji');
@@ -150,7 +147,12 @@ function nextKeyClear() {
 }
 
 function getKeyCode(kana) {
-  return codeList.find((d) => d.kana === kana).code;
+  var key = codeList.find(function(d) {
+    if (d.kana === kana || d.shift_kana === kana) {
+      return d;
+    }
+  });
+  return key.code;
 }
 
 function setInnerText(v) {
