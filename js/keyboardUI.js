@@ -73,7 +73,9 @@ window.onload = function () {
   }
 
   // 次に入力するキーを強調表示する
-  coordinateNextKey(getKeyCode(s.charAt(charPos)))
+  var kana = s.charAt(charPos);
+  console.log(kana);
+  coordinateNextKey(getKeyCode(kana));
 
   // イベント処理
   document.addEventListener('keydown', keydown_ivent);
@@ -89,21 +91,27 @@ function keydown_ivent(e) {
   	}
   }
   	//正しくキーを押されたときの処理
-  if ( getKeyCode(s.charAt(charPos)) === e.code ) {
-	  if ( charPos < s.length ) {
-	    var char = document.getElementById("char_" + charPos);
-	    char.classList.remove("coordinate");
-	    char.setAttribute("class", "done");
-	    charPos++;
-	    if (charPos != s.length) {
-	    	coordinateNextKey(getKeyCode(s.charAt(charPos)))
-	    } else {
-	    	nextKeyClear();
-	    }
-	  } else {
-	  	nextKeyClear();
-	  }
+  var kana = s.charAt(charPos);
+  if (kana !== "") {
+    if ( getKeyCode(s.charAt(charPos)) === e.code ) {
+  	  if ( charPos < s.length ) {
+  	    var char = document.getElementById("char_" + charPos);
+  	    char.classList.remove("coordinate");
+  	    char.setAttribute("class", "done");
+  	    charPos++;
+  	    if (charPos != s.length) {
+          var kana = s.charAt(charPos);
+          if (kana !== "") {
+  	    	  coordinateNextKey(getKeyCode(kana));
+          }
+  	    } else {
+  	    	nextKeyClear();
+  	    }
+  	} else {
+  		nextKeyClear();
+  	}
   }
+}
 
   var nowKey = document.getElementsByClassName('key_' + e.code);
   nowKey[0].classList.add("active");
