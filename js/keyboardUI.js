@@ -74,7 +74,6 @@ window.onload = function () {
 
   // 次に入力するキーを強調表示する
   var kana = s.charAt(charPos);
-  console.log(kana);
   coordinateNextKey(getKeyCode(kana));
 
   // イベント処理
@@ -100,10 +99,7 @@ function keydown_ivent(e) {
   	    char.setAttribute("class", "done");
   	    charPos++;
   	    if (charPos != s.length) {
-          var kana = s.charAt(charPos);
-          if (kana !== "") {
-  	    	  coordinateNextKey(getKeyCode(kana));
-          }
+  	    	coordinateNextKey(getKeyCode(kana));
   	    } else {
   	    	nextKeyClear();
   	    }
