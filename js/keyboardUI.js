@@ -133,7 +133,7 @@ function keyup_ivent(e) {
     isShift = false;
 	  if ( keyboardType === 'kana') {
   		setInnerText('kana');
-      coordinateNextKey(getKeyCode(s.charAt(charPos)));
+        coordinateNextKey(getKeyCode(s.charAt(charPos)));
   	} else {
   		setInnerText('romaji');
   	}
@@ -153,7 +153,9 @@ function coordinateNextKey(keyCode) {
 
 	// 次のキーを協調する
   nextKey = document.getElementsByClassName('key_'+ keyCode);
-  nextKey[0].classList.add("next");
+  if (keyCode !== null) {
+   nextKey[0].classList.add("next");
+  }
 }
 
 function nextKeyClear() {
