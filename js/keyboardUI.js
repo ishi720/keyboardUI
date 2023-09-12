@@ -3,7 +3,7 @@ var keyboardType = 'kana';
 // 入力用テキスト
 var s = "きょうは、りんごをたべる";
 var charPos = 0;
-
+var isShift = false;
 //キーリスト
 var codeList = [
   { code : "Digit1", romaji : "1", shift_romaji : "!" , kana : "ぬ", shift_kana: "ぬ" },
@@ -74,7 +74,6 @@ window.onload = function () {
 
   // 次に入力するキーを強調表示する
   var kana = s.charAt(charPos);
-
   coordinateNextKey(getKeyCode(kana));
 
   // イベント処理
@@ -84,8 +83,11 @@ window.onload = function () {
 
 function keydown_ivent(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
+    isShift = true;
   	if ( keyboardType === 'kana') {
   		setInnerText('shift_kana');
+      coordinateNextKey(getKeyCode(s.charAt(charPos)));
+
   	} else {
   		setInnerText('shift_romaji');
   	}
@@ -102,16 +104,21 @@ function keydown_ivent(e) {
   	    if (charPos != s.length) {
           var kana = s.charAt(charPos);
           if (kana !== "") {
-  	    	  coordinateNextKey(getKeyCode(kana));
+            var key = getKeyCode(kana);
+            if (key === null) {
+              coordinateNextKey('ShiftLeft');
+            } else {
+  	    	    coordinateNextKey(getKeyCode(kana));
+            }
           }
   	    } else {
   	    	nextKeyClear();
   	    }
-  	} else {
-  		nextKeyClear();
-  	}
+  	  } else {
+  		  nextKeyClear();
+  	  }
+    }
   }
-}
 
   var nowKey = document.getElementsByClassName('key_' + e.code);
   nowKey[0].classList.add("active");
@@ -123,8 +130,10 @@ function keydown_ivent(e) {
 
 function keyup_ivent(e) {
 　if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
+    isShift = false;
 	  if ( keyboardType === 'kana') {
   		setInnerText('kana');
+      coordinateNextKey(getKeyCode(s.charAt(charPos)));
   	} else {
   		setInnerText('romaji');
   	}
@@ -155,12 +164,29 @@ function nextKeyClear() {
 }
 
 function getKeyCode(kana) {
-  var key = codeList.find(function(d) {
-    if (d.kana === kana || d.shift_kana === kana) {
-      return d;
+  if (isShift) {
+    var key = codeList.find(function(d) {
+      if (d.shift_kana === kana) {
+        return d;
+      }
+    });
+    if (typeof key === "undefined") {
+      return null;
+    } else {
+      return key.code;
     }
-  });
-  return key.code;
+  } else {
+    var key = codeList.find(function(d) {
+      if (d.kana === kana) {
+        return d;
+      }
+    });
+    if (typeof key === "undefined") {
+      return null;
+    } else {
+      return key.code;
+    }
+  }
 }
 
 function setInnerText(v) {
