@@ -220,7 +220,7 @@ function changeKeyboardType() {
 
 
 function dakutenSeparation(s) {
-  return decodeURI(encodeURI(s.normalize('NFD'))
-    .replace(/%E3%82%99/g, '%E3%82%9B')
-    .replace(/%E3%82%9A/g, '%E3%82%9C'));
+  return s.normalize('NFD')
+    .replace(/\u3099/g, '\u309b')
+    .replace(/\u309a/g, '\u309c');
 }
