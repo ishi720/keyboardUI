@@ -2,6 +2,7 @@ var keyboardType = 'kana';
 
 // 入力用テキスト
 var s = "きょうは、りんごをたべる";
+
 var charPos = 0;
 var isShift = false;
 //キーリスト
@@ -92,7 +93,7 @@ function keydown_ivent(e) {
   		setInnerText('shift_romaji');
   	}
   }
-  	//正しくキーを押されたときの処理
+  //正しくキーを押されたときの処理
   var kana = s.charAt(charPos);
   if (kana !== "") {
     if ( getKeyCode(s.charAt(charPos)) === e.code ) {
@@ -112,7 +113,7 @@ function keydown_ivent(e) {
             }
           }
   	    } else {
-  	    	nextKeyClear();
+          inputRest();
   	    }
   	  } else {
   		  nextKeyClear();
@@ -145,6 +146,20 @@ function keyup_ivent(e) {
     nowKey[1].classList.remove("active");
     nowKey[2].classList.remove("active");
   }
+}
+
+
+function inputRest() {
+  charPos = 0;
+
+  var inputText = document.querySelectorAll("#inputKeywordDisplay span");
+  for (var i = 0; i < inputText.length; i++) {
+    inputText[i].setAttribute("class", "coordinate");
+  }
+
+  var kana = s.charAt(charPos);
+  coordinateNextKey(getKeyCode(kana));
+
 }
 
 function coordinateNextKey(keyCode) {
