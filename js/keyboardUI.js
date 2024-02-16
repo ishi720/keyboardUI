@@ -85,39 +85,39 @@ window.onload = function () {
 function keydown_ivent(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = true;
-  	if ( keyboardType === 'kana') {
-  		setInnerText('shift_kana');
+    if ( keyboardType === 'kana') {
+      setInnerText('shift_kana');
       coordinateNextKey(getKeyCode(s.charAt(charPos)));
 
-  	} else {
-  		setInnerText('shift_romaji');
-  	}
+    } else {
+      setInnerText('shift_romaji');
+    }
   }
   //正しくキーを押されたときの処理
   var kana = s.charAt(charPos);
   if (kana !== "") {
     if ( getKeyCode(s.charAt(charPos)) === e.code ) {
-  	  if ( charPos < s.length ) {
-  	    var char = document.getElementById("char_" + charPos);
-  	    char.classList.remove("coordinate");
-  	    char.setAttribute("class", "done");
-  	    charPos++;
-  	    if (charPos != s.length) {
-          var kana = s.charAt(charPos);
+      if ( charPos < s.length ) {
+        var char = document.getElementById("char_" + charPos);
+        char.classList.remove("coordinate");
+        char.setAttribute("class", "done");
+        charPos++;
+        if (charPos != s.length) {
+          kana = s.charAt(charPos);
           if (kana !== "") {
             var key = getKeyCode(kana);
             if (key === null) {
               coordinateNextKey('ShiftLeft');
             } else {
-  	    	    coordinateNextKey(getKeyCode(kana));
+              coordinateNextKey(getKeyCode(kana));
             }
           }
-  	    } else {
+        } else {
           inputRest();
-  	    }
-  	  } else {
-  		  nextKeyClear();
-  	  }
+        }
+      } else {
+        nextKeyClear();
+      }
     }
   }
 
@@ -130,14 +130,14 @@ function keydown_ivent(e) {
 }
 
 function keyup_ivent(e) {
-　if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
+  if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = false;
-	  if ( keyboardType === 'kana') {
-  		setInnerText('kana');
-        coordinateNextKey(getKeyCode(s.charAt(charPos)));
-  	} else {
-  		setInnerText('romaji');
-  	}
+    if ( keyboardType === 'kana') {
+      setInnerText('kana');
+      coordinateNextKey(getKeyCode(s.charAt(charPos)));
+    } else {
+      setInnerText('romaji');
+    }
   }
 
   var nowKey = document.getElementsByClassName('key_' + e.code);
@@ -163,26 +163,27 @@ function inputRest() {
 }
 
 function coordinateNextKey(keyCode) {
-	// 協調をリセットする
-	nextKeyClear();
+  // 協調をリセットする
+  nextKeyClear();
 
-	// 次のキーを協調する
-  nextKey = document.getElementsByClassName('key_'+ keyCode);
+  // 次のキーを協調する
+  var nextKey = document.getElementsByClassName('key_'+ keyCode);
   if (keyCode !== null) {
-   nextKey[0].classList.add("next");
+    nextKey[0].classList.add("next");
   }
 }
 
 function nextKeyClear() {
-	var allKey = document.querySelectorAll("#keyboard div");
-	allKey.forEach(function(key) {
-  		key.classList.remove("next");
-	});
+  var allKey = document.querySelectorAll("#keyboard div");
+  allKey.forEach(function(key) {
+    key.classList.remove("next");
+  });
 }
 
 function getKeyCode(kana) {
+  var key;
   if (isShift) {
-    var key = codeList.find(function(d) {
+    key = codeList.find(function(d) {
       if (d.shift_kana === kana) {
         return d;
       }
@@ -193,7 +194,7 @@ function getKeyCode(kana) {
       return key.code;
     }
   } else {
-    var key = codeList.find(function(d) {
+    key = codeList.find(function(d) {
       if (d.kana === kana) {
         return d;
       }
@@ -208,32 +209,32 @@ function getKeyCode(kana) {
 
 function setInnerText(v) {
   codeList.forEach(function(key) {
-  	if (v === "romaji") {
-  		document.getElementsByClassName("key_"+ key.code)[0].innerText = key.romaji;
-  	} else if (v === "shift_romaji") {
-  		document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_romaji;
-  	} else if (v === "shift_kana") {
-  		document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_kana;
+    if (v === "romaji") {
+      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.romaji;
+    } else if (v === "shift_romaji") {
+      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_romaji;
+    } else if (v === "shift_kana") {
+      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_kana;
     } else {
-    	document.getElementsByClassName("key_"+ key.code)[0].innerText = key.kana;
+      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.kana;
     } 
   });
 }
 
-function changeKeyboardType() {
-	var e = document.getElementById("keyboardType");
-	if (keyboardType === 'kana') {
-		keyboardType = 'romaji';
-		e.setAttribute("class", 'romaji');
-		e.innerText = "ローマ字";
-		setInnerText('romaji');
-	} else {
-		keyboardType = 'kana';
-		e.setAttribute("class", 'kana');
-		e.innerText = "かな";
-		setInnerText('kana');
-	}
-}
+// function changeKeyboardType() {
+//   var e = document.getElementById("keyboardType");
+//   if (keyboardType === 'kana') {
+//     keyboardType = 'romaji';
+//     e.setAttribute("class", 'romaji');
+//     e.innerText = "ローマ字";
+//     setInnerText('romaji');
+//   } else {
+//     keyboardType = 'kana';
+//     e.setAttribute("class", 'kana');
+//     e.innerText = "かな";
+//     setInnerText('kana');
+//   }
+// }
 
 
 function dakutenSeparation(s) {
