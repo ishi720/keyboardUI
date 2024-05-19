@@ -60,7 +60,10 @@ var codeList = [
   { code : "IntlRo", romaji : "\\", shift_romaji : "_" , kana : "ろ", shift_kana: "ろ" }
 ];
 
-
+/**
+ * ウィンドウの読み込み時に実行
+ * 画面上に入力キーワードを表示し、次に入力するキーを強調表示する
+ */
 window.onload = function () {
   s = dakutenSeparation(s);
   //入力キーワードを画面上に表示
@@ -82,6 +85,10 @@ window.onload = function () {
   document.addEventListener('keyup', keyup_ivent);
 }
 
+/**
+ * キーダウンイベントのハンドラ
+ * @param {KeyboardEvent} e - キーボードイベント
+ */
 function keydown_ivent(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = true;
@@ -129,6 +136,10 @@ function keydown_ivent(e) {
   }
 }
 
+/**
+ * キーアップイベントのハンドラ
+ * @param {KeyboardEvent} e - キーボードイベント
+ */
 function keyup_ivent(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = false;
@@ -148,7 +159,9 @@ function keyup_ivent(e) {
   }
 }
 
-
+/**
+ * 入力をリセット
+ */
 function inputRest() {
   charPos = 0;
 
@@ -162,6 +175,10 @@ function inputRest() {
 
 }
 
+/**
+ * 次に入力するキーを強調表示する
+ * @param {string} keyCode - 次に強調表示するキーのコード
+ */
 function coordinateNextKey(keyCode) {
   // 協調をリセットする
   nextKeyClear();
@@ -173,6 +190,9 @@ function coordinateNextKey(keyCode) {
   }
 }
 
+/**
+ * 全てのキーの強調表示をクリアする
+ */
 function nextKeyClear() {
   var allKey = document.querySelectorAll("#keyboard div");
   allKey.forEach(function(key) {
@@ -180,6 +200,11 @@ function nextKeyClear() {
   });
 }
 
+/**
+ * かな文字に対応するキーコードを取得する
+ * @param {string} kana - かな文字
+ * @returns {string|null} - 対応するキーコード、存在しない場合はnull
+ */
 function getKeyCode(kana) {
   var key;
   if (isShift) {
@@ -207,6 +232,10 @@ function getKeyCode(kana) {
   }
 }
 
+/**
+ * 指定された内容をキーリストに基づいて更新する
+ * @param {string} v - 更新するテキスト ('romaji', 'shift_romaji', 'shift_kana', 'kana')
+ */
 function setInnerText(v) {
   codeList.forEach(function(key) {
     if (v === "romaji") {
@@ -217,7 +246,7 @@ function setInnerText(v) {
       document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_kana;
     } else {
       document.getElementsByClassName("key_"+ key.code)[0].innerText = key.kana;
-    } 
+    }
   });
 }
 
@@ -236,7 +265,11 @@ function setInnerText(v) {
 //   }
 // }
 
-
+/**
+ * 濁点を分離する関数
+ * @param {string} s - 処理対象の文字列
+ * @returns {string} - 濁点が分離された文字列
+ */
 function dakutenSeparation(s) {
   return s.normalize('NFD')
     .replace(/\u3099/g, '\u309b')
