@@ -1,5 +1,5 @@
 'use strict';
-var keyboardType = 'hangul';  // 'kana', 'romaji', 'hangul'
+var keyboardType = 'kana';
 
 // 入力用テキスト
 var s = "きょうは、りんごをたべる";
@@ -82,15 +82,15 @@ window.onload = function () {
   coordinateNextKey(getKeyCode(kana));
 
   // イベント処理
-  document.addEventListener('keydown', keydown_ivent);
-  document.addEventListener('keyup', keyup_ivent);
+  document.addEventListener('keydown', keydown_event);
+  document.addEventListener('keyup', keyup_event);
 }
 
 /**
  * キーダウンイベントのハンドラ
  * @param {KeyboardEvent} e - キーボードイベント
  */
-function keydown_ivent(e) {
+function keydown_event(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = true;
     if ( keyboardType === 'kana') {
@@ -142,7 +142,7 @@ function keydown_ivent(e) {
  * キーアップイベントのハンドラ
  * @param {KeyboardEvent} e - キーボードイベント
  */
-function keyup_ivent(e) {
+function keyup_event(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = false;
     if ( keyboardType === 'kana') {
