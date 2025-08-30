@@ -258,26 +258,6 @@ function setInnerText(v) {
   });
 }
 
-function changeKeyboardType() {
-  var e = document.getElementById("keyboardType");
-  if (keyboardType === 'kana') {
-    keyboardType = 'romaji';
-    e.setAttribute("class", 'romaji');
-    e.innerText = "ローマ字";
-    setInnerText('romaji');
-  } else if (keyboardType === 'romaji') {
-    keyboardType = 'romaji';
-    e.setAttribute("class", 'romaji');
-    e.innerText = "ローマ字";
-    setInnerText('romaji');
-  } else if (keyboardType === 'hangul') {
-    keyboardType = 'hangul';
-    e.setAttribute("class", 'hangul');
-    e.innerText = "ハングル";
-    setInnerText('hangul');
-  }
-}
-
 /**
  * 濁点を分離する関数
  * @param {string} s - 処理対象の文字列
