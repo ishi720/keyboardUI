@@ -122,7 +122,7 @@ function keydown_ivent(e) {
             }
           }
         } else {
-          inputRest();
+          inputReset();
         }
       } else {
         nextKeyClear();
@@ -166,7 +166,7 @@ function keyup_ivent(e) {
 /**
  * 入力をリセット
  */
-function inputRest() {
+function inputReset() {
   charPos = 0;
 
   var inputText = document.querySelectorAll("#inputKeywordDisplay span");
