@@ -93,7 +93,6 @@ window.onload = function () {
 function keydown_event(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = true;
-
     setInnerText('keyShift');
     coordinateNextKey(getKeyCode(s.charAt(charPos)));
   }

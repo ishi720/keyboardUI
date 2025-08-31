@@ -1,5 +1,5 @@
 'use strict';
-var keyboardType = 'romaji';  // 'kana', 'romaji', 'hangul'
+var keyboardType = 'romaji';
 
 // 入力用テキスト
 var s = "aiueo";
@@ -8,57 +8,57 @@ var charPos = 0;
 var isShift = false;
 //キーリスト
 var codeList = [
-  { code: "Digit1", romaji: "1", shift_romaji: "!", kana: "ぬ", shift_kana: "ぬ", hangul: "1", shift_hangul: "!" },
-  { code: "Digit2", romaji: "2", shift_romaji: "\"", kana: "ふ", shift_kana: "ふ", hangul: "2", shift_hangul: "@" },
-  { code: "Digit3", romaji: "3", shift_romaji: "#", kana: "あ", shift_kana: "ぁ", hangul: "3", shift_hangul: "#" },
-  { code: "Digit4", romaji: "4", shift_romaji: "$", kana: "う", shift_kana: "ぅ", hangul: "4", shift_hangul: "$" },
-  { code: "Digit5", romaji: "5", shift_romaji: "%", kana: "え", shift_kana: "ぇ", hangul: "5", shift_hangul: "%" },
-  { code: "Digit6", romaji: "6", shift_romaji: "&", kana: "お", shift_kana: "ぉ", hangul: "6", shift_hangul: "^" },
-  { code: "Digit7", romaji: "7", shift_romaji: "'", kana: "や", shift_kana: "ゃ", hangul: "7", shift_hangul: "&" },
-  { code: "Digit8", romaji: "8", shift_romaji: "(", kana: "ゆ", shift_kana: "ゅ", hangul: "8", shift_hangul: "*" },
-  { code: "Digit9", romaji: "9", shift_romaji: ")", kana: "よ", shift_kana: "ょ", hangul: "9", shift_hangul: "(" },
-  { code: "Digit0", romaji: "0", shift_romaji: "", kana: "わ", shift_kana: "を", hangul: "0", shift_hangul: ")" },
-  { code: "Minus", romaji: "-", shift_romaji: "=", kana: "ほ", shift_kana: "ほ", hangul: "-", shift_hangul: "_" },
-  { code: "Equal", romaji: "~", shift_romaji: "~", kana: "へ", shift_kana: "へ", hangul: "=", shift_hangul: "+" },
-  { code: "IntlYen", romaji: "\\", shift_romaji: "|", kana: "ー", shift_kana: "ー", hangul: "", shift_hangul: "" },
+  { code: "Digit1", key: "1", keyShift: "!"},
+  { code: "Digit2", key: "2", keyShift: "\""},
+  { code: "Digit3", key: "3", keyShift: "#"},
+  { code: "Digit4", key: "4", keyShift: "$"},
+  { code: "Digit5", key: "5", keyShift: "%"},
+  { code: "Digit6", key: "6", keyShift: "&"},
+  { code: "Digit7", key: "7", keyShift: "'"},
+  { code: "Digit8", key: "8", keyShift: "("},
+  { code: "Digit9", key: "9", keyShift: ")"},
+  { code: "Digit0", key: "0", keyShift: ""},
+  { code: "Minus", key: "-", keyShift: "="},
+  { code: "Equal", key: "~", keyShift: "~"},
+  { code: "IntlYen", key: "\\", keyShift: "|"},
 
-  { code: "KeyQ", romaji: "q", shift_romaji: "Q", kana: "た", shift_kana: "た", hangul: "ㅂ", shift_hangul: "ㅃ" },
-  { code: "KeyW", romaji: "w", shift_romaji: "W", kana: "て", shift_kana: "て", hangul: "ㅈ", shift_hangul: "ㅉ" },
-  { code: "KeyE", romaji: "e", shift_romaji: "E", kana: "い", shift_kana: "ぃ", hangul: "ㄷ", shift_hangul: "ㄸ" },
-  { code: "KeyR", romaji: "r", shift_romaji: "R", kana: "す", shift_kana: "す", hangul: "ㄱ", shift_hangul: "ㄲ" },
-  { code: "KeyT", romaji: "t", shift_romaji: "T", kana: "か", shift_kana: "か", hangul: "ㅅ", shift_hangul: "ㅆ" },
-  { code: "KeyY", romaji: "y", shift_romaji: "Y", kana: "ん", shift_kana: "ん", hangul: "ㅛ", shift_hangul: "ㅛ" },
-  { code: "KeyU", romaji: "u", shift_romaji: "U", kana: "な", shift_kana: "な", hangul: "ㅕ", shift_hangul: "ㅕ" },
-  { code: "KeyI", romaji: "i", shift_romaji: "I", kana: "に", shift_kana: "に", hangul: "ㅑ", shift_hangul: "ㅑ" },
-  { code: "KeyO", romaji: "o", shift_romaji: "O", kana: "ら", shift_kana: "ら", hangul: "ㅐ", shift_hangul: "ㅒ" },
-  { code: "KeyP", romaji: "p", shift_romaji: "P", kana: "せ", shift_kana: "せ", hangul: "ㅔ", shift_hangul: "ㅖ" },
-  { code: "BracketLeft", romaji: "@", shift_romaji: "`", kana: "゛", shift_kana: "゛", hangul: "[", shift_hangul: "{" },
-  { code: "BracketRight", romaji: "[", shift_romaji: "{", kana: "゜", shift_kana: "「", hangul: "]", shift_hangul: "}" },
+  { code: "KeyQ", key: "q", keyShift: "Q"},
+  { code: "KeyW", key: "w", keyShift: "W"},
+  { code: "KeyE", key: "e", keyShift: "E"},
+  { code: "KeyR", key: "r", keyShift: "R"},
+  { code: "KeyT", key: "t", keyShift: "T"},
+  { code: "KeyY", key: "y", keyShift: "Y"},
+  { code: "KeyU", key: "u", keyShift: "U"},
+  { code: "KeyI", key: "i", keyShift: "I"},
+  { code: "KeyO", key: "o", keyShift: "O"},
+  { code: "KeyP", key: "p", keyShift: "P"},
+  { code: "BracketLeft", key: "@", keyShift: "`"},
+  { code: "BracketRight", key: "[", keyShift: "{"},
 
-  { code: "KeyA", romaji: "a", shift_romaji: "A", kana: "ち", shift_kana: "ち", hangul: "ㅁ", shift_hangul: "ㅁ" },
-  { code: "KeyS", romaji: "s", shift_romaji: "S", kana: "と", shift_kana: "と", hangul: "ㄴ", shift_hangul: "ㄴ" },
-  { code: "KeyD", romaji: "d", shift_romaji: "D", kana: "し", shift_kana: "し", hangul: "ㅇ", shift_hangul: "ㅇ" },
-  { code: "KeyF", romaji: "f", shift_romaji: "F", kana: "は", shift_kana: "は", hangul: "ㄹ", shift_hangul: "ㄹ" },
-  { code: "KeyG", romaji: "g", shift_romaji: "G", kana: "き", shift_kana: "き", hangul: "ㅎ", shift_hangul: "ㅎ" },
-  { code: "KeyH", romaji: "h", shift_romaji: "H", kana: "く", shift_kana: "く", hangul: "ㅗ", shift_hangul: "ㅗ" },
-  { code: "KeyJ", romaji: "j", shift_romaji: "J", kana: "ま", shift_kana: "ま", hangul: "ㅓ", shift_hangul: "ㅓ" },
-  { code: "KeyK", romaji: "k", shift_romaji: "K", kana: "の", shift_kana: "の", hangul: "ㅏ", shift_hangul: "ㅏ" },
-  { code: "KeyL", romaji: "l", shift_romaji: "L", kana: "り", shift_kana: "り", hangul: "ㅣ", shift_hangul: "ㅣ" },
-  { code: "Semicolon", romaji: ";", shift_romaji: "+", kana: "れ", shift_kana: "れ", hangul: ";", shift_hangul: ":" },
-  { code: "Quote", romaji: ":", shift_romaji: "*", kana: "け", shift_kana: "け", hangul: "'", shift_hangul: "\"" },
-  { code: "Backslash", romaji: "]", shift_romaji: "}", kana: "む", shift_kana: "」", hangul: "\\", shift_hangul: "|" },
+  { code: "KeyA", key: "a", keyShift: "A"},
+  { code: "KeyS", key: "s", keyShift: "S"},
+  { code: "KeyD", key: "d", keyShift: "D"},
+  { code: "KeyF", key: "f", keyShift: "F"},
+  { code: "KeyG", key: "g", keyShift: "G"},
+  { code: "KeyH", key: "h", keyShift: "H"},
+  { code: "KeyJ", key: "j", keyShift: "J"},
+  { code: "KeyK", key: "k", keyShift: "K"},
+  { code: "KeyL", key: "l", keyShift: "L"},
+  { code: "Semicolon", key: ";", keyShift: "+"},
+  { code: "Quote", key: ":", keyShift: "*"},
+  { code: "Backslash", key: "]", keyShift: "}"},
 
-  { code: "KeyZ", romaji: "z", shift_romaji: "Z", kana: "つ", shift_kana: "っ", hangul: "ㅋ", shift_hangul: "ㅋ" },
-  { code: "KeyX", romaji: "x", shift_romaji: "X", kana: "さ", shift_kana: "さ", hangul: "ㅌ", shift_hangul: "ㅌ" },
-  { code: "KeyC", romaji: "c", shift_romaji: "C", kana: "そ", shift_kana: "そ", hangul: "ㅊ", shift_hangul: "ㅊ" },
-  { code: "KeyV", romaji: "v", shift_romaji: "V", kana: "ひ", shift_kana: "ひ", hangul: "ㅍ", shift_hangul: "ㅍ" },
-  { code: "KeyB", romaji: "b", shift_romaji: "B", kana: "こ", shift_kana: "こ", hangul: "ㅠ", shift_hangul: "ㅠ" },
-  { code: "KeyN", romaji: "n", shift_romaji: "N", kana: "み", shift_kana: "み", hangul: "ㅜ", shift_hangul: "ㅜ" },
-  { code: "KeyM", romaji: "m", shift_romaji: "M", kana: "も", shift_kana: "も", hangul: "ㅡ", shift_hangul: "ㅡ" },
-  { code: "Comma", romaji: ",", shift_romaji: "<", kana: "ね", shift_kana: "、", hangul: ",", shift_hangul: "<" },
-  { code: "Period", romaji: ".", shift_romaji: ">", kana: "る", shift_kana: "。", hangul: ".", shift_hangul: ">" },
-  { code: "Slash", romaji: "/", shift_romaji: "?", kana: "め", shift_kana: "・", hangul: "/", shift_hangul: "?" },
-  { code: "IntlRo", romaji: "\\", shift_romaji: "_", kana: "ろ", shift_kana: "ろ", hangul: "", shift_hangul: "" }
+  { code: "KeyZ", key: "z", keyShift: "Z"},
+  { code: "KeyX", key: "x", keyShift: "X"},
+  { code: "KeyC", key: "c", keyShift: "C"},
+  { code: "KeyV", key: "v", keyShift: "V"},
+  { code: "KeyB", key: "b", keyShift: "B"},
+  { code: "KeyN", key: "n", keyShift: "N"},
+  { code: "KeyM", key: "m", keyShift: "M"},
+  { code: "Comma", key: ",", keyShift: "<"},
+  { code: "Period", key: ".", keyShift: ">"},
+  { code: "Slash", key: "/", keyShift: "?"},
+  { code: "IntlRo", key: "\\", keyShift: "_"}
 ];
 
 /**
@@ -93,14 +93,8 @@ window.onload = function () {
 function keydown_event(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = true;
-    if ( keyboardType === 'kana') {
-      setInnerText('shift_kana');
-      coordinateNextKey(getKeyCode(s.charAt(charPos)));
-    } else if( keyboardType === 'romaji') {
-      setInnerText('shift_romaji');
-    } else {
-      setInnerText('shift_hangul');
-    }
+    setInnerText('keyShift');
+    coordinateNextKey(getKeyCode(s.charAt(charPos)));
   }
   //正しくキーを押されたときの処理
   var kana = s.charAt(charPos);
@@ -145,14 +139,8 @@ function keydown_event(e) {
 function keyup_event(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = false;
-    if ( keyboardType === 'kana') {
-      setInnerText('kana');
-      coordinateNextKey(getKeyCode(s.charAt(charPos)));
-    } else if( keyboardType === 'romaji') {
-      setInnerText('romaji');
-    } else {
-      setInnerText('hangul');
-    }
+    setInnerText('key');
+    coordinateNextKey(getKeyCode(s.charAt(charPos)));
   }
 
   var nowKey = document.getElementsByClassName('key_' + e.code);
@@ -238,22 +226,14 @@ function getKeyCode(kana) {
 
 /**
  * 指定された内容をキーリストに基づいて更新する
- * @param {string} v - 更新するテキスト ('romaji', 'shift_romaji', 'shift_kana', 'kana')
+ * @param {string} v - 更新するテキスト ('keyShift', 'key')
  */
 function setInnerText(v) {
   codeList.forEach(function(key) {
-    if (v === "romaji") {
-      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.romaji;
-    } else if (v === "shift_romaji") {
-      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_romaji;
-    } else if (v === "shift_kana") {
-      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_kana;
-    } else if (v === "hangul") {
-      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.hangul;
-    } else if (v === "shift_hangul") {
-      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_hangul;
+    if (v === "keyShift") {
+      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.keyShift;
     } else {
-      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.kana;
+      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.key;
     }
   });
 }
