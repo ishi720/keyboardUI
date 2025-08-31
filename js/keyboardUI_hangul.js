@@ -66,6 +66,9 @@ var codeList = [
  * 画面上に入力キーワードを表示し、次に入力するキーを強調表示する
  */
 window.onload = function () {
+
+  setInnerText('key');
+
   s = dakutenSeparation(s);
   //入力キーワードを画面上に表示
   var inputKeywordDisplay = document.getElementById("inputKeywordDisplay");

@@ -66,6 +66,9 @@ var codeList = [
  * 画面上に入力キーワードを表示し、次に入力するキーを強調表示する
  */
 window.onload = function () {
+
+  setInnerText('key');
+
   s = dakutenSeparation(s);
   //入力キーワードを画面上に表示
   var inputKeywordDisplay = document.getElementById("inputKeywordDisplay");
@@ -157,7 +160,6 @@ function keyup_event(e) {
  */
 function inputReset() {
   charPos = 0;
-
   var inputText = document.querySelectorAll("#inputKeywordDisplay span");
   for (var i = 0; i < inputText.length; i++) {
     inputText[i].setAttribute("class", "coordinate");
