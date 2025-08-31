@@ -74,6 +74,15 @@ class Keyboard {
     // イベント登録
     document.addEventListener('keydown', (e) => this.handleKeyDown(e));
     document.addEventListener('keyup', (e) => this.handleKeyUp(e));
+
+    // マウスクリックで入力可能にする
+    const allKeys = document.querySelectorAll("#keyboard div");
+    allKeys.forEach(keyEl => {
+      keyEl.addEventListener("click", () => {
+        const code = keyEl.classList[0].replace("key_", ""); // class名からcodeを取得
+        this.simulateKeyPress(code);
+      });
+    });
   }
 
   /**
@@ -115,6 +124,25 @@ class Keyboard {
       nowKey[1].classList.add("active");
       nowKey[2].classList.add("active");
     }
+  }
+
+  /**
+   * マウスクリックでキーを押したときの処理
+   */
+  simulateKeyPress(code) {
+    // Shiftキーの押下処理はここで不要だが、Shift対応キーの場合はisShiftを考慮
+    const kana = this.s.charAt(this.charPos);
+    const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === kana);
+    if (keyObj && keyObj.code === code) {
+      this.handleCorrectKey();
+    }
+
+    // 強調表示
+    const nowKey = document.getElementsByClassName('key_' + code);
+    if (nowKey[0]) nowKey[0].classList.add("active");
+    setTimeout(() => { // クリック後にすぐ消す
+      if (nowKey[0]) nowKey[0].classList.remove("active");
+    }, 150);
   }
 
   /**
