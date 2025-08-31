@@ -203,6 +203,32 @@ class Keyboard {
       }
     });
   }
+
+  decomposeHangul(text) {
+    const CHO = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+    const JUNG = ["ㅏ","ㅐ","ㅑ","ㅒ","ㅓ","ㅔ","ㅕ","ㅖ","ㅗ","ㅘ","ㅙ","ㅚ","ㅛ","ㅜ","ㅝ","ㅞ","ㅟ","ㅠ","ㅡ","ㅢ","ㅣ"];
+    const JONG = ["","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ","ㄻ","ㄼ","ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ","ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+
+    // 複数文字対応: 1文字ずつ分解して配列にする
+    const result = Array.from(text).map(char => {
+      const code = char.charCodeAt(0);
+      if (code < 0xAC00 || code > 0xD7A3) {
+        return char;
+      }
+      // ハングル文字の分解
+      const SIndex = code - 0xAC00;
+      const choIndex = Math.floor(SIndex / (21 * 28));
+      const jungIndex = Math.floor((SIndex % (21 * 28)) / 28);
+      const jongIndex = SIndex % 28;
+
+      // 分解した文字を結合して返す
+      return CHO[choIndex] + JUNG[jungIndex] + JONG[jongIndex];
+    });
+
+    // 配列を結合して文字列として返す
+    return result.join('');
+  }
+
 }
 
 // ==== 初期化 ====
