@@ -129,7 +129,7 @@ function keydown_event(e) {
 
   var nowKey = document.getElementsByClassName('key_' + e.code);
   nowKey[0].classList.add("active");
-  if(e.code === "Enter") {
+  if (e.code === "Enter") {
     nowKey[1].classList.add("active");
     nowKey[2].classList.add("active");
   }
