@@ -8,57 +8,57 @@ var charPos = 0;
 var isShift = false;
 //キーリスト
 var codeList = [
-  { code: "Digit1", kana: "ぬ", shift_kana: "ぬ"},
-  { code: "Digit2", kana: "ふ", shift_kana: "ふ"},
-  { code: "Digit3", kana: "あ", shift_kana: "ぁ"},
-  { code: "Digit4", kana: "う", shift_kana: "ぅ"},
-  { code: "Digit5", kana: "え", shift_kana: "ぇ"},
-  { code: "Digit6", kana: "お", shift_kana: "ぉ"},
-  { code: "Digit7", kana: "や", shift_kana: "ゃ"},
-  { code: "Digit8", kana: "ゆ", shift_kana: "ゅ"},
-  { code: "Digit9", kana: "よ", shift_kana: "ょ"},
-  { code: "Digit0", kana: "わ", shift_kana: "を"},
-  { code: "Minus", kana: "ほ", shift_kana: "ほ"},
-  { code: "Equal", kana: "へ", shift_kana: "へ"},
-  { code: "IntlYen", kana: "ー", shift_kana: "ー"},
+  { code: "Digit1", key: "ぬ", keyShift: "ぬ"},
+  { code: "Digit2", key: "ふ", keyShift: "ふ"},
+  { code: "Digit3", key: "あ", keyShift: "ぁ"},
+  { code: "Digit4", key: "う", keyShift: "ぅ"},
+  { code: "Digit5", key: "え", keyShift: "ぇ"},
+  { code: "Digit6", key: "お", keyShift: "ぉ"},
+  { code: "Digit7", key: "や", keyShift: "ゃ"},
+  { code: "Digit8", key: "ゆ", keyShift: "ゅ"},
+  { code: "Digit9", key: "よ", keyShift: "ょ"},
+  { code: "Digit0", key: "わ", keyShift: "を"},
+  { code: "Minus", key: "ほ", keyShift: "ほ"},
+  { code: "Equal", key: "へ", keyShift: "へ"},
+  { code: "IntlYen", key: "ー", keyShift: "ー"},
 
-  { code: "KeyQ", kana: "た", shift_kana: "た"},
-  { code: "KeyW", kana: "て", shift_kana: "て"},
-  { code: "KeyE", kana: "い", shift_kana: "ぃ"},
-  { code: "KeyR", kana: "す", shift_kana: "す"},
-  { code: "KeyT", kana: "か", shift_kana: "か"},
-  { code: "KeyY", kana: "ん", shift_kana: "ん"},
-  { code: "KeyU", kana: "な", shift_kana: "な"},
-  { code: "KeyI", kana: "に", shift_kana: "に"},
-  { code: "KeyO", kana: "ら", shift_kana: "ら"},
-  { code: "KeyP", kana: "せ", shift_kana: "せ"},
-  { code: "BracketLeft", kana: "゛", shift_kana: "゛"},
-  { code: "BracketRight", kana: "゜", shift_kana: "「"},
+  { code: "KeyQ", key: "た", keyShift: "た"},
+  { code: "KeyW", key: "て", keyShift: "て"},
+  { code: "KeyE", key: "い", keyShift: "ぃ"},
+  { code: "KeyR", key: "す", keyShift: "す"},
+  { code: "KeyT", key: "か", keyShift: "か"},
+  { code: "KeyY", key: "ん", keyShift: "ん"},
+  { code: "KeyU", key: "な", keyShift: "な"},
+  { code: "KeyI", key: "に", keyShift: "に"},
+  { code: "KeyO", key: "ら", keyShift: "ら"},
+  { code: "KeyP", key: "せ", keyShift: "せ"},
+  { code: "BracketLeft", key: "゛", keyShift: "゛"},
+  { code: "BracketRight", key: "゜", keyShift: "「"},
 
-  { code: "KeyA", kana: "ち", shift_kana: "ち"},
-  { code: "KeyS", kana: "と", shift_kana: "と"},
-  { code: "KeyD", kana: "し", shift_kana: "し"},
-  { code: "KeyF", kana: "は", shift_kana: "は"},
-  { code: "KeyG", kana: "き", shift_kana: "き"},
-  { code: "KeyH", kana: "く", shift_kana: "く"},
-  { code: "KeyJ", kana: "ま", shift_kana: "ま"},
-  { code: "KeyK", kana: "の", shift_kana: "の"},
-  { code: "KeyL", kana: "り", shift_kana: "り"},
-  { code: "Semicolon", kana: "れ", shift_kana: "れ"},
-  { code: "Quote", kana: "け", shift_kana: "け"},
-  { code: "Backslash", kana: "む", shift_kana: "」"},
+  { code: "KeyA", key: "ち", keyShift: "ち"},
+  { code: "KeyS", key: "と", keyShift: "と"},
+  { code: "KeyD", key: "し", keyShift: "し"},
+  { code: "KeyF", key: "は", keyShift: "は"},
+  { code: "KeyG", key: "き", keyShift: "き"},
+  { code: "KeyH", key: "く", keyShift: "く"},
+  { code: "KeyJ", key: "ま", keyShift: "ま"},
+  { code: "KeyK", key: "の", keyShift: "の"},
+  { code: "KeyL", key: "り", keyShift: "り"},
+  { code: "Semicolon", key: "れ", keyShift: "れ"},
+  { code: "Quote", key: "け", keyShift: "け"},
+  { code: "Backslash", key: "む", keyShift: "」"},
 
-  { code: "KeyZ", kana: "つ", shift_kana: "っ"},
-  { code: "KeyX", kana: "さ", shift_kana: "さ"},
-  { code: "KeyC", kana: "そ", shift_kana: "そ"},
-  { code: "KeyV", kana: "ひ", shift_kana: "ひ"},
-  { code: "KeyB", kana: "こ", shift_kana: "こ"},
-  { code: "KeyN", kana: "み", shift_kana: "み"},
-  { code: "KeyM", kana: "も", shift_kana: "も"},
-  { code: "Comma", kana: "ね", shift_kana: "、"},
-  { code: "Period", kana: "る", shift_kana: "。"},
-  { code: "Slash", kana: "め", shift_kana: "・"},
-  { code: "IntlRo", kana: "ろ", shift_kana: "ろ"}
+  { code: "KeyZ", key: "つ", keyShift: "っ"},
+  { code: "KeyX", key: "さ", keyShift: "さ"},
+  { code: "KeyC", key: "そ", keyShift: "そ"},
+  { code: "KeyV", key: "ひ", keyShift: "ひ"},
+  { code: "KeyB", key: "こ", keyShift: "こ"},
+  { code: "KeyN", key: "み", keyShift: "み"},
+  { code: "KeyM", key: "も", keyShift: "も"},
+  { code: "Comma", key: "ね", keyShift: "、"},
+  { code: "Period", key: "る", keyShift: "。"},
+  { code: "Slash", key: "め", keyShift: "・"},
+  { code: "IntlRo", key: "ろ", keyShift: "ろ"}
 ];
 
 /**
@@ -94,7 +94,7 @@ function keydown_event(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = true;
 
-    setInnerText('shift_kana');
+    setInnerText('keyShift');
     coordinateNextKey(getKeyCode(s.charAt(charPos)));
   }
 
@@ -141,7 +141,7 @@ function keydown_event(e) {
 function keyup_event(e) {
   if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
     isShift = false;
-    setInnerText('kana');
+    setInnerText('key');
     coordinateNextKey(getKeyCode(s.charAt(charPos)));
   }
 
@@ -202,7 +202,7 @@ function getKeyCode(kana) {
   var key;
   if (isShift) {
     key = codeList.find(function(d) {
-      if (d.shift_kana === kana) {
+      if (d.keyShift === kana) {
         return d;
       }
     });
@@ -213,7 +213,7 @@ function getKeyCode(kana) {
     }
   } else {
     key = codeList.find(function(d) {
-      if (d.kana === kana) {
+      if (d.key === kana) {
         return d;
       }
     });
@@ -227,14 +227,14 @@ function getKeyCode(kana) {
 
 /**
  * 指定された内容をキーリストに基づいて更新する
- * @param {string} v - 更新するテキスト ('shift_kana', 'kana')
+ * @param {string} v - 更新するテキスト ('keyShift', 'key')
  */
 function setInnerText(v) {
   codeList.forEach(function(key) {
-    if (v === "shift_kana") {
-      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.shift_kana;
+    if (v === "keyShift") {
+      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.keyShift;
     } else {
-      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.kana;
+      document.getElementsByClassName("key_"+ key.code)[0].innerText = key.key;
     }
   });
 }
