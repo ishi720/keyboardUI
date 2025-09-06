@@ -3,7 +3,7 @@ import KeyboardBase from './KeyboardBase.js';
 
 export default class KanaKeyboard extends KeyboardBase {
   constructor(targetText) {
-    super(targetText, 'kana');
+    super(targetText);
     this.s = this.dakutenSeparation(targetText);
 
     this.codeList = [

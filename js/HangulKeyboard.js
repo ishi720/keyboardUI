@@ -3,7 +3,7 @@ import KeyboardBase from './KeyboardBase.js';
 
 export default class HungulKeyboard extends KeyboardBase {
   constructor(targetText) {
-    super(targetText, 'hangul');
+    super(targetText);
     this.s = targetText;
 
     this.codeList = [

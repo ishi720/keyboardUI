@@ -3,7 +3,7 @@ import KeyboardBase from './KeyboardBase.js';
 
 export default class RomajiKeyboard extends KeyboardBase {
   constructor(targetText) {
-    super(targetText, 'romaji');
+    super(targetText);
 
     // ローマ字用キーリスト
     this.codeList = [

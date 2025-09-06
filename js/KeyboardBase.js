@@ -1,8 +1,7 @@
 'use strict';
 
 export default class KeyboardBase {
-  constructor(targetText, keyboardType = 'kana') {
-    this.keyboardType = keyboardType;
+  constructor(targetText) {
     this.s = targetText;
     this.charPos = 0;
     this.isShift = false;
