@@ -6,7 +6,6 @@ import HungulKeyboard from './HangulKeyboard.js';
 
 const params = new URLSearchParams(window.location.search);
 const keyboardType = params.get("type");
-console.log("keyboardType:", keyboardType);
 
 window.onload = () => {
 
