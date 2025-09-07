@@ -4,7 +4,7 @@ import KeyboardBase from './KeyboardBase.js';
 export default class HungulKeyboard extends KeyboardBase {
   constructor(targetText) {
     super(targetText);
-    this.s = targetText;
+    this.s = this.decomposeHangul(targetText);
 
     this.codeList = [
       { code: "Digit1", key: "1", keyShift: "!" },
@@ -69,14 +69,23 @@ export default class HungulKeyboard extends KeyboardBase {
     const JUNG = ["ㅏ","ㅐ","ㅑ","ㅒ","ㅓ","ㅔ","ㅕ","ㅖ","ㅗ","ㅘ","ㅙ","ㅚ","ㅛ","ㅜ","ㅝ","ㅞ","ㅟ","ㅠ","ㅡ","ㅢ","ㅣ"];
     const JONG = ["","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ","ㄻ","ㄼ","ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ","ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
 
-    return Array.from(text).map(char => {
+    // 複数文字対応: 1文字ずつ分解して配列にする
+    const result = Array.from(text).map(char => {
       const code = char.charCodeAt(0);
-      if (code < 0xAC00 || code > 0xD7A3) return char;
-      const sIndex = code - 0xAC00;
-      const cho = CHO[Math.floor(sIndex / (21 * 28))];
-      const jung = JUNG[Math.floor((sIndex % (21 * 28)) / 28)];
-      const jong = JONG[sIndex % 28];
-      return cho + jung + jong;
-    }).join('');
+      if (code < 0xAC00 || code > 0xD7A3) {
+        return char;
+      }
+      // ハングル文字の分解
+      const SIndex = code - 0xAC00;
+      const choIndex = Math.floor(SIndex / (21 * 28));
+      const jungIndex = Math.floor((SIndex % (21 * 28)) / 28);
+      const jongIndex = SIndex % 28;
+
+      // 分解した文字を結合して返す
+      return CHO[choIndex] + JUNG[jungIndex] + JONG[jongIndex];
+    });
+
+    // 配列を結合して文字列として返す
+    return result.join('');
   }
 }

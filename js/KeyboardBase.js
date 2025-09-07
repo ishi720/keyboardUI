@@ -2,7 +2,9 @@
 
 export default class KeyboardBase {
   constructor(targetText) {
+    this.originalText = targetText;
     this.s = targetText;
+    this.indexMap = this.createIndexMap(targetText, this.s);
     this.charPos = 0;
     this.isShift = false;
     this.codeList = []; // 継承先でセット
@@ -38,7 +40,7 @@ export default class KeyboardBase {
     inputKeywordDisplay.innerHTML = "";
     for (let i = 0; i < this.s.length; i++) {
       const span = document.createElement("span");
-      span.innerText = this.s.charAt(i);
+      span.innerText = this.originalText.charAt(i);
       span.setAttribute("id", "char_" + i);
       span.setAttribute("class", "coordinate");
       inputKeywordDisplay.appendChild(span);
@@ -107,7 +109,9 @@ export default class KeyboardBase {
    * 正しくキーを押されたときの処理
    */
   handleCorrectKey() {
-    const char = document.getElementById("char_" + this.charPos);
+    // 分離済みインデックスからオリジナルインデックスを取得
+    const originalIndex = this.indexMap.findIndex(arr => arr.includes(this.charPos));
+    const char = document.getElementById("char_" + originalIndex);
     char.classList.remove("coordinate");
     char.setAttribute("class", "done");
     this.charPos++;
@@ -168,5 +172,23 @@ export default class KeyboardBase {
         el.innerText = (v === "keyShift" ? key.keyShift : key.key);
       }
     });
+  }
+
+ /**
+   * オリジナル文字列と分離済み文字列のインデックス対応表を作成
+   */
+  createIndexMap(original, separated) {
+    const map = [];
+    let sepIndex = 0;
+    for (let i = 0; i < original.length; i++) {
+      const baseChar = original.charAt(i).normalize('NFD');
+      const length = baseChar.length;
+      const arr = [];
+      for (let j = 0; j < length; j++) {
+        arr.push(sepIndex++);
+      }
+      map.push(arr);
+    }
+    return map;
   }
 }
