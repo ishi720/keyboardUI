@@ -27,22 +27,9 @@ export default class KeyboardBase {
         const allKeys = document.querySelectorAll("#keyboard div");
         allKeys.forEach(keyEl => {
             const code = keyEl.classList[0].replace("key_", "");
-            keyEl.addEventListener("pointerdown", () => {
-                this.keyClickStart(code);
-                this.clickStatus = true;
-            });
-            keyEl.addEventListener("pointerout", () => {
-                if (this.clickStatus) {
-                    this.keyClickEnd(code);
-                    this.clickStatus = false;
-                }
-            });
-            keyEl.addEventListener("pointerup", () => {
-                if (this.clickStatus) {
-                    this.keyClickEnd(code);
-                    this.clickStatus = false;
-                }
-            });
+            keyEl.addEventListener("pointerdown", () => this.keyClickStart(code));
+            keyEl.addEventListener("pointerout", () => this.keyClickEnd(code));
+            keyEl.addEventListener("pointerup", () => this.keyClickEnd(code));
         });
     }
 
@@ -112,8 +99,11 @@ export default class KeyboardBase {
         for (const key of nowKey) {
             key.classList.add("active");
         }
+        this.clickStatus = true;
     }
     keyClickEnd(code) {
+        if (!this.clickStatus) return;
+
         const kana = this.s.charAt(this.charPos);
         const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === kana);
         if (keyObj && keyObj.code === code) {
@@ -123,6 +113,7 @@ export default class KeyboardBase {
         for (const key of nowKey) {
             key.classList.remove("active");
         }
+        this.clickStatus = false;
     }
     /**
      * 正しくキーを押されたときの処理
