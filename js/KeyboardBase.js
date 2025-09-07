@@ -102,9 +102,21 @@ export default class KeyboardBase {
     }
 
     const nowKey = document.getElementsByClassName('key_' + code);
-    if (nowKey[0]) nowKey[0].classList.add("active");
+    if (nowKey[0]) {
+        nowKey[0].classList.add("active");
+    }
+    if (code === "Enter") {
+        nowKey[1].classList.add("active");
+        nowKey[2].classList.add("active");
+    }
     setTimeout(() => {
-      if (nowKey[0]) nowKey[0].classList.remove("active");
+        if (nowKey[0]) {
+            nowKey[0].classList.remove("active");
+        }
+        if (code === "Enter") {
+            nowKey[1].classList.remove("active");
+            nowKey[2].classList.remove("active");
+        }
     }, 150);
   }
 
