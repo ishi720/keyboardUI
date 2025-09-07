@@ -145,13 +145,17 @@ export default class KeyboardBase {
         char.classList.remove("coordinate");
         char.setAttribute("class", "done");
 
-        // オリジナルテキストの対応する文字も完了にする
+        // オリジナルテキスト側は、入力文字の最後に完了とする
         const originalIndex = this.indexMap.findIndex(arr => arr.includes(this.charPos));
         if (originalIndex !== -1) {
-            const orgChar = document.getElementById("org_char_" + originalIndex);
-            if (orgChar) {
-                orgChar.classList.remove("coordinate");
-                orgChar.setAttribute("class", "done");
+            const arr = this.indexMap[originalIndex];
+            const isLast = arr[arr.length - 1] === this.charPos; // 最後の分離文字かどうか判定
+            if (isLast) {
+                const orgChar = document.getElementById("org_char_" + originalIndex);
+                if (orgChar) {
+                    orgChar.classList.remove("coordinate");
+                    orgChar.setAttribute("class", "done");
+                }
             }
         }
 
