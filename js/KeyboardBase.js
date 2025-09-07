@@ -58,6 +58,8 @@ export default class KeyboardBase {
         for (let i = 0; i < this.originalText.length; i++) {
             const span = document.createElement("span");
             span.innerText = this.originalText.charAt(i);
+            span.setAttribute("id", "org_char_" + i);
+            span.setAttribute("class", "coordinate");
             originalDiv.appendChild(span);
         }
     }
@@ -115,6 +117,10 @@ export default class KeyboardBase {
         }
         this.clickStatus = true;
     }
+
+    /**
+     * マウスクリックでキーを離したときの処理
+     */
     keyClickEnd(code) {
         if (!this.clickStatus) return;
 
@@ -134,12 +140,22 @@ export default class KeyboardBase {
      * 正しくキーを押されたときの処理
      */
     handleCorrectKey() {
-        // 分離済みインデックスからオリジナルインデックスを取得
-        // const originalIndex = this.indexMap.findIndex(arr => arr.includes(this.charPos));
-        // const char = document.getElementById("char_" + originalIndex);
+        // 入力済みにする
         const char = document.getElementById("char_" + this.charPos);
         char.classList.remove("coordinate");
         char.setAttribute("class", "done");
+
+        // オリジナルテキストの対応する文字も完了にする
+        const originalIndex = this.indexMap.findIndex(arr => arr.includes(this.charPos));
+        if (originalIndex !== -1) {
+            const orgChar = document.getElementById("org_char_" + originalIndex);
+            if (orgChar) {
+                orgChar.classList.remove("coordinate");
+                orgChar.setAttribute("class", "done");
+            }
+        }
+
+        // 次の文字へ移動
         this.charPos++;
 
         if (this.charPos < this.s.length) {
@@ -158,6 +174,10 @@ export default class KeyboardBase {
         this.charPos = 0;
         const inputText = document.querySelectorAll("#inputKeywordDisplay span");
         inputText.forEach(span => span.setAttribute("class", "coordinate"));
+        // オリジナルテキストもリセット
+        const originalText = document.querySelectorAll("#originalTextDisplay span");
+        originalText.forEach(span => span.setAttribute("class", "coordinate"));
+        // 次のキーを強調表示
         this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
     }
 
