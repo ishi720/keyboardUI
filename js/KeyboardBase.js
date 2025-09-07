@@ -17,6 +17,7 @@ export default class KeyboardBase {
     init() {
         this.setInnerText('key');
         this.renderInputText();
+        this.renderOriginalText();
         this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
 
         // イベント登録
@@ -34,17 +35,30 @@ export default class KeyboardBase {
     }
 
     /**
-     * 入力テキストを画面に描画
+     * 入力用テキストを画面に描画
      */
     renderInputText() {
         const inputKeywordDisplay = document.getElementById("inputKeywordDisplay");
         inputKeywordDisplay.innerHTML = "";
         for (let i = 0; i < this.s.length; i++) {
             const span = document.createElement("span");
-            span.innerText = this.originalText.charAt(i);
+            span.innerText = this.s.charAt(i);
             span.setAttribute("id", "char_" + i);
             span.setAttribute("class", "coordinate");
             inputKeywordDisplay.appendChild(span);
+        }
+    }
+
+    /**
+     * オリジナル文字列を画面に描画
+     */
+    renderOriginalText() {
+        const originalDiv = document.getElementById("originalTextDisplay");
+        originalDiv.innerHTML = "";
+        for (let i = 0; i < this.originalText.length; i++) {
+            const span = document.createElement("span");
+            span.innerText = this.originalText.charAt(i);
+            originalDiv.appendChild(span);
         }
     }
 
@@ -115,13 +129,15 @@ export default class KeyboardBase {
         }
         this.clickStatus = false;
     }
+
     /**
      * 正しくキーを押されたときの処理
      */
     handleCorrectKey() {
         // 分離済みインデックスからオリジナルインデックスを取得
-        const originalIndex = this.indexMap.findIndex(arr => arr.includes(this.charPos));
-        const char = document.getElementById("char_" + originalIndex);
+        // const originalIndex = this.indexMap.findIndex(arr => arr.includes(this.charPos));
+        // const char = document.getElementById("char_" + originalIndex);
+        const char = document.getElementById("char_" + this.charPos);
         char.classList.remove("coordinate");
         char.setAttribute("class", "done");
         this.charPos++;
