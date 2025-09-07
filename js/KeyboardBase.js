@@ -8,6 +8,7 @@ export default class KeyboardBase {
     this.charPos = 0;
     this.isShift = false;
     this.codeList = []; // 継承先でセット
+    this.clickStatus = false;
   }
 
   /**
@@ -25,9 +26,22 @@ export default class KeyboardBase {
     // マウスクリックで入力可能にする
     const allKeys = document.querySelectorAll("#keyboard div");
     allKeys.forEach(keyEl => {
-      keyEl.addEventListener("click", () => {
-        const code = keyEl.classList[0].replace("key_", ""); // class名からcodeを取得
-        this.simulateKeyPress(code);
+      const code = keyEl.classList[0].replace("key_", "");
+      keyEl.addEventListener("pointerdown", () => {
+        this.keyClickStart(code);
+        this.clickStatus = true;
+      });
+      keyEl.addEventListener("pointerout", () => {
+        if (this.clickStatus) {
+            this.keyClickEnd(code);
+            this.clickStatus = false;
+        }
+      });
+      keyEl.addEventListener("pointerup", () => {
+        if (this.clickStatus) {
+            this.keyClickEnd(code);
+            this.clickStatus = false;
+        }
       });
     });
   }
@@ -88,7 +102,7 @@ export default class KeyboardBase {
   /**
    * マウスクリックでキーを押したときの処理
    */
-  simulateKeyPress(code) {
+  keyClickStart(code) {
     const kana = this.s.charAt(this.charPos);
     const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === kana);
     if (keyObj && keyObj.code === code) {
@@ -98,13 +112,18 @@ export default class KeyboardBase {
     for (const key of nowKey) {
         key.classList.add("active");
     }
-    setTimeout(() => {
-        for (const key of nowKey) {
-            key.classList.remove("active");
-        }
-    }, 150);
   }
-
+  keyClickEnd(code) {
+    const kana = this.s.charAt(this.charPos);
+    const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === kana);
+    if (keyObj && keyObj.code === code) {
+      this.handleCorrectKey();
+    }
+    const nowKey = document.getElementsByClassName('key_' + code);
+    for (const key of nowKey) {
+        key.classList.remove("active");
+    }
+  }
   /**
    * 正しくキーを押されたときの処理
    */
