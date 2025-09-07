@@ -62,12 +62,8 @@ export default class KeyboardBase {
 
     // 押下中のキーを強調表示
     const nowKey = document.getElementsByClassName('key_' + e.code);
-    if (nowKey[0]) {
-      nowKey[0].classList.add("active");
-    }
-    if (e.code === "Enter" && nowKey.length >= 3) {
-      nowKey[1].classList.add("active");
-      nowKey[2].classList.add("active");
+    for (const key of nowKey) {
+        key.classList.add("active");
     }
   }
 
@@ -82,12 +78,8 @@ export default class KeyboardBase {
     }
 
     const nowKey = document.getElementsByClassName('key_' + e.code);
-    if (nowKey[0]) {
-      nowKey[0].classList.remove("active");
-    }
-    if (e.code === "Enter" && nowKey.length >= 3) {
-      nowKey[1].classList.remove("active");
-      nowKey[2].classList.remove("active");
+    for (const key of nowKey) {
+        key.classList.remove("active");
     }
   }
 
@@ -100,22 +92,13 @@ export default class KeyboardBase {
     if (keyObj && keyObj.code === code) {
       this.handleCorrectKey();
     }
-
     const nowKey = document.getElementsByClassName('key_' + code);
-    if (nowKey[0]) {
-        nowKey[0].classList.add("active");
-    }
-    if (code === "Enter") {
-        nowKey[1].classList.add("active");
-        nowKey[2].classList.add("active");
+    for (const key of nowKey) {
+        key.classList.add("active");
     }
     setTimeout(() => {
-        if (nowKey[0]) {
-            nowKey[0].classList.remove("active");
-        }
-        if (code === "Enter") {
-            nowKey[1].classList.remove("active");
-            nowKey[2].classList.remove("active");
+        for (const key of nowKey) {
+            key.classList.remove("active");
         }
     }, 150);
   }
