@@ -8,7 +8,6 @@ const params = new URLSearchParams(window.location.search);
 const keyboardType = params.get("type");
 
 window.onload = () => {
-
     if (keyboardType === "kana") {
         // かな入力
         const keyboard = new KanaKeyboard("きょうは、りんごをたべる");
