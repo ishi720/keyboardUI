@@ -14,7 +14,7 @@ window.onload = () => {
         keyboard.init();
     } else if (keyboardType === "romaji") {
         // ローマ字入力
-        const keyboard = new RomajiKeyboard("Hello,world!");
+        const keyboard = new RomajiKeyboard("Hello world!");
         keyboard.init();
     } else if (keyboardType === "hangul") {
         // ハングル入力

@@ -57,7 +57,9 @@ export default class RomajiKeyboard extends KeyboardBase {
             { code: "Comma", key: ",", keyShift: "<"},
             { code: "Period", key: ".", keyShift: ">"},
             { code: "Slash", key: "/", keyShift: "?"},
-            { code: "IntlRo", key: "\\", keyShift: "_"}
+            { code: "IntlRo", key: "\\", keyShift: "_"},
+
+            { code: "Space", key: " ", keyShift: " "}
         ];
     }
 }

@@ -57,7 +57,9 @@ export default class KanaKeyboard extends KeyboardBase {
             { code: "Comma", key: "ね", keyShift: "、" },
             { code: "Period", key: "る", keyShift: "。" },
             { code: "Slash", key: "め", keyShift: "・" },
-            { code: "IntlRo", key: "ろ", keyShift: "ろ" }
+            { code: "IntlRo", key: "ろ", keyShift: "ろ" },
+
+            { code: "Space", key: " ", keyShift: " "}
         ];
     }
 

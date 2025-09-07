@@ -57,7 +57,9 @@ export default class HungulKeyboard extends KeyboardBase {
             { code: "Comma", key: ",", keyShift: "<" },
             { code: "Period", key: ".", keyShift: ">" },
             { code: "Slash", key: "/", keyShift: "?" },
-            { code: "IntlRo", key: "", keyShift: "" }
+            { code: "IntlRo", key: "", keyShift: "" },
+
+            { code: "Space", key: " ", keyShift: " "}
         ];
     }
 
