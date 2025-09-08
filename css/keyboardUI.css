@@ -1,5 +1,21 @@
-/* 入力画面 */
+/* 全体のスタイル */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
 
+
+/* 入力画面 */
+#inputKeywordDisplay {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
 
 #inputKeywordDisplay span.coordinate {
  font-weight: bold;
@@ -8,14 +24,12 @@
  font-weight: bold;
 }
 
-
-
 /* キーボードUI */
 .rightHand {
-  //border-color: red !important;
+  /* border-color: red !important; */
 }
 .leftHand {
-  //border-color: darkseagreen !important;
+  /* border-color: darkseagreen !important; */
 }
 
 .thumb {
@@ -35,15 +49,17 @@
 }
 
 .bothHands {
-  //border-color: blue !important;
+  /* border-color: blue !important; */
 }
 #keyboard {
   position: relative;
-  background-color: red;
+  display: grid;
+  grid-template-columns: repeat(15, 40px);
 }
 #keyboard div {
   width: 34px;
   height: 34px;
+  background-color: #fff;
   border: 1px solid #d8d8d8;
   border-radius: 3px;
   font-weight: bold;
@@ -349,10 +365,10 @@
   top: 123px;
 }
 .next {
-  background-color: yellow;
+  background-color: yellow !important;
 }
 .active {
-  background-color: lightcoral;
+  background-color: lightcoral !important;
 }
 
 .next-char {
