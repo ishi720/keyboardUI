@@ -75,8 +75,8 @@ export default class KeyboardBase {
         }
 
         // 入力文字と押されたキーが一致するか判定
-        const kana = this.s.charAt(this.charPos);
-        if (kana && this.getKeyCode(kana) === e.code) {
+        const char = this.s.charAt(this.charPos);
+        if (char && this.getKeyCode(char) === e.code) {
             this.handleCorrectKey();
         }
 
@@ -109,8 +109,8 @@ export default class KeyboardBase {
      * マウスクリックでキーを押したときの処理
      */
     keyClickStart(code) {
-        const kana = this.s.charAt(this.charPos);
-        const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === kana);
+        const char = this.s.charAt(this.charPos);
+        const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
         if (keyObj && keyObj.code === code) {
             this.handleCorrectKey();
         }
@@ -127,8 +127,8 @@ export default class KeyboardBase {
     keyClickEnd(code) {
         if (!this.clickStatus) return;
 
-        const kana = this.s.charAt(this.charPos);
-        const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === kana);
+        const char = this.s.charAt(this.charPos);
+        const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
         if (keyObj && keyObj.code === code) {
             this.handleCorrectKey();
         }
@@ -166,8 +166,8 @@ export default class KeyboardBase {
         this.charPos++;
 
         if (this.charPos < this.s.length) {
-            const kana = this.s.charAt(this.charPos);
-            const key = this.getKeyCode(kana);
+            const char = this.s.charAt(this.charPos);
+            const key = this.getKeyCode(char);
             this.coordinateNextKey(key === null ? 'ShiftLeft' : key);
         } else {
             this.inputReset();
@@ -237,8 +237,8 @@ export default class KeyboardBase {
     /**
      * かな文字に対応するキーコードを取得
      */
-    getKeyCode(kana) {
-        const key = this.codeList.find(d => this.isShift ? d.keyShift === kana : d.key === kana);
+    getKeyCode(char) {
+        const key = this.codeList.find(d => this.isShift ? d.keyShift === char : d.key === char);
         return key ? key.code : null;
     }
 
