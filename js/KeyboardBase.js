@@ -74,6 +74,7 @@ export default class KeyboardBase {
             this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
         }
 
+        // 入力文字と押されたキーが一致するか判定
         const kana = this.s.charAt(this.charPos);
         if (kana && this.getKeyCode(kana) === e.code) {
             this.handleCorrectKey();
@@ -90,12 +91,14 @@ export default class KeyboardBase {
      * キーアップイベント処理
      */
     handleKeyUp(e) {
+        // Shiftキーが離された場合
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
             this.isShift = false;
             this.setInnerText('key');
             this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
         }
 
+        // 押下中のキーの強調表示をクリア
         const nowKey = document.getElementsByClassName('key_' + e.code);
         for (const key of nowKey) {
             key.classList.remove("active");
@@ -145,7 +148,7 @@ export default class KeyboardBase {
         char.classList.remove("coordinate");
         char.setAttribute("class", "done");
 
-        // オリジナルテキスト側は、入力文字の最後に完了とする
+        // オリジナルテキストは、入力文字の最後に完了とする
         const originalIndex = this.indexMap.findIndex(arr => arr.includes(this.charPos));
         if (originalIndex !== -1) {
             const arr = this.indexMap[originalIndex];
@@ -178,6 +181,8 @@ export default class KeyboardBase {
         this.charPos = 0;
         const inputText = document.querySelectorAll("#inputKeywordDisplay span");
         inputText.forEach(span => span.setAttribute("class", "coordinate"));
+        // 赤い強調もクリア
+        this.clearNextChar();
         // オリジナルテキストもリセット
         const originalText = document.querySelectorAll("#originalTextDisplay span");
         originalText.forEach(span => span.setAttribute("class", "coordinate"));
@@ -194,6 +199,31 @@ export default class KeyboardBase {
             const nextKey = document.getElementsByClassName('key_' + keyCode);
             if (nextKey[0]) nextKey[0].classList.add("next");
         }
+
+        // 次に入力する文字を強調表示
+        this.clearNextChar();
+        const nextChar = document.getElementById("char_" + this.charPos);
+        if (nextChar) {
+            nextChar.classList.add("next-char");
+        }
+
+        // オリジナルテキストの対応する文字も強調表示
+        const originalIndex = this.indexMap.findIndex(arr => arr.includes(this.charPos));
+        if (originalIndex !== -1) {
+            const orgChar = document.getElementById("org_char_" + originalIndex);
+            if (orgChar) orgChar.classList.add("next-char");
+        }
+    }
+
+    /**
+     * 次の入力文字の強調表示をクリア
+     */
+    clearNextChar() {
+        const allChars = document.querySelectorAll("#inputKeywordDisplay span");
+        allChars.forEach(span => span.classList.remove("next-char"));
+
+        const originalChars = document.querySelectorAll("#originalTextDisplay span");
+        originalChars.forEach(span => span.classList.remove("next-char"));
     }
 
     /**

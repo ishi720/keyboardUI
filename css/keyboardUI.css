@@ -354,3 +354,8 @@
 .active {
   background-color: lightcoral;
 }
+
+.next-char {
+    color: red;
+    font-weight: bold;
+}
