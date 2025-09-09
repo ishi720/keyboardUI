@@ -4,7 +4,7 @@ import KeyboardBase from './KeyboardBase.js';
 export default class KanaKeyboard extends KeyboardBase {
     constructor(targetText) {
         super(targetText);
-        this.s = this.dakutenSeparation(targetText);
+        this.s = this.#dakutenSeparation(targetText);
 
         this.codeList = [
             { code: "Digit1", key: "ぬ", keyShift: "ぬ" },
@@ -66,7 +66,7 @@ export default class KanaKeyboard extends KeyboardBase {
     /**
      * 濁点を分離
      */
-    dakutenSeparation(s) {
+    #dakutenSeparation(s) {
         return s.normalize('NFD')
         .replace(/\u3099/g, '\u309b')
         .replace(/\u309a/g, '\u309c');
