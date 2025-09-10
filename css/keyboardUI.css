@@ -376,3 +376,17 @@ body {
     font-weight: bold;
     background-color: yellow;
 }
+
+#backButton {
+    padding: 8px 16px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #8da3b7;
+    color: white;
+    cursor: pointer;
+}
+#backButton:hover {
+    background-color: #404f5d;
+}
