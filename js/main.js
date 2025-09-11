@@ -15,6 +15,7 @@ const texts = {
 
 let currentIndex = 0;
 let keyboard = null;
+let inputList = [];
 
 function getTextsByType(type) {
     if (type === "kana") return texts.kana;
@@ -24,20 +25,8 @@ function getTextsByType(type) {
 }
 
 window.onload = () => {
-    const inputList = getTextsByType(keyboardType);
+    inputList = getTextsByType(keyboardType);
     createKeyboard(inputList[currentIndex]);
-
-    // KeyboardBaseのinputResetを拡張
-    keyboard.inputReset = function() {
-        currentIndex = (currentIndex + 1) % inputList.length;
-        this.originalText = inputList[currentIndex];
-        this.s = inputList[currentIndex];
-        this.indexMap = this.createIndexMap(this.originalText, this.s);
-        this.charPos = 0;
-        this.renderInputText();
-        this.renderOriginalText();
-        this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
-    };
 };
 
 function createKeyboard(text) {
@@ -50,5 +39,7 @@ function createKeyboard(text) {
     } else {
         keyboard = new RomajiKeyboard(text);
     }
+    keyboard.inputList = inputList;
+    keyboard.currentIndex = currentIndex;
     keyboard.init();
 }

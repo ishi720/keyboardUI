@@ -178,6 +178,17 @@ export default class KeyboardBase {
      * 入力をリセット
      */
     inputReset() {
+        // 複数テキストがある場合は次のテキストへ
+        if (this.inputList && this.inputList.length > 1) {
+            console.log(this.currentIndex);
+            this.currentIndex = (this.currentIndex + 1) % this.inputList.length;
+            console.log(this.currentIndex);
+            this.originalText = this.inputList[this.currentIndex];
+            this.s = this.inputList[this.currentIndex];
+            this.indexMap = this.createIndexMap(this.originalText, this.s);
+        }
+
+        // リセット処理
         this.charPos = 0;
         const inputText = document.querySelectorAll("#inputKeywordDisplay span");
         inputText.forEach(span => span.setAttribute("class", "coordinate"));
@@ -188,6 +199,13 @@ export default class KeyboardBase {
         originalText.forEach(span => span.setAttribute("class", "coordinate"));
         // 次のキーを強調表示
         this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
+        // 描画更新
+        this.renderInputText();
+        this.renderOriginalText();
+        this.clearNextKey();
+        this.setInnerText('key');
+        this.isShift = false;
+        this.clickStatus = false;
     }
 
     /**
