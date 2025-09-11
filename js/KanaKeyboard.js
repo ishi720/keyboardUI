@@ -64,6 +64,13 @@ export default class KanaKeyboard extends KeyboardBase {
     }
 
     /**
+     * 分解済みテキストをリセット
+     */
+    decomposeText() {
+        this.s = this.#dakutenSeparation(this.originalText);
+    }
+
+    /**
      * 濁点を分離
      */
     #dakutenSeparation(s) {

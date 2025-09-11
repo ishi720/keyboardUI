@@ -64,6 +64,13 @@ export default class HungulKeyboard extends KeyboardBase {
     }
 
     /**
+     * 分解済みテキストをリセット
+     */
+    decomposeText() {
+        this.s = this.#decomposeHangul(this.originalText);
+    }
+
+    /**
      * ハングル分解
      */
     #decomposeHangul(text) {

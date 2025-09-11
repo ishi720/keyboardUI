@@ -3,7 +3,7 @@
 export default class KeyboardBase {
     constructor(targetText) {
         this.originalText = targetText;
-        this.s = targetText;
+        this.s = this.originalText;
         this.indexMap = this.createIndexMap(targetText, this.s);
         this.charPos = 0;
         this.isShift = false;
@@ -180,9 +180,7 @@ export default class KeyboardBase {
     inputReset() {
         // 複数テキストがある場合は次のテキストへ
         if (this.inputList && this.inputList.length > 1) {
-            console.log(this.currentIndex);
             this.currentIndex = (this.currentIndex + 1) % this.inputList.length;
-            console.log(this.currentIndex);
             this.originalText = this.inputList[this.currentIndex];
             this.s = this.inputList[this.currentIndex];
             this.indexMap = this.createIndexMap(this.originalText, this.s);
@@ -197,6 +195,8 @@ export default class KeyboardBase {
         // オリジナルテキストもリセット
         const originalText = document.querySelectorAll("#originalTextDisplay span");
         originalText.forEach(span => span.setAttribute("class", "coordinate"));
+        // 分解済みテキストもリセット
+        this.decomposeText();
         // 次のキーを強調表示
         this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
         // 描画更新
@@ -288,5 +288,12 @@ export default class KeyboardBase {
             map.push(arr);
         }
         return map;
+    }
+
+    /**
+     * 入力用テキストをリセット
+     */
+    decomposeText() {
+        this.s = this.originalText;
     }
 }
