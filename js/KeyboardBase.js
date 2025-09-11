@@ -198,7 +198,7 @@ export default class KeyboardBase {
         // 分解済みテキストもリセット
         this.decomposeText();
         // 次のキーを強調表示
-        this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
+
         // 描画更新
         this.renderInputText();
         this.renderOriginalText();
@@ -206,6 +206,7 @@ export default class KeyboardBase {
         this.setInnerText('key');
         this.isShift = false;
         this.clickStatus = false;
+        this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
     }
 
     /**
