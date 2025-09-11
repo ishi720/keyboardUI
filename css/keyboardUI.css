@@ -69,6 +69,7 @@ body {
     overflow: hidden;
     position: absolute;
     user-select: none;
+    cursor: pointer;
 }
 .key_Backquote {
     left: 0px;
@@ -378,6 +379,7 @@ body {
 }
 
 #backButton {
+    display: inline-block;
     padding: 8px 16px;
     margin-bottom: 12px;
     font-size: 16px;
@@ -386,6 +388,7 @@ body {
     background-color: #8da3b7;
     color: white;
     cursor: pointer;
+    text-decoration: none;
 }
 #backButton:hover {
     background-color: #404f5d;
