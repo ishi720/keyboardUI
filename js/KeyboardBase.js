@@ -18,6 +18,8 @@ export default class KeyboardBase {
         this.setInnerText('key');
         this.renderInputText();
         this.renderOriginalText();
+
+        // 最初のキーを強調表示
         this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
 
         // イベント登録
@@ -38,29 +40,32 @@ export default class KeyboardBase {
      * 入力用テキストを画面に描画
      */
     renderInputText() {
-        const inputKeywordDisplay = document.getElementById("inputKeywordDisplay");
-        inputKeywordDisplay.innerHTML = "";
-        for (let i = 0; i < this.s.length; i++) {
-            const span = document.createElement("span");
-            span.innerText = this.s.charAt(i);
-            span.setAttribute("id", "char_" + i);
-            span.setAttribute("class", "coordinate");
-            inputKeywordDisplay.appendChild(span);
-        }
+        this.renderText("inputKeywordDisplay", this.s, "char");
     }
 
     /**
      * オリジナル文字列を画面に描画
      */
     renderOriginalText() {
-        const originalDiv = document.getElementById("originalTextDisplay");
-        originalDiv.innerHTML = "";
-        for (let i = 0; i < this.originalText.length; i++) {
+        this.renderText("originalTextDisplay", this.originalText, "org_char");
+    }
+
+    /**
+     * 指定したコンテナにテキストを描画
+     * @param {string} containerId コンテナのID
+     * @param {string} text 描画するテキスト
+     * @param {string} prefix span要素のID接頭辞
+     * @return {void}
+     */
+    renderText(containerId, text, prefix) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        for (let i = 0; i < text.length; i++) {
             const span = document.createElement("span");
-            span.innerText = this.originalText.charAt(i);
-            span.setAttribute("id", "org_char_" + i);
-            span.setAttribute("class", "coordinate");
-            originalDiv.appendChild(span);
+            span.innerText = text.charAt(i);
+            span.id = `${prefix}_${i}`;
+            span.className = "coordinate";
+            container.appendChild(span);
         }
     }
 
@@ -165,6 +170,7 @@ export default class KeyboardBase {
         // 次の文字へ移動
         this.charPos++;
 
+        // 次のキーを強調表示
         if (this.charPos < this.s.length) {
             const char = this.s.charAt(this.charPos);
             const key = this.getKeyCode(char);
@@ -254,7 +260,7 @@ export default class KeyboardBase {
     }
 
     /**
-     * かな文字に対応するキーコードを取得
+     * 文字に対応するキーコードを取得
      */
     getKeyCode(char) {
         const key = this.codeList.find(d => this.isShift ? d.keyShift === char : d.key === char);
