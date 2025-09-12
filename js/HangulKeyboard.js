@@ -4,7 +4,7 @@ import KeyboardBase from './KeyboardBase.js';
 export default class HungulKeyboard extends KeyboardBase {
     constructor(targetText) {
         super(targetText);
-        this.s = this.#decomposeHangul(targetText);
+        this.currentText = this.#decomposeHangul(targetText);
 
         this.codeList = [
             { code: "Digit1", key: "1", keyShift: "!" },
@@ -67,7 +67,7 @@ export default class HungulKeyboard extends KeyboardBase {
      * 分解済みテキストをリセット
      */
     decomposeText() {
-        this.s = this.#decomposeHangul(this.originalText);
+        this.currentText = this.#decomposeHangul(this.originalText);
     }
 
     /**

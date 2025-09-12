@@ -3,8 +3,8 @@
 export default class KeyboardBase {
     constructor(targetText) {
         this.originalText = targetText;
-        this.s = this.originalText;
-        this.indexMap = this.createIndexMap(targetText, this.s);
+        this.currentText = this.originalText;
+        this.indexMap = this.createIndexMap(targetText, this.currentText);
         this.charPos = 0;
         this.isShift = false;
         this.codeList = []; // 継承先でセット
@@ -20,7 +20,7 @@ export default class KeyboardBase {
         this.renderOriginalText();
 
         // 最初のキーを強調表示
-        this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
+        this.coordinateNextKey(this.getKeyCode(this.currentText.charAt(this.charPos)));
 
         // イベント登録
         document.addEventListener('keydown', (e) => this.handleKeyDown(e));
@@ -40,7 +40,7 @@ export default class KeyboardBase {
      * 入力用テキストを画面に描画
      */
     renderInputText() {
-        this.renderText("inputKeywordDisplay", this.s, "char");
+        this.renderText("inputKeywordDisplay", this.currentText, "char");
     }
 
     /**
@@ -76,11 +76,11 @@ export default class KeyboardBase {
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
             this.isShift = true;
             this.setInnerText('keyShift');
-            this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
+            this.coordinateNextKey(this.getKeyCode(this.currentText.charAt(this.charPos)));
         }
 
         // 入力文字と押されたキーが一致するか判定
-        const char = this.s.charAt(this.charPos);
+        const char = this.currentText.charAt(this.charPos);
         if (char && this.getKeyCode(char) === e.code) {
             this.handleCorrectKey();
         }
@@ -100,7 +100,7 @@ export default class KeyboardBase {
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
             this.isShift = false;
             this.setInnerText('key');
-            this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
+            this.coordinateNextKey(this.getKeyCode(this.currentText.charAt(this.charPos)));
         }
 
         // 押下中のキーの強調表示をクリア
@@ -114,7 +114,7 @@ export default class KeyboardBase {
      * マウスクリックでキーを押したときの処理
      */
     keyClickStart(code) {
-        const char = this.s.charAt(this.charPos);
+        const char = this.currentText.charAt(this.charPos);
         const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
         if (keyObj && keyObj.code === code) {
             this.handleCorrectKey();
@@ -132,7 +132,7 @@ export default class KeyboardBase {
     keyClickEnd(code) {
         if (!this.clickStatus) return;
 
-        const char = this.s.charAt(this.charPos);
+        const char = this.currentText.charAt(this.charPos);
         const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
         if (keyObj && keyObj.code === code) {
             this.handleCorrectKey();
@@ -171,8 +171,8 @@ export default class KeyboardBase {
         this.charPos++;
 
         // 次のキーを強調表示
-        if (this.charPos < this.s.length) {
-            const char = this.s.charAt(this.charPos);
+        if (this.charPos < this.currentText.length) {
+            const char = this.currentText.charAt(this.charPos);
             const key = this.getKeyCode(char);
             this.coordinateNextKey(key === null ? 'ShiftLeft' : key);
         } else {
@@ -188,8 +188,8 @@ export default class KeyboardBase {
         if (this.inputList && this.inputList.length > 1) {
             this.currentIndex = (this.currentIndex + 1) % this.inputList.length;
             this.originalText = this.inputList[this.currentIndex];
-            this.s = this.inputList[this.currentIndex];
-            this.indexMap = this.createIndexMap(this.originalText, this.s);
+            this.currentText = this.inputList[this.currentIndex];
+            this.indexMap = this.createIndexMap(this.originalText, this.currentText);
         }
 
         // リセット処理
@@ -212,7 +212,7 @@ export default class KeyboardBase {
         this.setInnerText('key');
         this.isShift = false;
         this.clickStatus = false;
-        this.coordinateNextKey(this.getKeyCode(this.s.charAt(this.charPos)));
+        this.coordinateNextKey(this.getKeyCode(this.currentText.charAt(this.charPos)));
     }
 
     /**
@@ -301,6 +301,6 @@ export default class KeyboardBase {
      * 入力用テキストをリセット
      */
     decomposeText() {
-        this.s = this.originalText;
+        this.currentText = this.originalText;
     }
 }
