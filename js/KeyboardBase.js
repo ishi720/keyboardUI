@@ -86,10 +86,7 @@ export default class KeyboardBase {
         }
 
         // 押下中のキーを強調表示
-        const nowKey = document.getElementsByClassName('key_' + e.code);
-        for (const key of nowKey) {
-            key.classList.add("active");
-        }
+        this.toggleKeyActive(e.code, true);
     }
 
     /**
@@ -104,10 +101,7 @@ export default class KeyboardBase {
         }
 
         // 押下中のキーの強調表示をクリア
-        const nowKey = document.getElementsByClassName('key_' + e.code);
-        for (const key of nowKey) {
-            key.classList.remove("active");
-        }
+        this.toggleKeyActive(e.code, false);
     }
 
     /**
@@ -119,10 +113,8 @@ export default class KeyboardBase {
         if (keyObj && keyObj.code === code) {
             this.handleCorrectKey();
         }
-        const nowKey = document.getElementsByClassName('key_' + code);
-        for (const key of nowKey) {
-            key.classList.add("active");
-        }
+        // 押下中のキーを強調表示
+        this.toggleKeyActive(code, true);
         this.clickStatus = true;
     }
 
@@ -137,10 +129,8 @@ export default class KeyboardBase {
         if (keyObj && keyObj.code === code) {
             this.handleCorrectKey();
         }
-        const nowKey = document.getElementsByClassName('key_' + code);
-        for (const key of nowKey) {
-            key.classList.remove("active");
-        }
+        // 押下中のキーの強調表示をクリア
+        this.toggleKeyActive(code, false);
         this.clickStatus = false;
     }
 
@@ -180,6 +170,14 @@ export default class KeyboardBase {
         }
     }
 
+    // キーの強調表示・解除
+    toggleKeyActive(code, isActive) {
+        const keys = document.getElementsByClassName('key_' + code);
+        for (const key of keys) {
+            key.classList.toggle("active", isActive);
+        }
+    }
+
     /**
      * 入力をリセット
      */
@@ -203,7 +201,6 @@ export default class KeyboardBase {
         originalText.forEach(span => span.setAttribute("class", "coordinate"));
         // 分解済みテキストもリセット
         this.decomposeText();
-        // 次のキーを強調表示
 
         // 描画更新
         this.renderInputText();
@@ -212,6 +209,7 @@ export default class KeyboardBase {
         this.setInnerText('key');
         this.isShift = false;
         this.clickStatus = false;
+        // 次のキーを強調表示
         this.coordinateNextKey(this.getKeyCode(this.currentText.charAt(this.charPos)));
     }
 
