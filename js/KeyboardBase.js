@@ -99,7 +99,9 @@ export default class KeyboardBase {
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
             this.isShift = false;
             this.setInnerText('key');
-            this.coordinateNextKey(this.getKeyCode(this.currentText.charAt(this.charPos)));
+            this.coordinateNextKey(
+                this.getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.getKeyCode(this.currentText.charAt(this.charPos))
+            );
         }
 
         // 押下中のキーの強調表示をクリア
@@ -208,11 +210,13 @@ export default class KeyboardBase {
         this.renderInputText();
         this.renderOriginalText();
         this.clearNextKey();
-        this.setInnerText('key');
         this.isShift = false;
         this.clickStatus = false;
+        this.setInnerText('key');
         // 次のキーを強調表示
-        this.coordinateNextKey(this.getKeyCode(this.currentText.charAt(this.charPos)));
+        this.coordinateNextKey(
+            this.getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.getKeyCode(this.currentText.charAt(this.charPos))
+        );
     }
 
     /**
