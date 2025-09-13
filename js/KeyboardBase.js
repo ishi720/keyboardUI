@@ -2,25 +2,27 @@
 
 export default class KeyboardBase {
     constructor(targetText) {
-        this.originalText = targetText;
-        this.currentText = this.originalText;
-        this.indexMap = this.createIndexMap(targetText, this.currentText);
-        this.charPos = 0;
-        this.isShift = false;
-        this.codeList = []; // 継承先でセット
-        this.clickStatus = false;
+        this.originalText = targetText; // オリジナルテキスト
+        this.currentText = this.originalText; // 入力用テキスト
+        this.indexMap = this.createIndexMap(targetText, this.currentText); // 文字ののインデックス対応表
+        this.charPos = 0; // 入力中の文字位置
+        this.isShift = false; // Shiftキー押下中フラグ
+        this.codeList = []; // キーリスト
+        this.clickStatus = false; // マウスクリック押下中フラグ
     }
 
     /**
      * 初期化処理
      */
     init() {
-        this.setInnerText('key');
         this.renderInputText();
         this.renderOriginalText();
 
         // 最初のキーを強調表示
-        this.coordinateNextKey(this.getKeyCode(this.currentText.charAt(this.charPos)));
+        this.setInnerText('key');
+        this.coordinateNextKey(
+            this.getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.getKeyCode(this.currentText.charAt(this.charPos))
+        );
 
         // イベント登録
         document.addEventListener('keydown', (e) => this.handleKeyDown(e));
