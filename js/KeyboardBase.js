@@ -19,7 +19,7 @@ export default class KeyboardBase {
         this.renderOriginalText();
 
         // 最初のキーを強調表示
-        this.setInnerText('key');
+        this.setKeyboardText('key');
         this.coordinateNextKey(
             this.getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.getKeyCode(this.currentText.charAt(this.charPos))
         );
@@ -77,7 +77,7 @@ export default class KeyboardBase {
     handleKeyDown(e) {
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
             this.isShift = true;
-            this.setInnerText('keyShift');
+            this.setKeyboardText('keyShift');
             this.coordinateNextKey(this.getKeyCode(this.currentText.charAt(this.charPos)));
         }
 
@@ -98,7 +98,7 @@ export default class KeyboardBase {
         // Shiftキーが離された場合
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
             this.isShift = false;
-            this.setInnerText('key');
+            this.setKeyboardText('key');
             this.coordinateNextKey(
                 this.getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.getKeyCode(this.currentText.charAt(this.charPos))
             );
@@ -212,7 +212,7 @@ export default class KeyboardBase {
         this.clearNextKey();
         this.isShift = false;
         this.clickStatus = false;
-        this.setInnerText('key');
+        this.setKeyboardText('key');
         // 次のキーを強調表示
         this.coordinateNextKey(
             this.getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.getKeyCode(this.currentText.charAt(this.charPos))
@@ -274,7 +274,7 @@ export default class KeyboardBase {
     /**
      * キーリストに基づいて表示を更新
      */
-    setInnerText(v) {
+    setKeyboardText(v) {
         this.codeList.forEach(key => {
             const el = document.getElementsByClassName("key_" + key.code)[0];
             if (el) {
