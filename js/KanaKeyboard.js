@@ -75,7 +75,7 @@ export default class KanaKeyboard extends KeyboardBase {
      */
     #dakutenSeparation(s) {
         return s.normalize('NFD')
-        .replace(/\u3099/g, '\u309b')
-        .replace(/\u309a/g, '\u309c');
+            .replace(/\u3099/g, '\u309b')
+            .replace(/\u309a/g, '\u309c');
     }
 }
