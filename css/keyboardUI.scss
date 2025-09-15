@@ -9,6 +9,16 @@ body {
     margin: 0;
 }
 
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 30px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
 #backButton {
     display: inline-block;
     padding: 8px 16px;
@@ -52,6 +62,7 @@ body {
     position: relative;
     display: grid;
     grid-template-columns: repeat(15, 40px);
+    height: 200px;
     div {
         width: 34px;
         height: 34px;
@@ -390,6 +401,7 @@ body {
     .littleFinger {
         border-color: orange !important;
     }
+
 
     // 強調表示用スタイル
     .next {
