@@ -4,6 +4,7 @@ export default class KeyboardBase {
     constructor(targetText) {
         this.originalText = targetText; // オリジナルテキスト
         this.currentText = this.originalText; // 入力用テキスト
+        this.isKeyboardAssist = true; // 入力補助ON（デフォルト）
         this.indexMap = this.createIndexMap(targetText, this.currentText); // 文字ののインデックス対応表
         this.charPos = 0; // 入力中の文字位置
         this.isShift = false; // Shiftキー押下中フラグ
@@ -223,10 +224,13 @@ export default class KeyboardBase {
      * 次に入力するキーを強調表示
      */
     coordinateNextKey(keyCode) {
-        this.clearNextKey();
-        if (keyCode) {
-            const nextKey = document.getElementsByClassName('key_' + keyCode);
-            if (nextKey[0]) nextKey[0].classList.add("next");
+        // 次に入力するキーを強調表示
+        if (this.isKeyboardAssist) {
+            this.clearNextKey();
+            if (keyCode) {
+                const nextKey = document.getElementsByClassName('key_' + keyCode);
+                if (nextKey[0]) nextKey[0].classList.add("next");
+            }
         }
 
         // 次に入力する文字を強調表示
