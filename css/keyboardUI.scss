@@ -140,7 +140,7 @@ body {
         top: 0px;
     }
     .key_Tab {
-        width: 54px !important;
+        width: 54px;
         left: 0px;
         top: 41px;
     }
@@ -193,33 +193,33 @@ body {
         top: 41px;
     }
     #key_13_1 {
-        width: 19px !important;
+        width: 19px;
         left: 553px;
         top: 41px;
-        border-right: none !important;
-        border-top-right-radius: 0px !important;
-        border-bottom-right-radius: 0px !important;
+        border-right: none;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
     }
     #key_13_2 {
-        width: 37px !important;
+        width: 37px;
         left: 573px;
         top: 41px;
-        border-bottom: none !important;
-        border-left: none !important;
-        border-top-left-radius: 0px !important;
-        border-bottom-right-radius: 0px !important;
+        border-bottom: none;
+        border-left: none;
+        border-top-left-radius: 0px;
+        border-bottom-right-radius: 0px;
     }
     #key_13_3 {
-        width: 36px !important;
-        height: 43px !important;
+        width: 36px;
+        height: 43px;
         left: 573px;
         top: 75px;
-        border-top: none !important;
-        border-top-left-radius: 0px !important;
-        border-top-right-radius: 0px !important;
+        border-top: none;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
     }
     .key_CapsLock {
-        width: 76px !important;
+        width: 76px;
         left: 0px;
         top: 82px;
     }
@@ -328,7 +328,7 @@ body {
 
 
     .key_ControlLeft {
-        width: 54px !important;
+        width: 54px;
         left: 0px;
         top: 164px;
     }
@@ -337,7 +337,7 @@ body {
         left: 61px;
     }
     .key_Space {
-        width: 179px !important;
+        width: 179px;
         left: 184px;
         top: 164px;
     }
@@ -350,7 +350,7 @@ body {
         left: 411px;
     }
     .key_AltRight {
-        width: 54px !important;
+        width: 54px;
         top: 164px;
         left: 452px;
     }
@@ -359,17 +359,17 @@ body {
         left: 513px;
     }
     .key_ControlRight {
-        width: 56px !important;
+        width: 56px;
         top: 164px;
         left: 554px;
     }
     .key_ShiftLeft {
-        width: 96px !important;
+        width: 96px;
         left: 0px;
         top: 123px;
     }
     .key_ShiftRight {
-        width: 58px !important;
+        width: 58px;
         left: 552px;
         top: 123px;
     }
@@ -387,28 +387,28 @@ body {
 
     // 指ごとの色分け
     .thumb {
-        border-color: black !important;
+        border-color: black;
     }
     .indexFinger {
-        border-color: red !important;
+        border-color: red;
     }
     .middleFinger {
-        border-color: blue !important;
+        border-color: blue;
     }
     .ringFinger {
-        border-color: green !important;
+        border-color: green;
     }
     .littleFinger {
-        border-color: orange !important;
+        border-color: orange;
     }
 
 
     // 強調表示用スタイル
     .next {
-    background-color: yellow !important;
+    background-color: yellow;
     }
     .active {
-        background-color: lightcoral !important;
+        background-color: lightcoral;
     }
 }
 

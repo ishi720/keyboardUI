@@ -43,27 +43,24 @@ h1 {
     width: 180px;
     padding: 1.5rem;
     transition: transform 0.3s, box-shadow 0.3s;
+    /* アイコン */
+    .icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    /* タイトル */
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    /* 説明文 */
+    p {
+        font-size: 0.9rem;
+        color: #666;
+    }
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    }
 }
 
-.keyboard-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-}
-
-/* アイコン */
-.icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-/* タイトル */
-.keyboard-card h2 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-/* 説明文 */
-.keyboard-card p {
-    font-size: 0.9rem;
-    color: #666;
-}
