@@ -5,7 +5,7 @@ export default class KeyboardBase {
         this.originalText = targetText; // オリジナルテキスト
         this.currentText = this.originalText; // 入力用テキスト
         this.isKeyboardAssist = true; // 入力補助ON（デフォルト）
-        this.indexMap = this.createIndexMap(targetText, this.currentText); // 文字ののインデックス対応表
+        this.indexMap = this.#createIndexMap(targetText, this.currentText); // 文字ののインデックス対応表
         this.charPos = 0; // 入力中の文字位置
         this.isShift = false; // Shiftキー押下中フラグ
         this.codeList = []; // キーリスト
@@ -16,41 +16,41 @@ export default class KeyboardBase {
      * 初期化処理
      */
     init() {
-        this.renderInputText();
-        this.renderOriginalText();
+        this.#renderInputText();
+        this.#renderOriginalText();
 
         // 最初のキーを強調表示
-        this.setKeyboardText('key');
-        this.coordinateNextKey(
-            this.getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.getKeyCode(this.currentText.charAt(this.charPos))
+        this.#setKeyboardText('key');
+        this.#coordinateNextKey(
+            this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
         );
 
         // イベント登録
-        document.addEventListener('keydown', (e) => this.handleKeyDown(e));
-        document.addEventListener('keyup', (e) => this.handleKeyUp(e));
+        document.addEventListener('keydown', (e) => this.#handleKeyDown(e));
+        document.addEventListener('keyup', (e) => this.#handleKeyUp(e));
 
         // マウスクリックで入力可能にする
         const allKeys = document.querySelectorAll("#keyboard div");
         allKeys.forEach(keyEl => {
             const code = keyEl.classList[0].replace("key_", "");
-            keyEl.addEventListener("pointerdown", () => this.keyClickStart(code));
-            keyEl.addEventListener("pointerout", () => this.keyClickEnd(code));
-            keyEl.addEventListener("pointerup", () => this.keyClickEnd(code));
+            keyEl.addEventListener("pointerdown", () => this.#keyClickStart(code));
+            keyEl.addEventListener("pointerout", () => this.#keyClickEnd(code));
+            keyEl.addEventListener("pointerup", () => this.#keyClickEnd(code));
         });
     }
 
     /**
      * 入力用テキストを画面に描画
      */
-    renderInputText() {
-        this.renderText("inputKeywordDisplay", this.currentText, "char");
+    #renderInputText() {
+        this.#renderText("inputKeywordDisplay", this.currentText, "char");
     }
 
     /**
      * オリジナル文字列を画面に描画
      */
-    renderOriginalText() {
-        this.renderText("originalTextDisplay", this.originalText, "org_char");
+    #renderOriginalText() {
+        this.#renderText("originalTextDisplay", this.originalText, "org_char");
     }
 
     /**
@@ -60,7 +60,7 @@ export default class KeyboardBase {
      * @param {string} prefix span要素のID接頭辞
      * @return {void}
      */
-    renderText(containerId, text, prefix) {
+    #renderText(containerId, text, prefix) {
         const container = document.getElementById(containerId);
         container.innerHTML = "";
         for (let i = 0; i < text.length; i++) {
@@ -75,74 +75,74 @@ export default class KeyboardBase {
     /**
      * キーダウンイベント処理
      */
-    handleKeyDown(e) {
+    #handleKeyDown(e) {
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
             this.isShift = true;
-            this.setKeyboardText('keyShift');
-            this.coordinateNextKey(this.getKeyCode(this.currentText.charAt(this.charPos)));
+            this.#setKeyboardText('keyShift');
+            this.#coordinateNextKey(this.#getKeyCode(this.currentText.charAt(this.charPos)));
         }
 
         // 入力文字と押されたキーが一致するか判定
         const char = this.currentText.charAt(this.charPos);
-        if (char && this.getKeyCode(char) === e.code) {
-            this.handleCorrectKey();
+        if (char && this.#getKeyCode(char) === e.code) {
+            this.#handleCorrectKey();
         }
 
         // 押下中のキーを強調表示
-        this.toggleKeyActive(e.code, true);
+        this.#toggleKeyActive(e.code, true);
     }
 
     /**
      * キーアップイベント処理
      */
-    handleKeyUp(e) {
+    #handleKeyUp(e) {
         // Shiftキーが離された場合
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
             this.isShift = false;
-            this.setKeyboardText('key');
-            this.coordinateNextKey(
-                this.getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.getKeyCode(this.currentText.charAt(this.charPos))
+            this.#setKeyboardText('key');
+            this.#coordinateNextKey(
+                this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
             );
         }
 
         // 押下中のキーの強調表示をクリア
-        this.toggleKeyActive(e.code, false);
+        this.#toggleKeyActive(e.code, false);
     }
 
     /**
      * マウスクリックでキーを押したときの処理
      */
-    keyClickStart(code) {
+    #keyClickStart(code) {
         const char = this.currentText.charAt(this.charPos);
         const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
         if (keyObj && keyObj.code === code) {
-            this.handleCorrectKey();
+            this.#handleCorrectKey();
         }
         // 押下中のキーを強調表示
-        this.toggleKeyActive(code, true);
+        this.#toggleKeyActive(code, true);
         this.clickStatus = true;
     }
 
     /**
      * マウスクリックでキーを離したときの処理
      */
-    keyClickEnd(code) {
+    #keyClickEnd(code) {
         if (!this.clickStatus) return;
 
         const char = this.currentText.charAt(this.charPos);
         const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
         if (keyObj && keyObj.code === code) {
-            this.handleCorrectKey();
+            this.#handleCorrectKey();
         }
         // 押下中のキーの強調表示をクリア
-        this.toggleKeyActive(code, false);
+        this.#toggleKeyActive(code, false);
         this.clickStatus = false;
     }
 
     /**
      * 正しくキーを押されたときの処理
      */
-    handleCorrectKey() {
+    #handleCorrectKey() {
         // 入力済みにする
         const char = document.getElementById("char_" + this.charPos);
         char.classList.remove("coordinate");
@@ -168,15 +168,15 @@ export default class KeyboardBase {
         // 次のキーを強調表示
         if (this.charPos < this.currentText.length) {
             const char = this.currentText.charAt(this.charPos);
-            const key = this.getKeyCode(char);
-            this.coordinateNextKey(key === null ? 'ShiftLeft' : key);
+            const key = this.#getKeyCode(char);
+            this.#coordinateNextKey(key === null ? 'ShiftLeft' : key);
         } else {
-            this.inputReset();
+            this.#inputReset();
         }
     }
 
     // キーの強調表示・解除
-    toggleKeyActive(code, isActive) {
+    #toggleKeyActive(code, isActive) {
         const keys = document.getElementsByClassName('key_' + code);
         for (const key of keys) {
             key.classList.toggle("active", isActive);
@@ -186,13 +186,13 @@ export default class KeyboardBase {
     /**
      * 入力をリセット
      */
-    inputReset() {
+    #inputReset() {
         // 複数テキストがある場合は次のテキストへ
         if (this.inputList && this.inputList.length > 1) {
             this.currentIndex = (this.currentIndex + 1) % this.inputList.length;
             this.originalText = this.inputList[this.currentIndex];
             this.currentText = this.inputList[this.currentIndex];
-            this.indexMap = this.createIndexMap(this.originalText, this.currentText);
+            this.indexMap = this.#createIndexMap(this.originalText, this.currentText);
         }
 
         // リセット処理
@@ -200,33 +200,33 @@ export default class KeyboardBase {
         const inputText = document.querySelectorAll("#inputKeywordDisplay span");
         inputText.forEach(span => span.setAttribute("class", "coordinate"));
         // 赤い強調もクリア
-        this.clearNextChar();
+        this.#clearNextChar();
         // オリジナルテキストもリセット
         const originalText = document.querySelectorAll("#originalTextDisplay span");
         originalText.forEach(span => span.setAttribute("class", "coordinate"));
         // 分解済みテキストもリセット
-        this.decomposeText();
+        this.#decomposeText();
 
         // 描画更新
-        this.renderInputText();
-        this.renderOriginalText();
-        this.clearNextKey();
+        this.#renderInputText();
+        this.#renderOriginalText();
+        this.#clearNextKey();
         this.isShift = false;
         this.clickStatus = false;
-        this.setKeyboardText('key');
+        this.#setKeyboardText('key');
         // 次のキーを強調表示
-        this.coordinateNextKey(
-            this.getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.getKeyCode(this.currentText.charAt(this.charPos))
+        this.#coordinateNextKey(
+            this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
         );
     }
 
     /**
      * 次に入力するキーを強調表示
      */
-    coordinateNextKey(keyCode) {
+    #coordinateNextKey(keyCode) {
         // 次に入力するキーを強調表示
         if (this.isKeyboardAssist) {
-            this.clearNextKey();
+            this.#clearNextKey();
             if (keyCode) {
                 const nextKey = document.getElementsByClassName('key_' + keyCode);
                 if (nextKey[0]) nextKey[0].classList.add("next");
@@ -234,7 +234,7 @@ export default class KeyboardBase {
         }
 
         // 次に入力する文字を強調表示
-        this.clearNextChar();
+        this.#clearNextChar();
         const nextChar = document.getElementById("char_" + this.charPos);
         if (nextChar) {
             nextChar.classList.add("next-char");
@@ -251,7 +251,7 @@ export default class KeyboardBase {
     /**
      * 次の入力文字の強調表示をクリア
      */
-    clearNextChar() {
+    #clearNextChar() {
         const allChars = document.querySelectorAll("#inputKeywordDisplay span");
         allChars.forEach(span => span.classList.remove("next-char"));
 
@@ -262,7 +262,7 @@ export default class KeyboardBase {
     /**
      * 全キーの強調表示をクリア
      */
-    clearNextKey() {
+    #clearNextKey() {
         const allKey = document.querySelectorAll("#keyboard div");
         allKey.forEach(key => key.classList.remove("next"));
     }
@@ -270,7 +270,7 @@ export default class KeyboardBase {
     /**
      * 文字に対応するキーコードを取得
      */
-    getKeyCode(char) {
+    #getKeyCode(char) {
         const key = this.codeList.find(d => this.isShift ? d.keyShift === char : d.key === char);
         return key ? key.code : null;
     }
@@ -278,7 +278,7 @@ export default class KeyboardBase {
     /**
      * キーリストに基づいて表示を更新
      */
-    setKeyboardText(v) {
+    #setKeyboardText(v) {
         this.codeList.forEach(key => {
             const el = document.getElementsByClassName("key_" + key.code)[0];
             if (el) {
@@ -290,7 +290,7 @@ export default class KeyboardBase {
     /**
      * オリジナル文字列と分離済み文字列のインデックス対応表を作成
      */
-    createIndexMap(original, separated) {
+    #createIndexMap(original, separated) {
         const map = [];
         let sepIndex = 0;
         for (let i = 0; i < original.length; i++) {
@@ -308,7 +308,7 @@ export default class KeyboardBase {
     /**
      * 入力用テキストをリセット
      */
-    decomposeText() {
+    #decomposeText() {
         this.currentText = this.originalText;
     }
 }
