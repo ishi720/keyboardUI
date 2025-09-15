@@ -1,69 +1,72 @@
+@charset "UTF-8";
 /* 全体リセット */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-    text-align: center;
-    padding: 2rem;
+  text-align: center;
+  padding: 2rem;
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #333;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
 }
 
 /* カードリンク配置 */
 .keyboard-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 /* 個別カード */
 .keyboard-card {
-    background: white;
-    border-radius: 1rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    text-decoration: none;
-    color: #333;
-    width: 180px;
-    padding: 1.5rem;
-    transition: transform 0.3s, box-shadow 0.3s;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  color: #333;
+  width: 180px;
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .keyboard-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
 }
 
 /* アイコン */
 .icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
 /* タイトル */
 .keyboard-card h2 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
 /* 説明文 */
 .keyboard-card p {
-    font-size: 0.9rem;
-    color: #666;
+  font-size: 0.9rem;
+  color: #666;
 }
+
+/*# sourceMappingURL=index.css.map */

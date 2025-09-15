@@ -1,0 +1,396 @@
+/* 全体のスタイル */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+
+/* 入力画面 */
+#inputKeywordDisplay {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+#inputKeywordDisplay span.coordinate {
+    font-weight: bold;
+}
+#originalTextDisplay span.coordinate {
+    font-weight: bold;
+}
+
+/* キーボードUI */
+.rightHand {
+    /* border-color: red !important; */
+}
+.leftHand {
+    /* border-color: darkseagreen !important; */
+}
+
+.thumb {
+    border-color: black !important;
+}
+.indexFinger {
+    border-color: red !important;
+}
+.middleFinger {
+    border-color: blue !important;
+}
+.ringFinger {
+    border-color: green !important;
+}
+.littleFinger {
+    border-color: orange !important;
+}
+
+.bothHands {
+    /* border-color: blue !important; */
+}
+#keyboard {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(15, 40px);
+}
+#keyboard div {
+    width: 34px;
+    height: 34px;
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 34px;
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+    user-select: none;
+    cursor: pointer;
+}
+
+.key_Backquote {
+    left: 0px;
+    top: 0px;
+}
+.key_Digit1 {
+    left: 41px;
+    top: 0px;
+}
+.key_Digit2 {
+    left: 82px;
+    top: 0px;
+}
+.key_Digit3 {
+    left: 123px;
+    top: 0px;
+}
+.key_Digit4 {
+    left: 164px;
+    top: 0px;
+}
+.key_Digit5 {
+    left: 205px;
+    top: 0px;
+}
+.key_Digit6 {
+    left: 246px;
+    top: 0px;
+}
+.key_Digit7 {
+    left: 287px;
+    top: 0px;
+}
+.key_Digit8 {
+    left: 328px;
+    top: 0px;
+}
+.key_Digit9 {
+    left: 369px;
+    top: 0px;
+  }
+.key_Digit0 {
+    left: 410px;
+    top: 0px;
+}
+.key_Minus {
+    left: 451px;
+    top: 0px;
+}
+.key_Equal {
+    left: 492px;
+    top: 0px;
+}
+.key_IntlYen {
+    left: 533px;
+    top: 0px;
+}
+.key_Backspace {
+    left: 574px;
+    top: 0px;
+}
+.key_Tab {
+    width: 54px !important;
+    left: 0px;
+    top: 41px;
+}
+.key_KeyQ {
+    left: 61px;
+    top: 41px;
+}
+.key_KeyW {
+    left: 102px;
+    top: 41px;
+}
+.key_KeyE {
+    left: 143px;
+    top: 41px;
+}
+.key_KeyR {
+    left: 184px;
+    top: 41px;
+}
+.key_KeyT {
+    left: 225px;
+    top: 41px;
+}
+.key_KeyY {
+    left: 266px;
+    top: 41px;
+}
+.key_KeyU {
+    left: 308px;
+    top: 41px;
+}
+.key_KeyI {
+    left: 349px;
+    top: 41px;
+}
+.key_KeyO {
+    left: 390px;
+    top: 41px;
+}
+.key_KeyP {
+    left: 431px;
+    top: 41px;
+}
+.key_BracketLeft {
+    left: 472px;
+    top: 41px;
+}
+.key_BracketRight {
+    left: 513px;
+    top: 41px;
+}
+#key_13_1 {
+    width: 19px !important;
+    left: 553px;
+    top: 41px;
+    border-right: none !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+#key_13_2 {
+    width: 37px !important;
+    left: 573px;
+    top: 41px;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+#key_13_3 {
+    width: 36px !important;
+    height: 43px !important;
+    left: 573px;
+    top: 75px;
+    border-top: none !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+.key_CapsLock {
+    width: 76px !important;
+    left: 0px;
+    top: 82px;
+}
+.key_KeyA {
+    left: 81px;
+    top: 82px;
+}
+.key_KeyS {
+    left: 122px;
+    top: 82px;
+}
+.key_KeyD {
+    left: 163px;
+    top: 82px;
+}
+.key_KeyF {
+    left: 204px;
+    top: 82px;
+    text-decoration: underline;
+}
+.key_KeyG {
+    left: 245px;
+    top: 82px;
+}
+.key_KeyH {
+    left: 286px;
+    top: 82px;
+}
+.key_KeyJ {
+    left: 327px;
+    top: 82px;
+    text-decoration: underline;
+}
+.key_KeyK {
+    left: 368px;
+    top: 82px;
+}
+.key_KeyL {
+    left: 409px;
+    top: 82px;
+}
+.key_Semicolon {
+    left: 450px;
+    top: 82px;
+}
+.key_Quote {
+    left: 491px;
+    top: 82px;
+}
+.key_Backslash {
+    left: 532px;
+    top: 82px;
+}
+.key_AltLeft {
+    top: 164px;
+    left: 102px;
+}
+.key_NonConvert {
+    top: 164px;
+    left: 143px;
+}
+.key_KeyZ {
+    left: 101px;
+    top: 123px;
+}
+.key_KeyX {
+    left: 142px;
+    top: 123px;
+}
+.key_KeyC {
+    left: 183px;
+    top: 123px;
+}
+.key_KeyV {
+    left: 224px;
+    top: 123px;
+}
+.key_KeyB {
+    left: 265px;
+    top: 123px;
+}
+.key_KeyN {
+    left: 306px;
+    top: 123px;
+}
+.key_KeyM {
+    left: 347px;
+    top: 123px;
+}
+.key_Comma {
+    left: 388px;
+    top: 123px;
+}
+.key_Period {
+    left: 429px;
+    top: 123px;
+}
+.key_Slash {
+    left: 470px;
+    top: 123px;
+}
+.key_IntlRo {
+    left: 511px;
+    top: 123px;
+}
+
+
+.key_ControlLeft {
+    width: 54px !important;
+    left: 0px;
+    top: 164px;
+}
+.key_MetaLeft {
+    top: 164px;
+    left: 61px;
+}
+.key_Space {
+    width: 179px !important;
+    left: 184px;
+    top: 164px;
+}
+.key_Convert {
+    top: 164px;
+    left: 370px;
+}
+.key_KanaMode {
+    top: 164px;
+    left: 411px;
+}
+.key_AltRight {
+    width: 54px !important;
+    top: 164px;
+    left: 452px;
+}
+.key_ContextMenu {
+    top: 164px;
+    left: 513px;
+}
+.key_ControlRight {
+    width: 56px !important;
+    top: 164px;
+    left: 554px;
+}
+.key_ShiftLeft {
+    width: 96px !important;
+    left: 0px;
+    top: 123px;
+}
+.key_ShiftRight {
+    width: 58px !important;
+    left: 552px;
+    top: 123px;
+}
+.next {
+    background-color: yellow !important;
+}
+.active {
+    background-color: lightcoral !important;
+}
+
+.next-char {
+    color: red;
+    font-weight: bold;
+    background-color: yellow;
+}
+
+#backButton {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #8da3b7;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+#backButton:hover {
+    background-color: #404f5d;
+}
