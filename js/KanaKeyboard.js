@@ -66,7 +66,7 @@ export default class KanaKeyboard extends KeyboardBase {
     /**
      * 分解済みテキストをリセット
      */
-    #decomposeText() {
+    decomposeText() {
         this.currentText = this.#dakutenSeparation(this.originalText);
     }
 

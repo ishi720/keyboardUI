@@ -213,7 +213,7 @@ export default class KeyboardBase {
         const originalText = document.querySelectorAll("#originalTextDisplay span");
         originalText.forEach(span => span.setAttribute("class", "coordinate"));
         // 分解済みテキストもリセット
-        this.#decomposeText();
+        this.decomposeText();
 
         // 描画更新
         this.#renderInputText();
@@ -316,7 +316,7 @@ export default class KeyboardBase {
     /**
      * 入力用テキストをリセット
      */
-    #decomposeText() {
+    decomposeText() {
         this.currentText = this.originalText;
     }
 }
