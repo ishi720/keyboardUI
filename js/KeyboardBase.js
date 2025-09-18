@@ -10,6 +10,8 @@ export default class KeyboardBase {
         this.isShift = false; // Shiftキー押下中フラグ
         this.codeList = []; // キーリスト
         this.clickStatus = false; // マウスクリック押下中フラグ
+        this.correctCount = 0; // 正解キー数
+        this.missCount = 0; // ミスタイプ数
     }
 
     /**
@@ -84,10 +86,13 @@ export default class KeyboardBase {
 
         // 入力文字と押されたキーが一致するか判定
         const char = this.currentText.charAt(this.charPos);
+
         if (char && this.#getKeyCode(char) === e.code) {
             this.#handleCorrectKey();
+        } else if (char && e.code !== "ShiftRight" && e.code !== "ShiftLeft") {
+            // 間違いカウント
+            this.missCount++;
         }
-
         // 押下中のキーを強調表示
         this.#toggleKeyActive(e.code, true);
     }
@@ -143,6 +148,9 @@ export default class KeyboardBase {
      * 正しくキーを押されたときの処理
      */
     #handleCorrectKey() {
+        // 正解カウント
+        this.correctCount++;
+
         // 入力済みにする
         const char = document.getElementById("char_" + this.charPos);
         char.classList.remove("coordinate");
