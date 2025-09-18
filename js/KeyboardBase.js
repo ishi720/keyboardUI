@@ -122,6 +122,10 @@ export default class KeyboardBase {
         const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
         if (keyObj && keyObj.code === code) {
             this.#handleCorrectKey();
+        } else if ( "ShiftLeft" == code || "ShiftRight" == code) {
+            this.isShift = true;
+            this.#setKeyboardText('keyShift');
+            this.#coordinateNextKey(this.#getKeyCode(this.currentText.charAt(this.charPos)));
         }
         // 押下中のキーを強調表示
         this.#toggleKeyActive(code, true);
@@ -138,6 +142,12 @@ export default class KeyboardBase {
         const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
         if (keyObj && keyObj.code === code) {
             this.#handleCorrectKey();
+        } else if ( "ShiftLeft" == code || "ShiftRight" == code) {
+            this.isShift = false;
+            this.#setKeyboardText('key');
+            this.#coordinateNextKey(
+                this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
+            );
         }
         // 押下中のキーの強調表示をクリア
         this.#toggleKeyActive(code, false);
