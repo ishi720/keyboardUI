@@ -40,6 +40,7 @@ body {
 #textDisplay {
   text-align: center;
   margin-bottom: 1.5rem;
+  user-select: none;
 }
 #textDisplay #inputKeywordDisplay {
   font-size: 1.2rem;
