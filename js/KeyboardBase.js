@@ -120,16 +120,11 @@ export default class KeyboardBase {
     #keyClickStart(code) {
         const char = this.currentText.charAt(this.charPos);
         const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
-
         if (keyObj && keyObj.code === code) {
             this.#handleCorrectKey();
-            if (this.isShift) {
-                this.isShift = false;
-                this.#setKeyboardText('key');
-            }
         } else if ( "ShiftLeft" == code || "ShiftRight" == code) {
-            this.isShift = !this.isShift;
-            this.#setKeyboardText(this.isShift ? 'keyShift' : 'key');
+            this.isShift = true;
+            this.#setKeyboardText('keyShift');
             this.#coordinateNextKey(this.#getKeyCode(this.currentText.charAt(this.charPos)));
         }
         // 押下中のキーを強調表示
@@ -143,11 +138,17 @@ export default class KeyboardBase {
     #keyClickEnd(code) {
         if (!this.clickStatus) return;
 
-        // Shiftキー以外が離された場合
-        if (code !== "ShiftLeft" && code !== "ShiftRight") {
-            this.#toggleKeyActive(code, false);
+        const char = this.currentText.charAt(this.charPos);
+        const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
+        if (keyObj && keyObj.code === code) {
+            this.#handleCorrectKey();
+        } else if ( "ShiftLeft" == code || "ShiftRight" == code) {
+            this.isShift = false;
+            this.#setKeyboardText('key');
+            this.#coordinateNextKey(
+                this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
+            );
         }
-
         // 押下中のキーの強調表示をクリア
         this.#toggleKeyActive(code, false);
         this.clickStatus = false;
