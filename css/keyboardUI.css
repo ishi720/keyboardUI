@@ -31,6 +31,7 @@ body {
   color: white;
   cursor: pointer;
   text-decoration: none;
+  user-select: none;
 }
 #backButton:hover {
   background-color: #404f5d;
