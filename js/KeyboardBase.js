@@ -78,6 +78,9 @@ export default class KeyboardBase {
      * キーダウンイベント処理
      */
     #handleKeyDown(e) {
+        // 長押し入力はスキップ
+        if (e.repeat) return;
+
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
             this.isShift = true;
             this.#setKeyboardText('keyShift');
@@ -118,16 +121,11 @@ export default class KeyboardBase {
      * マウスクリックでキーを押したときの処理
      */
     #keyClickStart(code) {
-        const char = this.currentText.charAt(this.charPos);
-        const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
-        if (keyObj && keyObj.code === code) {
-            this.#handleCorrectKey();
-        } else if ( "ShiftLeft" == code || "ShiftRight" == code) {
+        if (code === "ShiftLeft" || code === "ShiftRight") {
             this.isShift = true;
             this.#setKeyboardText('keyShift');
             this.#coordinateNextKey(this.#getKeyCode(this.currentText.charAt(this.charPos)));
         }
-        // 押下中のキーを強調表示
         this.#toggleKeyActive(code, true);
         this.clickStatus = true;
     }
