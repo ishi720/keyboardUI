@@ -116,10 +116,8 @@ export default class KeyboardBase {
      * マウスクリックでキーを押したときの処理
      */
     #keyClickStart(code) {
-        if (code === "ShiftLeft" || code === "ShiftRight") {
-            this.isShift = true;
-            this.#setKeyboardText('keyShift');
-            this.#coordinateNextKey(this.#getKeyCode(this.currentText.charAt(this.charPos)));
+        if (code === "ShiftRight" || code === "ShiftLeft") {
+            this.#setShiftState(true);
         }
         this.#toggleKeyActive(code, true);
         this.clickStatus = true;
@@ -135,12 +133,8 @@ export default class KeyboardBase {
         const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
         if (keyObj && keyObj.code === code) {
             this.#handleCorrectKey();
-        } else if ( "ShiftLeft" == code || "ShiftRight" == code) {
-            this.isShift = false;
-            this.#setKeyboardText('key');
-            this.#coordinateNextKey(
-                this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
-            );
+        } else if (code == "ShiftRight" || code == "ShiftLeft") {
+            this.#setShiftState(false);
         } else {
             this.missCount++;
             this.#updateScore();
