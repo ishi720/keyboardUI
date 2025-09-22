@@ -147,6 +147,9 @@ export default class KeyboardBase {
             this.#coordinateNextKey(
                 this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
             );
+        } else {
+            this.missCount++;
+            this.#updateScore();
         }
         // 押下中のキーの強調表示をクリア
         this.#toggleKeyActive(code, false);
