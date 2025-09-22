@@ -82,9 +82,7 @@ export default class KeyboardBase {
         if (e.repeat) return;
 
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
-            this.isShift = true;
-            this.#setKeyboardText('keyShift');
-            this.#coordinateNextKey(this.#getKeyCode(this.currentText.charAt(this.charPos)));
+            this.#setShiftState(true);
         }
 
         // 入力文字と押されたキーが一致するか判定
@@ -107,11 +105,7 @@ export default class KeyboardBase {
     #handleKeyUp(e) {
         // Shiftキーが離された場合
         if (e.code === "ShiftRight" || e.code === "ShiftLeft") {
-            this.isShift = false;
-            this.#setKeyboardText('key');
-            this.#coordinateNextKey(
-                this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
-            );
+            this.#setShiftState(false);
         }
 
         // 押下中のキーの強調表示をクリア
@@ -345,5 +339,16 @@ export default class KeyboardBase {
         if (missEl) {
             missEl.innerText = `誤: ${this.missCount}`;
         }
+    }
+
+    /**
+     * 入力補助のON/OFFを設定
+     */
+    #setShiftState(isActive) {
+        this.isShift = isActive;
+        this.#setKeyboardText(isActive ? 'keyShift' : 'key');
+        this.#coordinateNextKey(
+            this.#getKeyCode(this.currentText.charAt(this.charPos)) ?? 'ShiftLeft'
+        );
     }
 }
