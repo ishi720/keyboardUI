@@ -95,6 +95,7 @@ export default class KeyboardBase {
         } else if (char && e.code !== "ShiftRight" && e.code !== "ShiftLeft") {
             // 間違いカウント
             this.missCount++;
+            this.#updateScore();
         }
         // 押下中のキーを強調表示
         this.#toggleKeyActive(e.code, true);
@@ -158,6 +159,7 @@ export default class KeyboardBase {
     #handleCorrectKey() {
         // 正解カウント
         this.correctCount++;
+        this.#updateScore();
 
         // 入力済みにする
         const char = document.getElementById("char_" + this.charPos);
@@ -326,5 +328,19 @@ export default class KeyboardBase {
      */
     decomposeText() {
         this.currentText = this.originalText;
+    }
+
+    /**
+     * スコアボードを更新
+     */
+    #updateScore() {
+        const correctEl = document.getElementById("correctCountDisplay");
+        const missEl = document.getElementById("missCountDisplay");
+        if (correctEl) {
+            correctEl.innerText = `正: ${this.correctCount}`;
+        }
+        if (missEl) {
+            missEl.innerText = `誤: ${this.missCount}`;
+        }
     }
 }
