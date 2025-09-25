@@ -8,6 +8,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
+  user-select: none;
 }
 
 .container {
@@ -31,7 +32,6 @@ body {
   color: white;
   cursor: pointer;
   text-decoration: none;
-  user-select: none;
 }
 #backButton:hover {
   background-color: #404f5d;
@@ -41,7 +41,6 @@ body {
 #textDisplay {
   text-align: center;
   margin-bottom: 1.5rem;
-  user-select: none;
 }
 #textDisplay #inputKeywordDisplay {
   font-size: 1.2rem;
@@ -77,7 +76,6 @@ body {
   text-align: center;
   overflow: hidden;
   position: absolute;
-  user-select: none;
   cursor: pointer;
 }
 #keyboard .key_Backquote {
