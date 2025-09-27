@@ -37,6 +37,37 @@ body {
   background-color: #404f5d;
 }
 
+.assist-checkbox {
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  float: right;
+}
+.assist-checkbox input[type=checkbox] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #888;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.assist-checkbox input[type=checkbox]:checked {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+.assist-checkbox input[type=checkbox]:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  left: 3px;
+}
+
 /* 入力画面 */
 #textDisplay {
   text-align: center;

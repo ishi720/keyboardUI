@@ -39,6 +39,14 @@ export default class KeyboardBase {
             keyEl.addEventListener("pointerout", () => this.#keyClickEnd(code));
             keyEl.addEventListener("pointerup", () => this.#keyClickEnd(code));
         });
+
+        // チェックボックスのON/OFF切り替え
+        const assistChk = document.getElementById("toggleAssistChk");
+        if (assistChk) {
+            assistChk.addEventListener("change", (e) => {
+                this.setKeyboardAssist(e.target.checked);
+            });
+        }
     }
 
     /**
@@ -298,6 +306,9 @@ export default class KeyboardBase {
 
     /**
      * オリジナル文字列と分離済み文字列のインデックス対応表を作成
+     * @param {string} original オリジナル文字列
+     * @param {string} separated 分離済み文字列
+     * @return {Array} インデックス対応表
      */
     #createIndexMap(original, separated) {
         const map = [];
@@ -344,5 +355,20 @@ export default class KeyboardBase {
         this.#coordinateNextKey(
             this.#getKeyCode(this.currentText.charAt(this.charPos)) ?? 'ShiftLeft'
         );
+    }
+
+    /**
+     * 入力補助のON/OFFを設定
+     */
+    setKeyboardAssist(isActive) {
+        this.isKeyboardAssist = isActive;
+
+        if (!this.isKeyboardAssist) {
+            this.#clearNextKey();
+        } else {
+            const char = this.currentText.charAt(this.charPos);
+            const key = this.#getKeyCode(char);
+            this.#coordinateNextKey(key ?? "ShiftLeft");
+        }
     }
 }
