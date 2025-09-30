@@ -73,6 +73,27 @@ body {
   text-align: center;
   margin-bottom: 1.5rem;
 }
+#textDisplay .start-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-bottom: 16px;
+}
+#textDisplay .start-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+#textDisplay .start-button:active {
+  background-color: #004080;
+  transform: scale(0.98);
+}
 #textDisplay #inputKeywordDisplay {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;

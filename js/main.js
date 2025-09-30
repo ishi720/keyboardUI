@@ -26,7 +26,12 @@ function getTextsByType(type) {
 
 window.onload = () => {
     inputList = getTextsByType(keyboardType);
-    createKeyboard(inputList[currentIndex]);
+    const startBtn = document.getElementById("startBtn");
+    startBtn.addEventListener("click", () => {
+        createKeyboard(inputList[currentIndex]);
+        startBtn.disabled = true;
+        startBtn.style.display = 'none';
+    });
 };
 
 function createKeyboard(text) {
