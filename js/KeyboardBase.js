@@ -10,6 +10,7 @@ export default class KeyboardBase {
         this.isShift = false; // Shiftキー押下中フラグ
         this.codeList = []; // キーリスト
         this.clickStatus = false; // マウスクリック押下中フラグ
+        this.isTyping = false; // タイピング中フラグ
         this.correctCount = 0; // 正解キー数
         this.missCount = 0; // ミスタイプ数
     }
@@ -46,6 +47,7 @@ export default class KeyboardBase {
      * タイピング開始
      */
     startTyping() {
+        this.isTyping = true;
         this.#renderInputText();
         this.#renderOriginalText();
         // 最初のキーを強調表示
@@ -103,9 +105,11 @@ export default class KeyboardBase {
         if (char && this.#getKeyCode(char) === e.code) {
             this.#handleCorrectKey();
         } else if (char && e.code !== "ShiftRight" && e.code !== "ShiftLeft") {
-            // 間違いカウント
-            this.missCount++;
-            this.#updateScore();
+            if (this.isTyping) {
+                // 間違いカウント
+                this.missCount++;
+                this.#updateScore();
+            }
         }
         // 押下中のキーを強調表示
         this.#toggleKeyActive(e.code, true);
@@ -148,8 +152,10 @@ export default class KeyboardBase {
         } else if (code == "ShiftRight" || code == "ShiftLeft") {
             this.#setShiftState(false);
         } else {
-            this.missCount++;
-            this.#updateScore();
+            if (this.isTyping) {
+                this.missCount++;
+                this.#updateScore();
+            }
         }
         // 押下中のキーの強調表示をクリア
         this.#toggleKeyActive(code, false);
