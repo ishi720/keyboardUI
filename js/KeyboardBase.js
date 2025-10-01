@@ -18,14 +18,8 @@ export default class KeyboardBase {
      * 初期化処理
      */
     init() {
-        this.#renderInputText();
-        this.#renderOriginalText();
-
-        // 最初のキーを強調表示
+        // キーボードの描画
         this.#setKeyboardText('key');
-        this.#coordinateNextKey(
-            this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
-        );
 
         // イベント登録
         document.addEventListener('keydown', (e) => this.#handleKeyDown(e));
@@ -48,7 +42,17 @@ export default class KeyboardBase {
             });
         }
     }
-
+    /**
+     * タイピング開始
+     */
+    startTyping() {
+        this.#renderInputText();
+        this.#renderOriginalText();
+        // 最初のキーを強調表示
+        this.#coordinateNextKey(
+            this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
+        );
+    }
     /**
      * 入力用テキストを画面に描画
      */
