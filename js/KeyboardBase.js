@@ -166,9 +166,11 @@ export default class KeyboardBase {
      * 正しくキーを押されたときの処理
      */
     #handleCorrectKey() {
-        // 正解カウント
-        this.correctCount++;
-        this.#updateScore();
+        if (this.isTyping) {
+            // 正解カウント
+            this.correctCount++;
+            this.#updateScore();
+        }
 
         // 入力済みにする
         const char = document.getElementById("char_" + this.charPos);
