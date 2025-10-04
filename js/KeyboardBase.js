@@ -102,10 +102,10 @@ export default class KeyboardBase {
         // 入力文字と押されたキーが一致するか判定
         const char = this.currentText.charAt(this.charPos);
 
-        if (char && this.#getKeyCode(char) === e.code) {
-            this.#handleCorrectKey();
-        } else if (char && e.code !== "ShiftRight" && e.code !== "ShiftLeft") {
-            if (this.isTyping) {
+        if (this.isTyping) {
+            if (char && this.#getKeyCode(char) === e.code) {
+                this.#handleCorrectKey();
+            } else if (char && e.code !== "ShiftRight" && e.code !== "ShiftLeft") {
                 // 間違いカウント
                 this.missCount++;
                 this.#updateScore();
