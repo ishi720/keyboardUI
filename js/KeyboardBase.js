@@ -91,6 +91,18 @@ export default class KeyboardBase {
     }
 
     /**
+     * タイマーをリセット
+     */
+    #resetTimer() {
+        this.#stopTimer();
+        this.startTime = null;
+        const timerDisplay = document.getElementById("timerDisplay");
+        if (timerDisplay) {
+            timerDisplay.innerText = "Time: 0.00 秒";
+        }
+    }
+
+    /**
      * 入力用テキストを画面に描画
      */
     #renderInputText() {
@@ -301,10 +313,7 @@ export default class KeyboardBase {
                     this.#renderOriginalText();
 
                     // タイマーリセット
-                    const timerDisplay = document.getElementById("timerDisplay");
-                    if (timerDisplay) {
-                        timerDisplay.innerText = "Time: 0.00 秒";
-                    }
+                    this.#resetTimer();
 
                     // 再スタート
                     this.startTyping();
