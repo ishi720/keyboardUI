@@ -79,7 +79,6 @@ export default class KeyboardBase {
         this.timerId = setInterval(() => {
             const elapsed = (Date.now() - this.startTime) / 1000;
             timerDisplay.innerText = `Time: ${elapsed.toFixed(2)} 秒`;
-            console.log(elapsed);
         }, 10);
     }
 
@@ -254,13 +253,21 @@ export default class KeyboardBase {
      * 入力をリセット
      */
     #inputReset() {
-        // 複数テキストがある場合は次のテキストへ
-        if (this.inputList && this.inputList.length > 1) {
-            this.currentIndex = (this.currentIndex + 1) % this.inputList.length;
-            this.originalText = this.inputList[this.currentIndex];
-            this.currentText = this.inputList[this.currentIndex];
-            this.indexMap = this.#createIndexMap(this.originalText, this.currentText);
+
+        // 全てのテキストを入力し終えた場合は終了
+        if (this.currentIndex >= this.inputList.length - 1) {
+            // タイマーを止める
+            this.#stopTimer();
+            // タイピング終了
+            this.isTyping = false;
+            return;
         }
+
+        // 複数テキストがある場合は次のテキストへ
+        this.currentIndex = (this.currentIndex + 1) % this.inputList.length;
+        this.originalText = this.inputList[this.currentIndex];
+        this.currentText = this.inputList[this.currentIndex];
+        this.indexMap = this.#createIndexMap(this.originalText, this.currentText);
 
         // リセット処理
         this.charPos = 0;
