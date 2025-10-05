@@ -263,6 +263,53 @@ export default class KeyboardBase {
             // 強調表示をクリア
             this.#clearNextKey();
             this.#clearNextChar();
+
+            // 🎯 入力表示エリアを「もう一度」ボタンに置き換え
+            const inputDisplay = document.getElementById("inputKeywordDisplay");
+            if (inputDisplay) {
+                inputDisplay.innerHTML = `
+                    <div style="text-align:center; margin-top:20px;">
+                        <button id="retryBtn" style="
+                            font-size: 1.2rem;
+                            padding: 10px 20px;
+                            border-radius: 8px;
+                            border: none;
+                            background-color: #007bff;
+                            color: white;
+                            cursor: pointer;
+                            transition: 0.2s;
+                        ">
+                            リトライ
+                        </button>
+                    </div>
+                `;
+            }
+
+            // 「リトライ」ボタンクリックで最初に戻る
+            const retryBtn = document.getElementById("retryBtn");
+            if (retryBtn) {
+                retryBtn.addEventListener("click", () => {
+                    // 初期状態に戻す
+                    this.currentIndex = 0;
+                    this.originalText = this.inputList[0];
+                    this.currentText = this.inputList[0];
+                    this.indexMap = this.#createIndexMap(this.originalText, this.currentText);
+                    this.charPos = 0;
+
+                    // 表示をリセット
+                    this.#renderInputText();
+                    this.#renderOriginalText();
+
+                    // タイマーリセット
+                    const timerDisplay = document.getElementById("timerDisplay");
+                    if (timerDisplay) {
+                        timerDisplay.innerText = "Time: 0.00 秒";
+                    }
+
+                    // 再スタート
+                    this.startTyping();
+                });
+            }
             return;
         }
 
