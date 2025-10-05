@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * キーボードの基底クラス
+ */
 export default class KeyboardBase {
     constructor(targetText) {
         this.originalText = targetText; // オリジナルテキスト
@@ -135,8 +138,10 @@ export default class KeyboardBase {
         if (code === "ShiftRight" || code === "ShiftLeft") {
             this.#setShiftState(true);
         }
-        this.#toggleKeyActive(code, true);
-        this.clickStatus = true;
+        if (this.startTyping) {
+            this.#toggleKeyActive(code, true);
+            this.clickStatus = true;
+        }
     }
 
     /**
@@ -147,12 +152,12 @@ export default class KeyboardBase {
 
         const char = this.currentText.charAt(this.charPos);
         const keyObj = this.codeList.find(d => (this.isShift ? d.keyShift : d.key) === char);
-        if (keyObj && keyObj.code === code) {
-            this.#handleCorrectKey();
-        } else if (code == "ShiftRight" || code == "ShiftLeft") {
-            this.#setShiftState(false);
-        } else {
-            if (this.isTyping) {
+        if (this.isTyping) {
+            if (keyObj && keyObj.code === code) {
+                this.#handleCorrectKey();
+            } else if (code == "ShiftRight" || code == "ShiftLeft") {
+                this.#setShiftState(false);
+            } else {
                 this.missCount++;
                 this.#updateScore();
             }
@@ -364,9 +369,11 @@ export default class KeyboardBase {
     #setShiftState(isActive) {
         this.isShift = isActive;
         this.#setKeyboardText(isActive ? 'keyShift' : 'key');
-        this.#coordinateNextKey(
-            this.#getKeyCode(this.currentText.charAt(this.charPos)) ?? 'ShiftLeft'
-        );
+        if (this.isTyping) {
+            this.#coordinateNextKey(
+                this.#getKeyCode(this.currentText.charAt(this.charPos)) ?? 'ShiftLeft'
+            );
+        }
     }
 
     /**
