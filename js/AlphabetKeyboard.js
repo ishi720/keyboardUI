@@ -1,11 +1,11 @@
 'use strict';
 import KeyboardBase from './KeyboardBase.js';
 
-export default class RomajiKeyboard extends KeyboardBase {
+export default class AlphabetKeyboard extends KeyboardBase {
     constructor(targetText) {
         super(targetText);
 
-        // ローマ字用キーリスト
+        // アルファベットキーリスト
         this.codeList = [
             { code: "Digit1", key: "1", keyShift: "!"},
             { code: "Digit2", key: "2", keyShift: "\""},

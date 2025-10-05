@@ -1,6 +1,6 @@
 'use strict';
 import KanaKeyboard from './KanaKeyboard.js';
-import RomajiKeyboard from './RomajiKeyboard.js';
+import AlphabetKeyboard from './AlphabetKeyboard.js';
 import HungulKeyboard from './HangulKeyboard.js';
 
 const params = new URLSearchParams(window.location.search);
@@ -9,7 +9,7 @@ const keyboardType = params.get("type");
 // 入力テキストの配列
 const texts = {
     kana: ["きょうは、りんごをたべる", "こんにちはせかい"],
-    romaji: ["Hello world!", "Good morning!", "I have a pen."],
+    alphabet: ["Hello world!", "Good morning!", "I have a pen."],
     hangul: ["안녕하세요", "감사합니다"]
 };
 
@@ -19,9 +19,9 @@ let inputList = [];
 
 function getTextsByType(type) {
     if (type === "kana") return texts.kana;
-    if (type === "romaji") return texts.romaji;
+    if (type === "alphabet") return texts.alphabet;
     if (type === "hangul") return texts.hangul;
-    return texts.romaji;
+    return texts.alphabet;
 }
 
 window.onload = () => {
@@ -37,12 +37,12 @@ window.onload = () => {
 function createKeyboard(text) {
     if (keyboardType === "kana") {
         keyboard = new KanaKeyboard(text);
-    } else if (keyboardType === "romaji") {
-        keyboard = new RomajiKeyboard(text);
+    } else if (keyboardType === "alphabet") {
+        keyboard = new AlphabetKeyboard(text);
     } else if (keyboardType === "hangul") {
         keyboard = new HungulKeyboard(text);
     } else {
-        keyboard = new RomajiKeyboard(text);
+        keyboard = new AlphabetKeyboard(text);
     }
     keyboard.inputList = inputList;
     keyboard.currentIndex = currentIndex;
