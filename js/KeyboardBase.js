@@ -260,6 +260,9 @@ export default class KeyboardBase {
             this.#stopTimer();
             // タイピング終了
             this.isTyping = false;
+            // 強調表示をクリア
+            this.#clearNextKey();
+            this.#clearNextChar();
             return;
         }
 
