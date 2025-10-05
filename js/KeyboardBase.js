@@ -16,6 +16,9 @@ export default class KeyboardBase {
         this.isTyping = false; // タイピング中フラグ
         this.correctCount = 0; // 正解キー数
         this.missCount = 0; // ミスタイプ数
+
+        this.startTime = null;
+        this.timerId = null;
     }
 
     /**
@@ -53,11 +56,41 @@ export default class KeyboardBase {
         this.isTyping = true;
         this.#renderInputText();
         this.#renderOriginalText();
+
+        // タイマー開始
+        this.startTime = Date.now();
+        this.#startTimer();
+
         // 最初のキーを強調表示
         this.#coordinateNextKey(
             this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
         );
     }
+    /**
+     * タイマーを開始
+     */
+    #startTimer() {
+        const timerDisplay = document.getElementById("timerDisplay");
+        if (!timerDisplay) return;
+
+        // 既存のタイマーをクリア
+        clearInterval(this.timerId);
+
+        this.timerId = setInterval(() => {
+            const elapsed = (Date.now() - this.startTime) / 1000;
+            timerDisplay.innerText = `Time: ${elapsed.toFixed(2)} 秒`;
+            console.log(elapsed);
+        }, 10);
+    }
+
+    /**
+     * タイマーを停止
+     */
+    #stopTimer() {
+        clearInterval(this.timerId);
+        this.timerId = null;
+    }
+
     /**
      * 入力用テキストを画面に描画
      */
