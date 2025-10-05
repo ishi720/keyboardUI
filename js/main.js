@@ -1,7 +1,7 @@
 'use strict';
 import KanaKeyboard from './KanaKeyboard.js';
 import AlphabetKeyboard from './AlphabetKeyboard.js';
-import HungulKeyboard from './HangulKeyboard.js';
+import HangulKeyboard from './HangulKeyboard.js';
 
 const params = new URLSearchParams(window.location.search);
 const keyboardType = params.get("type");
@@ -40,7 +40,7 @@ function createKeyboard(text) {
     } else if (keyboardType === "alphabet") {
         keyboard = new AlphabetKeyboard(text);
     } else if (keyboardType === "hangul") {
-        keyboard = new HungulKeyboard(text);
+        keyboard = new HangulKeyboard(text);
     } else {
         keyboard = new AlphabetKeyboard(text);
     }

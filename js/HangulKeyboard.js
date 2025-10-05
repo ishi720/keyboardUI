@@ -1,7 +1,7 @@
 'use strict';
 import KeyboardBase from './KeyboardBase.js';
 
-export default class HungulKeyboard extends KeyboardBase {
+export default class HangulKeyboard extends KeyboardBase {
     constructor(targetText) {
         super(targetText);
         this.currentText = this.#decomposeHangul(targetText);
