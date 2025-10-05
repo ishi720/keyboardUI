@@ -19,6 +19,9 @@ export default class KeyboardBase {
 
         this.startTime = null;
         this.timerId = null;
+        this.dom = {
+            timerDisplay: document.getElementById("timerDisplay")
+        };
     }
 
     /**
@@ -70,15 +73,14 @@ export default class KeyboardBase {
      * タイマーを開始
      */
     #startTimer() {
-        const timerDisplay = document.getElementById("timerDisplay");
-        if (!timerDisplay) return;
+        if (!this.dom.timerDisplay) return;
 
         // 既存のタイマーをクリア
         clearInterval(this.timerId);
 
         this.timerId = setInterval(() => {
             const elapsed = (Date.now() - this.startTime) / 1000;
-            timerDisplay.innerText = `Time: ${elapsed.toFixed(2)} 秒`;
+            this.dom.timerDisplay.innerText = `Time: ${elapsed.toFixed(2)} 秒`;
         }, 10);
     }
 
@@ -96,9 +98,8 @@ export default class KeyboardBase {
     #resetTimer() {
         this.#stopTimer();
         this.startTime = null;
-        const timerDisplay = document.getElementById("timerDisplay");
-        if (timerDisplay) {
-            timerDisplay.innerText = "Time: 0.00 秒";
+        if (this.dom.timerDisplay) {
+            this.dom.timerDisplay.innerText = "Time: 0.00 秒";
         }
     }
 
