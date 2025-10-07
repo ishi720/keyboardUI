@@ -73,7 +73,8 @@ body {
   text-align: center;
   margin-bottom: 1.5rem;
 }
-#textDisplay .start-button {
+#textDisplay .start-button,
+#textDisplay .retry-button {
   display: inline-block;
   padding: 12px 24px;
   font-size: 18px;
@@ -86,11 +87,13 @@ body {
   transition: background-color 0.3s, transform 0.2s;
   margin-bottom: 16px;
 }
-#textDisplay .start-button:hover {
+#textDisplay .start-button:hover,
+#textDisplay .retry-button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
 }
-#textDisplay .start-button:active {
+#textDisplay .start-button:active,
+#textDisplay .retry-button:active {
   background-color: #004080;
   transform: scale(0.98);
 }

@@ -277,49 +277,37 @@ export default class KeyboardBase {
             this.#clearNextKey();
             this.#clearNextChar();
 
-            // 🎯 入力表示エリアを「もう一度」ボタンに置き換え
-            const inputDisplay = document.getElementById("inputKeywordDisplay");
-            if (inputDisplay) {
-                inputDisplay.innerHTML = `
-                    <div style="text-align:center; margin-top:20px;">
-                        <button id="retryBtn" style="
-                            font-size: 1.2rem;
-                            padding: 10px 20px;
-                            border-radius: 8px;
-                            border: none;
-                            background-color: #007bff;
-                            color: white;
-                            cursor: pointer;
-                            transition: 0.2s;
-                        ">
-                            リトライ
-                        </button>
-                    </div>
-                `;
-            }
+            const retryBtn = document.getElementById("retryBtn");
+
+            // 「リトライ」ボタンを表示
+            retryBtn.style.display = '';
 
             // 「リトライ」ボタンクリックで最初に戻る
-            const retryBtn = document.getElementById("retryBtn");
-            if (retryBtn) {
-                retryBtn.addEventListener("click", () => {
-                    // 初期状態に戻す
-                    this.currentIndex = 0;
-                    this.originalText = this.inputList[0];
-                    this.currentText = this.inputList[0];
-                    this.indexMap = this.#createIndexMap(this.originalText, this.currentText);
-                    this.charPos = 0;
+            retryBtn.addEventListener("click", () => {
+                // 初期状態に戻す
+                this.currentIndex = 0;
+                this.originalText = this.inputList[0];
+                this.currentText = this.inputList[0];
+                this.indexMap = this.#createIndexMap(this.originalText, this.currentText);
+                this.charPos = 0;
+                retryBtn.style.display = 'none';
 
-                    // 表示をリセット
-                    this.#renderInputText();
-                    this.#renderOriginalText();
+                // 表示をリセット
+                this.#renderInputText();
+                this.#renderOriginalText();
 
-                    // タイマーリセット
-                    this.#resetTimer();
+                // スコアリセット
+                this.correctCount = 0;
+                this.missCount = 0;
+                this.#updateScore();
 
-                    // 再スタート
-                    this.startTyping();
-                });
-            }
+                // タイマーリセット
+                this.#resetTimer();
+
+                // 再スタート
+                this.startTyping();
+            });
+
             return;
         }
 
