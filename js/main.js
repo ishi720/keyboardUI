@@ -3,6 +3,7 @@ import KanaKeyboard from './KanaKeyboard.js';
 import AlphabetKeyboard from './AlphabetKeyboard.js';
 import HangulKeyboard from './HangulKeyboard.js';
 import FrenchAZERTYKeyboard from './FrenchAZERTYKeyboard.js';
+import ItalianQWERTYKeyboard from './ItalianQWERTYKeyboard.js';
 
 const params = new URLSearchParams(window.location.search);
 const keyboardType = params.get("type");
@@ -12,7 +13,8 @@ const texts = {
     kana: ["きょうは、りんごをたべる", "こんにちはせかい"],
     alphabet: ["Hello world!", "Good morning!", "I have a pen."],
     hangul: ["안녕하세요", "감사합니다"],
-    FrenchAZERTY: ["Bonjour le monde!", "Je mange une pomme."]
+    FrenchAZERTY: ["Bonjour le monde!", "Je mange une pomme."],
+    ItalianQWERTY: ["Ciao mondo!", "Mangio una mela."]
 };
 
 let currentIndex = 0;
@@ -24,6 +26,7 @@ function getTextsByType(type) {
     if (type === "alphabet") return texts.alphabet;
     if (type === "hangul") return texts.hangul;
     if (type === "FrenchAZERTY") return texts.FrenchAZERTY;
+    if (type === "ItalianQWERTY") return texts.ItalianQWERTY;
     return texts.alphabet;
 }
 
@@ -46,6 +49,8 @@ function createKeyboard(text) {
         keyboard = new HangulKeyboard(text);
     } else if (keyboardType === "FrenchAZERTY") {
         keyboard = new FrenchAZERTYKeyboard(text);
+    } else if (keyboardType === "ItalianQWERTY") {
+        keyboard = new ItalianQWERTYKeyboard(text);
     } else {
         keyboard = new AlphabetKeyboard(text);
     }
