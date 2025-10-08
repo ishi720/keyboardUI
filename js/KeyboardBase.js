@@ -20,7 +20,9 @@ export default class KeyboardBase {
         this.startTime = null;
         this.timerId = null;
         this.dom = {
-            timerDisplay: document.getElementById("timerDisplay")
+            timerDisplay: document.getElementById("timerDisplay"),
+            correctDisplay: document.getElementById("correctCountDisplay"),
+            missDisplay: document.getElementById("missCountDisplay")
         };
     }
 
@@ -441,13 +443,11 @@ export default class KeyboardBase {
      * スコアボードを更新
      */
     #updateScore() {
-        const correctEl = document.getElementById("correctCountDisplay");
-        const missEl = document.getElementById("missCountDisplay");
-        if (correctEl) {
-            correctEl.innerText = `正: ${this.correctCount}`;
+        if (this.dom.correctDisplay) {
+            this.dom.correctDisplay.innerText = `正: ${this.correctCount}`;
         }
-        if (missEl) {
-            missEl.innerText = `誤: ${this.missCount}`;
+        if (this.dom.missDisplay) {
+            this.dom.missDisplay.innerText = `誤: ${this.missCount}`;
         }
     }
 

@@ -1,7 +1,7 @@
 'use strict';
 import KeyboardBase from './KeyboardBase.js';
 
-// フランスAZERTYキーボードクラス
+// フランスAZERTY（アザーティー）配列のキーボードクラス
 export default class FrenchAZERTYKeyboard extends KeyboardBase {
     constructor(targetText) {
         super(targetText);
