@@ -30,7 +30,7 @@ function getTextsByType(type) {
     return texts.alphabet;
 }
 
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
     inputList = getTextsByType(keyboardType);
     createKeyboard(inputList[currentIndex]);
     const startBtn = document.getElementById("startBtn");
@@ -38,7 +38,7 @@ window.onload = () => {
         keyboard.startTyping();
         startBtn.style.display = 'none';
     });
-};
+});
 
 function createKeyboard(text) {
     if (keyboardType === "kana") {
