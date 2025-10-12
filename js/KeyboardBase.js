@@ -270,7 +270,7 @@ export default class KeyboardBase {
     #inputReset() {
 
         // 全てのテキストを入力し終えた場合は終了
-        if (this.currentIndex >= this.inputList.length - 1) {
+        if (this.#isAllTextCompleted()) {
             // タイマーを止める
             this.#stopTimer();
             // タイピング終了
@@ -342,6 +342,13 @@ export default class KeyboardBase {
         this.#coordinateNextKey(
             this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
         );
+    }
+
+    /**
+     * 全てのテキストを入力し終えたかどうか
+     */
+    #isAllTextCompleted() {
+        return this.currentIndex >= this.inputList.length - 1;
     }
 
     /**
