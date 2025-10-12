@@ -269,8 +269,8 @@ export default class KeyboardBase {
      */
     #inputReset() {
 
-        // 全てのテキストを入力し終えた場合は終了
         if (this.#isAllTextCompleted()) {
+            // 全てのテキストを入力し終えた場合は終了
             // タイマーを止める
             this.#stopTimer();
             // タイピング終了
@@ -310,38 +310,10 @@ export default class KeyboardBase {
                 this.startTyping();
             });
 
-            return;
+        } else {
+            // 複数テキストがある場合、次のテキストへ進む
+            this.#moveToNextText();
         }
-
-        // 複数テキストがある場合は次のテキストへ
-        this.currentIndex = (this.currentIndex + 1) % this.inputList.length;
-        this.originalText = this.inputList[this.currentIndex];
-        this.currentText = this.inputList[this.currentIndex];
-        this.indexMap = this.#createIndexMap(this.originalText, this.currentText);
-
-        // リセット処理
-        this.charPos = 0;
-        const inputText = document.querySelectorAll("#inputKeywordDisplay span");
-        inputText.forEach(span => span.setAttribute("class", "coordinate"));
-        // 赤い強調もクリア
-        this.#clearNextChar();
-        // オリジナルテキストもリセット
-        const originalText = document.querySelectorAll("#originalTextDisplay span");
-        originalText.forEach(span => span.setAttribute("class", "coordinate"));
-        // 分解済みテキストもリセット
-        this.decomposeText();
-
-        // 描画更新
-        this.#renderInputText();
-        this.#renderOriginalText();
-        this.#clearNextKey();
-        this.isShift = false;
-        this.clickStatus = false;
-        this.#setKeyboardText('key');
-        // 次のキーを強調表示
-        this.#coordinateNextKey(
-            this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
-        );
     }
 
     /**
@@ -349,6 +321,47 @@ export default class KeyboardBase {
      */
     #isAllTextCompleted() {
         return this.currentIndex >= this.inputList.length - 1;
+    }
+
+    /**
+     * 複数テキストがある場合、次のテキストへ進む
+     */
+    #moveToNextText() {
+        // 複数テキストがある場合は次のテキストへ
+        this.currentIndex = (this.currentIndex + 1) % this.inputList.length;
+        this.originalText = this.inputList[this.currentIndex];
+        this.currentText = this.inputList[this.currentIndex];
+        this.indexMap = this.#createIndexMap(this.originalText, this.currentText);
+
+        // 入力状態・表示を初期化
+        this.#resetDisplayState();
+
+        // 次のキーを強調表示
+        this.#coordinateNextKey(
+            this.#getKeyCode(this.currentText.charAt(this.charPos)) === null ? 'ShiftLeft' : this.#getKeyCode(this.currentText.charAt(this.charPos))
+        );
+    }
+
+    /**
+     * 入力状態・表示を初期化
+     */
+    #resetDisplayState() {
+        this.charPos = 0;
+        this.isShift = false;
+        this.clickStatus = false;
+
+        // 入力文字とオリジナル文字をリセット
+        document.querySelectorAll("#inputKeywordDisplay span").forEach(span => span.className = "coordinate");
+        document.querySelectorAll("#originalTextDisplay span").forEach(span => span.className = "coordinate");
+
+        this.#clearNextChar();
+        this.decomposeText();
+
+        // 再描画とキーボード更新
+        this.#renderInputText();
+        this.#renderOriginalText();
+        this.#clearNextKey();
+        this.#setKeyboardText('key');
     }
 
     /**
