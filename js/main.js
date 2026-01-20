@@ -8,6 +8,17 @@ import ItalianQWERTYKeyboard from './ItalianQWERTYKeyboard.js';
 const params = new URLSearchParams(window.location.search);
 const keyboardType = params.get("type");
 
+const DEFAULT_TYPE = "alphabet";
+
+// キーボードクラスのマッピング
+const keyboardClasses = {
+    kana: KanaKeyboard,
+    alphabet: AlphabetKeyboard,
+    hangul: HangulKeyboard,
+    FrenchAZERTY: FrenchAZERTYKeyboard,
+    ItalianQWERTY: ItalianQWERTYKeyboard
+};
+
 // 入力テキストの配列
 const texts = {
     kana: ["きょうは、りんごをたべる", "こんにちはせかい"],
@@ -22,12 +33,7 @@ let keyboard = null;
 let inputList = [];
 
 function getTextsByType(type) {
-    if (type === "kana") return texts.kana;
-    if (type === "alphabet") return texts.alphabet;
-    if (type === "hangul") return texts.hangul;
-    if (type === "FrenchAZERTY") return texts.FrenchAZERTY;
-    if (type === "ItalianQWERTY") return texts.ItalianQWERTY;
-    return texts.alphabet;
+    return texts[type] || texts[DEFAULT_TYPE];
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -41,19 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function createKeyboard(text) {
-    if (keyboardType === "kana") {
-        keyboard = new KanaKeyboard(text);
-    } else if (keyboardType === "alphabet") {
-        keyboard = new AlphabetKeyboard(text);
-    } else if (keyboardType === "hangul") {
-        keyboard = new HangulKeyboard(text);
-    } else if (keyboardType === "FrenchAZERTY") {
-        keyboard = new FrenchAZERTYKeyboard(text);
-    } else if (keyboardType === "ItalianQWERTY") {
-        keyboard = new ItalianQWERTYKeyboard(text);
-    } else {
-        keyboard = new AlphabetKeyboard(text);
-    }
+    const KeyboardClass = keyboardClasses[keyboardType] || keyboardClasses[DEFAULT_TYPE];
+    keyboard = new KeyboardClass(text);
     keyboard.inputList = inputList;
     keyboard.currentIndex = currentIndex;
     keyboard.init();
