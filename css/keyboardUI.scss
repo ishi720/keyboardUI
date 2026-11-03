@@ -114,6 +114,14 @@ body {
         font-weight: bold;
         background-color: yellow;
     }
+
+    // RTL（アラビア語）: 文字ごとに太さが変わると結合が切れるため、太さを統一する
+    #inputKeywordDisplay[dir="rtl"],
+    #originalTextDisplay[dir="rtl"] {
+        span {
+            font-weight: bold;
+        }
+    }
 }
 
 /* キーボード */

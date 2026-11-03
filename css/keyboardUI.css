@@ -111,6 +111,10 @@ body {
   font-weight: bold;
   background-color: yellow;
 }
+#textDisplay #inputKeywordDisplay[dir=rtl] span,
+#textDisplay #originalTextDisplay[dir=rtl] span {
+  font-weight: bold;
+}
 
 /* キーボード */
 #keyboard {

@@ -4,6 +4,7 @@ import AlphabetKeyboard from './AlphabetKeyboard.js';
 import HangulKeyboard from './HangulKeyboard.js';
 import FrenchAZERTYKeyboard from './FrenchAZERTYKeyboard.js';
 import ItalianQWERTYKeyboard from './ItalianQWERTYKeyboard.js';
+import ArabicKeyboard from './ArabicKeyboard.js';
 
 const params = new URLSearchParams(window.location.search);
 const keyboardType = params.get("type");
@@ -16,7 +17,8 @@ const keyboardClasses = {
     alphabet: AlphabetKeyboard,
     hangul: HangulKeyboard,
     FrenchAZERTY: FrenchAZERTYKeyboard,
-    ItalianQWERTY: ItalianQWERTYKeyboard
+    ItalianQWERTY: ItalianQWERTYKeyboard,
+    arabic: ArabicKeyboard
 };
 
 // 入力テキストの配列
@@ -25,7 +27,8 @@ const texts = {
     alphabet: ["Hello world!", "Good morning!", "I have a pen."],
     hangul: ["안녕하세요", "감사합니다"],
     FrenchAZERTY: ["Bonjour le monde!", "Je mange une pomme."],
-    ItalianQWERTY: ["Ciao mondo!", "Mangio una mela."]
+    ItalianQWERTY: ["Ciao mondo!", "Mangio una mela."],
+    arabic: ["مرحبا بالعالم", "شكرا جزيلا"]
 };
 
 let currentIndex = 0;
