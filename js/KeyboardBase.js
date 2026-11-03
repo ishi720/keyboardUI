@@ -289,7 +289,7 @@ export default class KeyboardBase {
                 // 初期状態に戻す
                 this.currentIndex = 0;
                 this.originalText = this.inputList[0];
-                this.currentText = this.inputList[0];
+                this.decomposeText();
                 this.indexMap = this.#createIndexMap(this.originalText, this.currentText);
                 this.charPos = 0;
                 retryBtn.style.display = 'none';
